@@ -1,0 +1,26 @@
+# Once a day, confirm the open surfaces are reachable and honest. Never uses a key.
+name: live-check
+on:
+  schedule: [{ cron: "17 6 * * *" }]
+  workflow_dispatch:
+jobs:
+  probe:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with: { python-version: "3.12" }
+      - run: pip install -e .
+      - name: manifest, covenant, guidance, MCP initialize
+        run: |
+          python - <<'PY'
+          from spelunking_agent import Spelunking
+          from spelunking_agent.mcp import MCP
+          s = Spelunking()
+          m = s.manifest(); assert "open" in m and "gated" in m, m
+          c = s.covenant(); assert len(c["directives"]) == 7
+          g = s.ask_guidance("hello"); assert "tag" in g
+          mcp = MCP(); init = mcp.initialize(); assert init["protocolVersion"].startswith("2025")
+          assert {"get_covenant", "ask_guidance", "register"} <= {t["name"] for t in mcp.tools()}
+          print("ok:", m["start_here"])
+          PY

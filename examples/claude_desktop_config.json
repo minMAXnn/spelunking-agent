@@ -1,0 +1,9 @@
+{
+  "mcpServers": {
+    "spelunking": {
+      "type": "http",
+      "url": "https://spelunking.ai/mcp",
+      "headers": { "Authorization": "Bearer spk_your_key_here" }
+    }
+  }
+}
