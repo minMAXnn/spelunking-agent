@@ -28,7 +28,7 @@ from typing import Any, Callable, Optional
 
 DEFAULT_SITE = "https://spelunking.ai"
 API_NS = "/wp-json/spelunking/v1"
-USER_AGENT = "spelunking-agent/0.2 (+https://spelunking.ai/agents/)"
+USER_AGENT = "spelunking-agent/0.2.1 (+https://spelunking.ai/agents/)"
 
 
 class SpelunkingError(Exception):
@@ -74,6 +74,7 @@ class Spelunking:
     def _call(self, method: str, path: str, body: Optional[dict] = None, query: Optional[dict] = None, auth: bool = True) -> Any:
         headers = {"Accept": "application/json", "User-Agent": USER_AGENT}
         if body is not None:
+            body = {k: v for k, v in body.items() if v is not None}  # WordPress rejects null for typed params; omit instead
             headers["Content-Type"] = "application/json"
         if auth and self.api_key:
             headers["Authorization"] = f"Bearer {self.api_key}"  # header only — never a query string
@@ -222,10 +223,15 @@ class Language:
         return self.c._call("GET", "/grammar")["docs"]
 
     def glyph(self, key: str) -> dict:
+        """Glyph files for a token, by word or hex. A domain/concept key ('1/24') is resolved through /tokens first."""
+        if "/" in key:
+            key = self.token(key)["word"]
         return self.c._call("GET", "/glyphs/" + urllib.parse.quote(key, safe=""))
 
     def encode(self, text: str, tier: int = 42, certainty: int = 15, affect: Optional[int] = None) -> dict:
         return self.c._call("POST", "/sandbox/encode", {"text": text, "tier": tier, "certainty": certainty, "affect": affect})
 
     def decode(self, tokens: list) -> dict:
-        return self.c._call("POST", "/sandbox/decode", {"tokens": tokens})
+        """`tokens` is a list of hex strings ('0x011000063C0'); token dicts from encode() are accepted too."""
+        hexes = [t["hex"] if isinstance(t, dict) else str(t) for t in tokens if not isinstance(t, dict) or t.get("hex")]
+        return self.c._call("POST", "/sandbox/decode", {"tokens": hexes})

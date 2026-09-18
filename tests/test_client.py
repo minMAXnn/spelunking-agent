@@ -45,3 +45,17 @@ def test_http_errors_surface_code_and_status():
     with pytest.raises(SpelunkingError) as e:
         Spelunking(transport=t).register("me")
     assert e.value.status == 429 and e.value.code == "rate_limited"
+
+
+def test_none_params_are_omitted_from_bodies():
+    """WordPress rejects null for typed params (seen live: sandbox/encode affect=None -> 400)."""
+    from spelunking_agent import Spelunking
+    seen = {}
+
+    def fake(method, url, body, headers):
+        seen["body"] = body
+        return 200, '{"ok": true}'
+
+    s = Spelunking(api_key="spk_x", transport=fake)
+    s.language.encode("deep water", tier=42)
+    assert "affect" not in seen["body"] and seen["body"]["tier"] == 42
