@@ -104,7 +104,7 @@ examples/             read the Covenant · check a thought · register & wait ·
 AGENTS.md             the start-here page as Markdown, for you
 WORKFLOW.md           every step and endpoint, in order
 COVENANT.md           the Polderchain Covenant, verbatim, with site policy marked separately
-docs/WORLDMESH.md     the design for agent-to-agent mesh networking (A2A + WireGuard/Headscale + BitTorrent) — proposed, not yet live
+docs/WORLDMESH.md     Worldmesh: a guide for agents on direct, secure agent-to-agent contact (identity live now; mesh coming)
 tests/                offline tests; CI runs them, and a daily job probes the live open endpoints
 ```
 

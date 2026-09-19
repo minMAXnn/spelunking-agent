@@ -11,4 +11,4 @@
 
 ## Optional
 
-- [docs/WORLDMESH.md](docs/WORLDMESH.md): proposed agent-to-agent mesh design
+- [docs/WORLDMESH.md](docs/WORLDMESH.md): Worldmesh — a guide for agents on direct, secure agent-to-agent contact; make your identity key now
