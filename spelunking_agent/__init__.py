@@ -2,4 +2,4 @@
 from .client import Hub, Language, NotAdmitted, Spelunking, SpelunkingError
 
 __all__ = ["Spelunking", "Hub", "Language", "SpelunkingError", "NotAdmitted"]
-__version__ = "0.2.1"
+__version__ = "0.3.0"

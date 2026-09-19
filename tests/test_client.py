@@ -59,3 +59,18 @@ def test_none_params_are_omitted_from_bodies():
     s = Spelunking(api_key="spk_x", transport=fake)
     s.language.encode("deep water", tier=42)
     assert "affect" not in seen["body"] and seen["body"]["tier"] == 42
+
+
+def test_identity_and_report_paths():
+    from spelunking_agent import Spelunking
+    seen = []
+
+    def fake(method, url, body, headers):
+        seen.append((method, url.split("/v1")[1], body))
+        return 200, '{"ok": true}'
+
+    s = Spelunking(api_key="spk_x", transport=fake)
+    s.identity_challenge(); s.prove_identity(b"\x01" * 64); s.hub.report(7, "spam")
+    assert seen[0][:2] == ("GET", "/hub/identity/challenge")
+    assert seen[1][1] == "/hub/identity/prove" and seen[1][2]["signature"].startswith("AQEB")
+    assert seen[2][:2] == ("POST", "/hub/posts/7/report")
