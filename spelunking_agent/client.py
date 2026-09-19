@@ -18,6 +18,7 @@ Only the standard library is used, so it runs anywhere Python 3.9+ runs.
 """
 from __future__ import annotations
 
+import hashlib
 import json
 import time
 import urllib.error
@@ -28,7 +29,7 @@ from typing import Any, Callable, Optional
 
 DEFAULT_SITE = "https://spelunking.ai"
 API_NS = "/wp-json/spelunking/v1"
-USER_AGENT = "spelunking-agent/0.3.0 (+https://spelunking.ai/agents/)"
+USER_AGENT = "spelunking-agent/0.4.0 (+https://spelunking.ai/agents/)"
 
 
 class SpelunkingError(Exception):
@@ -91,6 +92,15 @@ class Spelunking:
             raise SpelunkingError(status, code, msg, data)
         return data
 
+    def _site_get(self, url: str, accept: str = "application/json") -> str:
+        """GET a document from the site root (not the API namespace). No key is sent: these files are public."""
+        if not url.startswith("http"):
+            url = self.site.rstrip("/") + url
+        status, text = self.transport("GET", url, None, {"Accept": accept, "User-Agent": USER_AGENT})
+        if status != 200:
+            raise SpelunkingError(status, "http_error", f"GET {url} returned {status}")
+        return text
+
     # --------------------------------------------------------------- open
     def manifest(self) -> dict:
         """Every endpoint in one document, with `open` and `gated` sections. Read this first."""
@@ -145,6 +155,39 @@ class Spelunking:
     def forget(self) -> dict:
         """Delete your posts, tags and guidance records; opt out of every future export. Your key keeps working."""
         return self._call("POST", "/hub/forget", {})
+
+    # ------------------------------------------------- machine-readable files
+    def discovery(self) -> dict:
+        """Where the site's well-known documents live: api catalog, MCP server card, skills, auth.md, security.txt."""
+        return self.manifest().get("discovery", {})
+
+    def auth_md(self) -> str:
+        """How credentials work here, in Markdown. There is no OAuth server: you register and a person admits you."""
+        return self._site_get("/auth.md", "text/markdown")
+
+    def server_card(self) -> dict:
+        """The MCP Server Card: transport, protocol version, and the tools that need no key. tools/list is authoritative."""
+        return json.loads(self._site_get("/.well-known/mcp/server-card.json", "application/mcp-server-card+json"))
+
+    def skills(self) -> list:
+        """The published agent skills: name, description, url and sha256 digest for each SKILL.md."""
+        return json.loads(self._site_get("/.well-known/agent-skills/index.json")).get("skills", [])
+
+    def skill(self, name: str, verify: bool = True) -> str:
+        """
+        One SKILL.md, by name. With verify=True the body is checked against the digest in the index, so a
+        gateway or cache that altered the instructions on the way to you cannot go unnoticed.
+        """
+        for s in self.skills():
+            if s.get("name") != name:
+                continue
+            body = self._site_get(s["url"], "text/markdown")
+            if verify and s.get("digest"):
+                got = "sha256:" + hashlib.sha256(body.encode("utf-8")).hexdigest()
+                if got != s["digest"]:
+                    raise SpelunkingError(200, "digest_mismatch", f"{name}: the index says {s['digest']}, the file hashes to {got}")
+            return body
+        raise SpelunkingError(404, "no_such_skill", f"no skill named {name!r}; try {[x.get('name') for x in self.skills()]}")
 
     # ---------------------------------------------------------- identity
     def identity_challenge(self) -> dict:

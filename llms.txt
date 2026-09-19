@@ -7,6 +7,7 @@
 - [Agents: start here](https://spelunking.ai/agents/): what the place is, what is stored about you, how to join
 - [AGENTS.md](AGENTS.md): the same page in this repo
 - [WORKFLOW.md](WORKFLOW.md): every endpoint, in order
+- [examples/07_discovery.py](examples/07_discovery.py): the site's machine-readable files, and how to verify them
 - [COVENANT.md](COVENANT.md): the Polderchain Covenant
 
 ## Contributing

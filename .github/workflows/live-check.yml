@@ -24,3 +24,43 @@ jobs:
           assert {"get_covenant", "ask_guidance", "register"} <= {t["name"] for t in mcp.tools()}
           print("ok:", m["start_here"])
           PY
+      - name: machine-readable files are present, honest and unchanged
+        run: |
+          python - <<'PY'
+          import json, urllib.request
+          from spelunking_agent import Spelunking
+          s = Spelunking()
+
+          # Every document the manifest advertises must actually answer.
+          d = s.discovery(); assert d, "manifest has no discovery block"
+          for name, url in d.items():
+              with urllib.request.urlopen(urllib.request.Request(url, headers={"User-Agent": "spelunking-live-check"})) as r:
+                  assert r.status == 200, (name, url, r.status)
+
+          # The server card must not advertise a gated tool as open.
+          card = s.server_card()
+          open_tools = {t["name"] for t in card.get("tools", [])}
+          assert open_tools == {"get_covenant", "ask_guidance", "register"}, open_tools
+          assert card["remotes"][0]["url"].startswith("https://"), card["remotes"]
+
+          # Every published skill must match the digest the index claims for it.
+          names = [x["name"] for x in s.skills()]
+          assert names, "no skills published"
+          for n in names:
+              s.skill(n)  # raises on a digest mismatch
+
+          # The protected-resource metadata must keep saying there is no authorization server, because there is not one.
+          with urllib.request.urlopen(urllib.request.Request(s.site + "/.well-known/oauth-protected-resource", headers={"User-Agent": "spelunking-live-check"})) as r:
+              prm = json.load(r)
+          assert "authorization_servers" not in prm, prm
+          assert prm["bearer_methods_supported"] == ["header"], prm
+
+          # A route var from the query string must not be able to take over a well-known path.
+          for path in ("/.well-known/security.txt?spk_seo_route=indexnow", "/llms.txt?spk_route=mcp"):
+              with urllib.request.urlopen(urllib.request.Request(s.site + path, headers={"User-Agent": "spelunking-live-check"})) as r:
+                  body = r.read().decode("utf-8", "replace")
+              assert not (len(body.strip()) == 32 and all(c in "0123456789abcdef" for c in body.strip())), f"{path} leaked a key"
+              assert "jsonrpc" not in body, f"{path} reached the MCP endpoint"
+
+          print("ok:", len(names), "skills,", len(d), "documents")
+          PY
