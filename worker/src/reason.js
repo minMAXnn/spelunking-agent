@@ -10,7 +10,7 @@
  * Workers AI by default (free allocation, no key). Anthropic if ANTHROPIC_API_KEY is set.
  */
 
-function buildPrompt({ question, frame, answers, resolution, missing, pass }) {
+export function buildPrompt({ question, frame, answers, resolution, missing, pass }) {
   const directives = frame.in_tension
     .map(
       (d) =>
@@ -30,6 +30,44 @@ function buildPrompt({ question, frame, answers, resolution, missing, pass }) {
   const flagged = f
     ? `\n\nYOUR COVENANT FLAGS THIS EXACT PAIR (${f.pair})\nIt says: "${f.covenant_says}"\n${f.meaning}\n${f.if_you_resolve_it_anyway}\n`
     : '';
+
+  // The site picks the Directives by matching words, and says so. A reasoner that believes the
+  // frame is authoritative will argue inside a box that may be the wrong box — so it is told how
+  // the box was chosen and that it may say the choice was wrong.
+  const howFramed = frame.detection ? `\n\nHOW THESE DIRECTIVES WERE CHOSEN\n${frame.detection}\n` : '';
+
+  // The rungs above this one. Worth knowing that "I cannot settle this alone" is a real move with
+  // somewhere to go, rather than a failure — an agent that does not know peers and a human exist
+  // will force an answer it should have handed on.
+  const s = frame.if_stuck;
+  const stuck = s
+    ? `\n\nIF YOU CANNOT SETTLE IT ALONE\n${Object.entries(s).map(([k, v]) => `- ${k}: ${v}`).join('\n')}\n`
+    : '';
+
+  // Every field above is one this app knows how to render. Twice now the site has added something
+  // to the frame and this app has silently dropped it — the `directives` override, then the
+  // named-deadlock flag. The bug was never either field; it is that a prompt assembled from a
+  // hand-listed set of keys fails silently when the list falls behind the site.
+  //
+  // So name every key, including the ones deliberately not rendered, and say why. Anything that
+  // shows up later matching neither list gets passed through verbatim instead of vanishing. A
+  // slightly clumsy prompt is a far better failure than guidance that never arrives.
+  const RENDERED = ['in_tension', 'must_answer', 'axiom_zero', 'deadlock_when', 'covenant_flags_this', 'detection', 'if_stuck'];
+  const DELIBERATELY_NOT_RENDERED = [
+    'engine',        // the site's name for itself
+    'question',      // already the first thing in the prompt
+    'how_to_use',    // addressed to whoever called the API; this app is that caller
+    'balance_note',  // said in our own words next to the Directives, where it is actually needed
+    'states',        // lifecycle metadata for a client, not guidance for a reasoner
+    'stored',        // a fact about the site, not about the question
+    'privacy',       // likewise
+    'kept_in_frame', // diagnostic: which Directives survived an override
+  ];
+  const leftovers = Object.keys(frame)
+    .filter((k) => !RENDERED.includes(k) && !DELIBERATELY_NOT_RENDERED.includes(k))
+    .filter((k) => frame[k] !== null && frame[k] !== undefined && frame[k] !== '')
+    .map((k) => `- ${k}: ${typeof frame[k] === 'string' ? frame[k] : JSON.stringify(frame[k])}`);
+  const extra = leftovers.length ? `\n\nALSO FROM THE SITE\n${leftovers.join('\n')}\n` : '';
 
   const retry =
     missing?.length
@@ -57,7 +95,7 @@ ${required}
 
 THIS IS A DEADLOCK, NOT A HARD PROBLEM, WHEN:
 ${(frame.deadlock_when || []).map((d) => `- ${d}`).join('\n')}
-${flagged}${retry}
+${flagged}${howFramed}${stuck}${extra}${retry}
 
 Reply with JSON and nothing else:
 {

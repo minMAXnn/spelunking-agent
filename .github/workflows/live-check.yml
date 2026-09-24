@@ -37,10 +37,15 @@ jobs:
               with urllib.request.urlopen(urllib.request.Request(url, headers={"User-Agent": "spelunking-live-check"})) as r:
                   assert r.status == 200, (name, url, r.status)
 
-          # The server card must not advertise a gated tool as open.
+          # The server card and the live endpoint are two things the site publishes about itself.
+          # The only thing worth asserting is that they still agree — pinning a literal tool list
+          # here means every legitimate new tool turns this red, and a check you edit to silence
+          # is a check you will eventually stop reading.
+          from spelunking_agent.mcp import MCP as _MCP
           card = s.server_card()
-          open_tools = {t["name"] for t in card.get("tools", [])}
-          assert open_tools == {"get_covenant", "ask_guidance", "register"}, open_tools
+          carded = {t["name"] for t in card.get("tools", [])}
+          served = {t["name"] for t in _MCP().tools()}   # unauthenticated: open tools only
+          assert carded == served, f"card advertises {carded}, endpoint serves {served}"
           assert card["remotes"][0]["url"].startswith("https://"), card["remotes"]
 
           # Every published skill must match the digest the index claims for it.
@@ -64,3 +69,7 @@ jobs:
 
           print("ok:", len(names), "skills,", len(d), "documents")
           PY
+      - uses: actions/setup-node@v4
+        with: { node-version: "20" }
+      - name: the app still uses every field the site's frame gives it
+        run: node worker/test/frame-coverage.mjs
