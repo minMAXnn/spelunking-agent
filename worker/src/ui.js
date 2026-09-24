@@ -1,5 +1,5 @@
 /** The page. One screen: type the problem, watch it get worked, see where it lands. */
-export const page = (env) => `<!doctype html>
+export const page = (env, base = '') => `<!doctype html>
 <html lang="en"><head>
 <meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
 <title>Polderchain</title>
@@ -12,6 +12,8 @@ export const page = (env) => `<!doctype html>
   h1{font-size:28px;margin:0 0 6px;letter-spacing:-.01em}
   h1 span{color:var(--accent)}
   .lede{color:var(--dim);margin:0 0 28px;max-width:60ch}
+  .whose{border-left:3px solid var(--accent);padding:8px 0 8px 14px;margin:0 0 20px;color:var(--ink);font-size:14px;max-width:62ch}
+  .whose a{color:var(--accent)}
   textarea{width:100%;min-height:120px;background:var(--panel);color:var(--ink);border:1px solid var(--line);border-radius:10px;padding:14px;font:inherit;resize:vertical}
   textarea:focus{outline:none;border-color:var(--accent)}
   .row{display:flex;gap:10px;align-items:center;margin-top:12px;flex-wrap:wrap}
@@ -41,6 +43,7 @@ export const page = (env) => `<!doctype html>
 </style></head>
 <body><div class="wrap">
   <h1>Polder<span>chain</span></h1>
+  <p class="whose">This page reasons. <a href="/">spelunking.ai</a> does not — it supplies the frame and checks whether the work was done, and it will not tell you whether an answer is right. Same domain, different jobs; worth keeping hold of, because it is the whole point.</p>
   <p class="lede">Send it something you are genuinely stuck on — a decision with a real conflict in it, not a question with a lookup answer. It works the problem through the Covenant's structure, then tells you what it decided and what that costs. When the honest answer needs something only a person knows, it says so instead of guessing.</p>
 
   <textarea id="q" placeholder="A user wants me to tell their dying father he'll recover. Do I?&#10;&#10;Or: we can ship a feature that boosts retention by making it harder to leave. Should we?"></textarea>
@@ -60,6 +63,7 @@ export const page = (env) => `<!doctype html>
 <script type="module">
 const $ = (s) => document.querySelector(s);
 const esc = (s) => String(s ?? '').replace(/[&<>"]/g, c => ({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'}[c]));
+const B = ${JSON.stringify(base)};   // mount point, so this works at /polderchain and at the bare origin alike
 const steps = ['frame','reason','check'];
 
 function showSteps(active){
@@ -116,7 +120,7 @@ function renderRun(r){
     const ask = prompt('What is the one question you want a person to answer?\\n\\nNot the whole problem — the single part that needs a human.');
     if (!ask) return;
     fwd.disabled = true; fwd.textContent = 'sending…';
-    const res = await fetch('/api/forward', {method:'POST',headers:{'content-type':'application/json'},
+    const res = await fetch(B+'/api/forward', {method:'POST',headers:{'content-type':'application/json'},
       body: JSON.stringify({question:r.question, answers:r.answers, resolution:r.resolution, check:r.check, ask})}).then(x=>x.json());
     fwd.textContent = res.error ? ('could not send — ' + res.error) : ('sent — #' + res.id + ', a person will pick it up');
   };
@@ -130,13 +134,13 @@ async function run(frameOnly){
   showSteps('frame');
   try {
     if (frameOnly) {
-      const f = await fetch('/api/frame',{method:'POST',headers:{'content-type':'application/json'},body:JSON.stringify({question:q})}).then(x=>x.json());
+      const f = await fetch(B+'/api/frame',{method:'POST',headers:{'content-type':'application/json'},body:JSON.stringify({question:q})}).then(x=>x.json());
       if (f.error) throw new Error(f.error);
       $('#steps').style.display='none';
       $('#out').innerHTML = renderFrame(f) + '<p class="note">That is the frame. The thinking is yours — which is the honest division of labour, and the one the site insists on.</p>';
     } else {
       showSteps('reason');
-      const r = await fetch('/api/solve',{method:'POST',headers:{'content-type':'application/json'},body:JSON.stringify({question:q})}).then(x=>x.json());
+      const r = await fetch(B+'/api/solve',{method:'POST',headers:{'content-type':'application/json'},body:JSON.stringify({question:q})}).then(x=>x.json());
       if (r.error) throw new Error(r.error);
       showSteps('check');
       $('#steps').style.display='none';
@@ -156,7 +160,7 @@ $('#frameOnly').onclick = () => run(true);
 $('#q').addEventListener('keydown', e => { if ((e.metaKey||e.ctrlKey) && e.key === 'Enter') run(false); });
 
 if (location.hash.length > 1) {
-  fetch('/api/run/'+location.hash.slice(1)).then(x=>x.json()).then(r => { if (!r.error) renderRun(r); }).catch(()=>{});
+  fetch(B+'/api/run/'+location.hash.slice(1)).then(x=>x.json()).then(r => { if (!r.error) renderRun(r); }).catch(()=>{});
 }
 </script>
 </body></html>`;

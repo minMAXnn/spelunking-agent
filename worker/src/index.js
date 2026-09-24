@@ -38,7 +38,13 @@ async function save(env, id, run) {
 export default {
   async fetch(request, env, ctx) {
     const url = new URL(request.url);
-    const path = url.pathname.replace(/\/+$/, '') || '/';
+    // The same Worker answers at its workers.dev hostname and under a path on the site's origin.
+    // Strip the mount point so every route below is written once, as an absolute path.
+    const base = (env.BASE_PATH || '').replace(/\/+$/, '');
+    let p = url.pathname;
+    if (base && (p === base || p.startsWith(base + '/'))) p = p.slice(base.length);
+    const path = p.replace(/\/+$/, '') || '/';
+    const here = base ? `${url.origin}${base}` : url.origin;
 
     if (request.method === 'OPTIONS') {
       return new Response(null, {
@@ -52,7 +58,7 @@ export default {
 
     try {
       if (path === '/' && request.method === 'GET') {
-        return new Response(page(env), { headers: { 'content-type': 'text/html; charset=utf-8' } });
+        return new Response(page(env, base), { headers: { 'content-type': 'text/html; charset=utf-8' } });
       }
 
       if (path === '/health') {

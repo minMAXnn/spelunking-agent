@@ -6,11 +6,21 @@
   "compatibility_date": "2026-09-01",
   "observability": { "enabled": true },
 
+  // Served from the site's own origin. Both patterns are needed: the bare path and everything
+  // under it. WordPress owns every other path on this zone, so keep these narrow.
+  "routes": [
+    { "pattern": "spelunking.ai/polderchain", "zone_name": "spelunking.ai" },
+    { "pattern": "spelunking.ai/polderchain/*", "zone_name": "spelunking.ai" }
+  ],
+
   "vars": {
     // Where the frame and the shape-check come from. This Worker deliberately holds no Covenant
     // text of its own: one source of truth, so the app can never quietly drift from the site.
     "SITE": "https://spelunking.ai",
-    "MODEL": "@cf/meta/llama-3.3-70b-instruct-fp8-fast"
+    "MODEL": "@cf/meta/llama-3.3-70b-instruct-fp8-fast",
+    // Stripped from incoming paths so the Worker routes the same whether it is reached at
+    // spelunking.ai/polderchain/... or at its workers.dev hostname.
+    "BASE_PATH": "/polderchain"
   },
 
   // Workers AI has a free allocation and needs no key. If an ANTHROPIC_API_KEY secret is set,
