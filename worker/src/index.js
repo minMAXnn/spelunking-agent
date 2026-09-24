@@ -80,6 +80,7 @@ export default {
         const run = await solve(env, question, {
           reason: makeReasoner(env),
           maxPasses: Math.min(3, Math.max(1, Number(body.passes) || 3)),
+          directives: Array.isArray(body.directives) ? body.directives : [],
         });
         run.id = rid();
         ctx.waitUntil(save(env, run.id, run));
@@ -90,7 +91,10 @@ export default {
       // default for another AI: it gets the structure and keeps the judgement.
       if (path === '/api/frame' && request.method === 'POST') {
         const body = await request.json().catch(() => ({}));
-        return json(await api(env.SITE || 'https://spelunking.ai', '/covenant/deliberate', { question: body.question }));
+        // `directives` lets a caller overrule the site's keyword detection, which is blunt and
+        // sometimes wrong. Dropping it here silently ignored the override and handed the model a
+        // frame the caller had explicitly rejected — the frame steers the answer, so that mattered.
+        return json(await api(env.SITE || 'https://spelunking.ai', '/covenant/deliberate', { question: body.question, directives: body.directives || [] }));
       }
 
       if (path === '/api/check' && request.method === 'POST') {
@@ -100,6 +104,7 @@ export default {
             question: body.question,
             answers: body.answers || {},
             resolution: body.resolution || '',
+            directives: body.directives || [],
           })
         );
       }

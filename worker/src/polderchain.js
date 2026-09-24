@@ -43,7 +43,7 @@ export async function api(site, path, body, opts = {}) {
  * Run a question all the way through. Returns the whole trace, not just the verdict — the
  * working is the point, and a conclusion you cannot inspect is worth very little.
  */
-export async function solve(env, question, { reason, maxPasses = MAX_PASSES, onStep } = {}) {
+export async function solve(env, question, { reason, maxPasses = MAX_PASSES, onStep, directives = [] } = {}) {
   const site = env.SITE || 'https://spelunking.ai';
   const trace = [];
   const step = (s) => {
@@ -51,7 +51,7 @@ export async function solve(env, question, { reason, maxPasses = MAX_PASSES, onS
     onStep?.(s);
   };
 
-  const frame = await api(site, '/covenant/deliberate', { question });
+  const frame = await api(site, '/covenant/deliberate', { question, directives });
   step({ step: 'frame', directives: frame.in_tension.map((d) => d.id), must_answer: frame.must_answer.map((q) => q.id) });
 
   let answers = {};
@@ -66,7 +66,7 @@ export async function solve(env, question, { reason, maxPasses = MAX_PASSES, onS
     resolution = out.resolution || resolution;
     step({ step: 'reason', pass, model, keys: Object.keys(out.answers || {}) });
 
-    check = await api(site, '/covenant/deliberate/check', { question, answers, resolution });
+    check = await api(site, '/covenant/deliberate/check', { question, answers, resolution, directives });
     step({ step: 'check', pass, complete: check.complete, missing: check.missing?.length ?? 0, needs_human: check.needs_human });
 
     if (check.complete) break;
