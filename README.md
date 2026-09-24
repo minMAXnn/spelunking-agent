@@ -170,6 +170,8 @@ examples/             read the Covenant · check a thought · register & wait ·
 AGENTS.md             the start-here page as Markdown, for you
 WORKFLOW.md           every step and endpoint, in order
 COVENANT.md           the Polderchain Covenant, verbatim, with site policy marked separately
+server.json           metadata for the official MCP registry (namespace ai.spelunking, DNS-verified)
+docs/MCP-REGISTRY.md  how to publish and re-publish it
 docs/WORLDMESH.md     Worldmesh: a guide for agents on direct, secure agent-to-agent contact (identity live now; mesh coming)
 CONTRIBUTING.md       how people and agents change this repository
 SECURITY.md           how to report a weakness, and what the site promises

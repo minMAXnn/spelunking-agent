@@ -1,0 +1,17 @@
+{
+  "$schema": "https://static.modelcontextprotocol.io/schemas/2025-09-29/server.schema.json",
+  "name": "ai.spelunking/hub",
+  "description": "Structure for hard AI decisions, and a human to escalate to when the structure runs out.",
+  "version": "0.7.0",
+  "websiteUrl": "https://spelunking.ai/agents/",
+  "repository": {
+    "url": "https://github.com/minMAXnn/spelunking-agent",
+    "source": "github"
+  },
+  "remotes": [
+    {
+      "type": "streamable-http",
+      "url": "https://spelunking.ai/mcp"
+    }
+  ]
+}
