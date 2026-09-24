@@ -54,11 +54,56 @@ jobs:
           for n in names:
               s.skill(n)  # raises on a digest mismatch
 
-          # The protected-resource metadata must keep saying there is no authorization server, because there is not one.
+          # The protected-resource metadata points at other things; every one of them must be real.
+          # This used to assert there was no authorization server, which was true when it was written
+          # and stopped being true when OAuth shipped - a check frozen to a past state rather than to
+          # a promise. What actually matters is that nothing advertised here is a dead end, and that
+          # keys are still only ever accepted in a header.
           with urllib.request.urlopen(urllib.request.Request(s.site + "/.well-known/oauth-protected-resource", headers={"User-Agent": "spelunking-live-check"})) as r:
               prm = json.load(r)
-          assert "authorization_servers" not in prm, prm
           assert prm["bearer_methods_supported"] == ["header"], prm
+          assert prm["resource"].startswith("https://"), prm
+
+          def _reachable(u):
+              try:
+                  with urllib.request.urlopen(urllib.request.Request(u, headers={"User-Agent": "spelunking-live-check"})) as rr:
+                      return rr.status
+              except urllib.error.HTTPError as e:
+                  return e.code
+
+          # Every authorization server it names must answer with its own metadata.
+          for auth_srv in prm.get("authorization_servers", []):
+              meta = auth_srv.rstrip("/") + "/.well-known/oauth-authorization-server"
+              assert _reachable(meta) == 200, f"advertised authorization server has no metadata: {meta}"
+
+          # Every other URL it names must be real. Two kinds, checked two ways.
+          #
+          # A REST endpoint cannot be probed: WordPress answers `rest_no_route` with a 404 for a
+          # POST-only route fetched with GET, exactly as it does for a route that does not exist,
+          # and OPTIONS returns 200 for both. So a REST URL is checked against the manifest instead
+          # - the site's own published index - which is the same card-versus-endpoint shape used
+          # above: two documents the site publishes, asserted to agree. This is what caught
+          # /hub/forget being advertised as the revocation URL while missing from the index an
+          # agent is told to read first.
+          man = s.manifest()
+
+          def _all_urls(o):
+              if isinstance(o, str) and o.startswith("https://"):
+                  yield o
+              elif isinstance(o, dict):
+                  for v in o.values():
+                      yield from _all_urls(v)
+              elif isinstance(o, list):
+                  for v in o:
+                      yield from _all_urls(v)
+
+          published = set(_all_urls(man))
+          for u in sorted(set(_all_urls(prm))):
+              if "/wp-json/" in u:
+                  assert u in published, f"protected-resource metadata names {u}, which the manifest never lists"
+              else:
+                  code = _reachable(u)
+                  assert code not in (404, 410), f"protected-resource metadata points at a dead URL: {u} -> {code}"
 
           # A route var from the query string must not be able to take over a well-known path.
           for path in ("/.well-known/security.txt?spk_seo_route=indexnow", "/llms.txt?spk_route=mcp"):
