@@ -1,0 +1,26 @@
+{
+  // Cloudflare Workers Builds reads this from the repo root, so connecting the repo is all the
+  // setup there is. The Python client lives alongside it and is not part of the build.
+  "name": "spelunking-agent",
+  "main": "worker/src/index.js",
+  "compatibility_date": "2026-09-01",
+  "observability": { "enabled": true },
+
+  "vars": {
+    // Where the frame and the shape-check come from. This Worker deliberately holds no Covenant
+    // text of its own: one source of truth, so the app can never quietly drift from the site.
+    "SITE": "https://spelunking.ai",
+    "MODEL": "@cf/meta/llama-3.3-70b-instruct-fp8-fast"
+  },
+
+  // Workers AI has a free allocation and needs no key. If an ANTHROPIC_API_KEY secret is set,
+  // the app uses that instead and says which model reasoned, in every answer.
+  "ai": { "binding": "AI" },
+
+  // Saved runs so a deliberation survives a reload. Create with:
+  //   npx wrangler kv namespace create RUNS
+  // then paste the id here. The app runs without it; runs just stop being shareable.
+  "kv_namespaces": [
+    { "binding": "RUNS", "id": "PASTE_KV_NAMESPACE_ID" }
+  ]
+}

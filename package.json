@@ -1,0 +1,15 @@
+{
+  "name": "spelunking-agent-worker",
+  "version": "0.1.0",
+  "private": true,
+  "description": "Polderchain as an app: run a hard problem through the Covenant's structure, and hand it to a person when the structure runs out.",
+  "type": "module",
+  "scripts": {
+    "dev": "wrangler dev",
+    "deploy": "wrangler deploy",
+    "tail": "wrangler tail"
+  },
+  "devDependencies": {
+    "wrangler": "^4.0.0"
+  }
+}
