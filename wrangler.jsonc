@@ -17,10 +17,16 @@
   // the app uses that instead and says which model reasoned, in every answer.
   "ai": { "binding": "AI" },
 
-  // Saved runs so a deliberation survives a reload. Create with:
+  // Saved runs, so a deliberation survives a reload and can be linked to. Optional: the app
+  // checks for the binding and works without it, which is why this ships commented out — a
+  // placeholder id here would fail the very first build, and a broken first deploy is a worse
+  // introduction than a missing feature. To turn it on:
   //   npx wrangler kv namespace create RUNS
-  // then paste the id here. The app runs without it; runs just stop being shareable.
-  "kv_namespaces": [
-    { "binding": "RUNS", "id": "PASTE_KV_NAMESPACE_ID" }
-  ]
+  // then uncomment and paste the id.
+  //
+  // "kv_namespaces": [
+  //   { "binding": "RUNS", "id": "your-namespace-id" }
+  // ]
+
+  "keep_vars": true
 }
