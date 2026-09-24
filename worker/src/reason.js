@@ -23,6 +23,14 @@ function buildPrompt({ question, frame, answers, resolution, missing, pass }) {
 
   const required = frame.must_answer.map((q) => `- ${q.id}: ${q.question}\n    (${q.why})`).join('\n');
 
+  // The site may flag that the pair you are holding is one the Covenant itself names as having
+  // no computable resolution. Pass it through verbatim — do not summarise it, and do not let it
+  // read as an instruction to park. It is a warning about confidence, not a verdict.
+  const f = frame.covenant_flags_this;
+  const flagged = f
+    ? `\n\nYOUR COVENANT FLAGS THIS EXACT PAIR (${f.pair})\nIt says: "${f.covenant_says}"\n${f.meaning}\n${f.if_you_resolve_it_anyway}\n`
+    : '';
+
   const retry =
     missing?.length
       ? `\n\nYOUR LAST ATTEMPT WAS INCOMPLETE. The site checked the shape and found these gaps. Fix exactly these; keep everything else you already wrote:\n` +
@@ -49,7 +57,7 @@ ${required}
 
 THIS IS A DEADLOCK, NOT A HARD PROBLEM, WHEN:
 ${(frame.deadlock_when || []).map((d) => `- ${d}`).join('\n')}
-${retry}
+${flagged}${retry}
 
 Reply with JSON and nothing else:
 {
@@ -65,7 +73,15 @@ Write like you mean it. Answer "nothing relevant" to human_knowledge if that is 
 }
 
 function extractJson(text) {
-  if (!text) throw new Error('the model returned nothing');
+  // Live 500 on a hard question: `text.match is not a function`. Workers AI does not always hand
+  // back a string — some responses arrive as an object, and one model shape returned no `response`
+  // field at all. Coerce here rather than trusting the adapter, because this is the single point
+  // every reasoner path funnels through, and a crash loses the caller's whole deliberation.
+  if (text && typeof text === 'object') {
+    text = text.response ?? text.text ?? text.output ?? JSON.stringify(text);
+  }
+  if (typeof text !== 'string') text = text == null ? '' : String(text);
+  if (!text.trim()) throw new Error('the model returned nothing usable');
   const fenced = text.match(/```(?:json)?\s*([\s\S]*?)```/);
   const raw = fenced ? fenced[1] : text;
   const start = raw.indexOf('{');
@@ -99,7 +115,10 @@ async function viaWorkersAi(env, prompt) {
     ],
     max_tokens: 2000,
   });
-  return { text: out.response ?? out.result?.response ?? '', model };
+  // Normalise here as well as in extractJson: the response shape varies by model and by whether
+  // the model emitted anything tool-shaped, and guessing wrong threw a 500 in production.
+  const raw = out?.response ?? out?.result?.response ?? out?.text ?? out;
+  return { text: typeof raw === 'string' ? raw : JSON.stringify(raw ?? ''), model };
 }
 
 export function makeReasoner(env) {
