@@ -3,6 +3,13 @@
 Polderchain as something you can send a problem to. It runs on Cloudflare Workers and builds
 straight from this repo — the `wrangler.jsonc` at the repo root is the whole configuration.
 
+## Live
+
+`https://spelunking-agent.jared-01a.workers.dev`
+
+Deployed 2026-09-24. `GET /health` reports which reasoner is configured and whether the KV
+namespace and the forwarding key are bound — check it first when something looks wrong.
+
 ## What it does
 
 ```
