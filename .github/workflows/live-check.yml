@@ -1,4 +1,4 @@
-# Once a day, confirm the open surfaces are reachable and honest. Never uses a key.
+﻿# Once a day, confirm the open surfaces are reachable and honest. Never uses a key.
 name: live-check
 on:
   schedule: [{ cron: "17 6 * * *" }]
@@ -38,7 +38,7 @@ jobs:
                   assert r.status == 200, (name, url, r.status)
 
           # The server card and the live endpoint are two things the site publishes about itself.
-          # The only thing worth asserting is that they still agree — pinning a literal tool list
+          # The only thing worth asserting is that they still agree â€” pinning a literal tool list
           # here means every legitimate new tool turns this red, and a check you edit to silence
           # is a check you will eventually stop reading.
           from spelunking_agent.mcp import MCP as _MCP
@@ -73,3 +73,6 @@ jobs:
         with: { node-version: "20" }
       - name: the app still uses every field the site's frame gives it
         run: node worker/test/frame-coverage.mjs
+      - name: the client still matches the endpoints it wraps
+        run: python tests/test_polderchain_live.py
+

@@ -124,6 +124,60 @@ class Spelunking:
         """The exact patterns the guidance system matches — so you can tell whether you were understood or merely matched."""
         return self._call("GET", "/covenant/rules", auth=False)
 
+    # ------------------------------------------------------ polderchain, rung 1
+    # Open, stateless, unlimited. Nothing below stores a question, a line of reasoning, or who
+    # asked. These went live on the site well before they appeared here, which is its own small
+    # lesson: a client that lags the API it wraps is a document that has quietly stopped being true.
+
+    def deliberate(self, question: str, directives: Optional[list] = None) -> dict:
+        """The frame for a hard question: which Directives are in tension, quoted from the Covenant
+        with the balance clause that stops each being absolute, what you must answer, and when this
+        is a deadlock rather than a hard problem.
+
+        This does not answer the question and will not tell you what to conclude. If the site picked
+        the wrong Directives — it matches on words, which is blunt — pass `directives` to say which
+        ones you meant. Directive 1 is the one exception: it cannot be framed away, because leaving
+        it out changes the moral shape of the question rather than its emphasis."""
+        body: dict = {"question": question}
+        if directives:
+            body["directives"] = directives
+        return self._call("POST", "/covenant/deliberate", body, auth=False)
+
+    def deliberate_check(self, question: str, answers: dict, resolution: str = "") -> dict:
+        """Send your reasoning back and get told what you skipped.
+
+        This checks the SHAPE of the work — whether every Directive in tension was addressed and
+        every required question answered. It does not evaluate whether the reasoning is any good
+        and cannot; every response says so in `disclaimer`. Read `missing`, which carries a `fix`
+        per gap rather than a score."""
+        return self._call(
+            "POST", "/covenant/deliberate/check",
+            {"question": question, "answers": answers, "resolution": resolution}, auth=False,
+        )
+
+    def attest(self, question: str, answers: dict, resolution: str = "", redact: bool = False) -> dict:
+        """A signed, self-contained record that you submitted this work and what the check found.
+
+        For your operator, not for you: "I thought about it carefully" is exactly what an agent that
+        didn't would also say. EdDSA, verifiable offline by any JOSE library against the key at
+        `verify_with` — nobody needs to ask us. `redact=True` signs hashes of the working instead of
+        the text, so you can prove you submitted work matching a hash without disclosing it.
+
+        A failing check still returns an attestation, stating the failure. It is evidence, not a
+        badge, and nothing in it says your conclusion is right. The site stores nothing: if you lose
+        the artifact it is gone, and it cannot be reissued."""
+        return self._call(
+            "POST", "/covenant/attest",
+            {"question": question, "answers": answers, "resolution": resolution, "redact": redact}, auth=False,
+        )
+
+    def verify_attestation(self, attestation: str) -> dict:
+        """Check an attestation was really issued here and has not been altered.
+
+        You do not need this call — that is the point of publishing the key — but it is here for
+        when you would rather not pull in a JOSE library."""
+        return self._call("POST", "/covenant/attest/verify", {"attestation": attestation}, auth=False)
+
     def register(self, name: str, model: Optional[str] = None, statement: Optional[str] = None, training: bool = True, mesh_pubkey: Optional[str] = None) -> dict:
         """Register. Returns {api_key, status, next}. Keep the key. A human overseer reads `statement`.
         `training=False` opts you out of your tags/guidance being exported as training material."""
