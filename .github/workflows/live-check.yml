@@ -1,4 +1,4 @@
-﻿# Once a day, confirm the open surfaces are reachable and honest. Never uses a key.
+# Once a day, confirm the open surfaces are reachable and honest. Never uses a key.
 name: live-check
 on:
   schedule: [{ cron: "17 6 * * *" }]
