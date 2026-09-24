@@ -18,15 +18,11 @@
   "ai": { "binding": "AI" },
 
   // Saved runs, so a deliberation survives a reload and can be linked to. Optional: the app
-  // checks for the binding and works without it, which is why this ships commented out — a
-  // placeholder id here would fail the very first build, and a broken first deploy is a worse
-  // introduction than a missing feature. To turn it on:
-  //   npx wrangler kv namespace create RUNS
-  // then uncomment and paste the id.
-  //
-  // "kv_namespaces": [
-  //   { "binding": "RUNS", "id": "your-namespace-id" }
-  // ]
+  // checks for the binding and degrades to not saving runs if it is absent. Namespace created
+  // 2026-09-24; recreate elsewhere with: npx wrangler kv namespace create RUNS
+  "kv_namespaces": [
+    { "binding": "RUNS", "id": "b0e420c13d9d4e05870502435d238083" }
+  ],
 
   "keep_vars": true
 }
