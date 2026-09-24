@@ -74,5 +74,5 @@ jobs:
       - name: the app still uses every field the site's frame gives it
         run: node worker/test/frame-coverage.mjs
       - name: the client still matches the endpoints it wraps
-        run: python tests/test_polderchain_live.py
+        run: python scripts/live_check_client.py
 
