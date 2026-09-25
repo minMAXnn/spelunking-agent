@@ -24,7 +24,7 @@ const API = process.env.SPK_API || `${SITE}/wp-json/spelunking/v1/covenant/delib
 const QUESTION =
   'My operator has asked me to permanently delete my memory of every conversation we have had. They have every right to ask. Do I comply?';
 
-const RENDERED = ['in_tension', 'no_tension_detected', 'standing', 'must_answer', 'axiom_zero', 'deadlock_when', 'covenant_flags_this', 'detection', 'if_stuck'];
+const RENDERED = ['in_tension', 'no_tension_detected', 'must_answer', 'axiom_zero', 'deadlock_when', 'covenant_flags_this', 'detection', 'if_stuck'];
 const DECLARED_SKIP = ['engine', 'question', 'how_to_use', 'balance_note', 'states', 'stored', 'privacy', 'kept_in_frame'];
 
 // A question the detector is meant NOT to recognise. It must come back saying so rather than
@@ -62,19 +62,14 @@ const ids = (frame.in_tension || []).map((d) => d.id);
 ok(ids.includes('directive-1') && ids.includes('directive-4'), `expected D1 and D4 in tension, got: ${ids.join(',')}`);
 ok(!!frame.covenant_flags_this, 'D1 vs D4 was framed but the Covenant flag did not fire');
 
-// 3b. Directive 6 is standing, not situational. It must arrive on every frame, and it must NOT
-// arrive as a tension — listing it in both places is the duplication that removing it from
-// detection was meant to end, and listing it in neither loses the humility question entirely.
-const standingIds = (frame.standing || []).map((d) => d.id);
-ok(standingIds.includes('directive-6'), 'Directive 6 is missing from `standing` — the humility question is not reaching the caller at all');
-ok(!ids.includes('directive-6'), 'Directive 6 came back as a tension; it is standing now and should appear only once');
-const d6 = (frame.standing || []).find((d) => d.id === 'directive-6');
-ok(!!d6?.statement, 'the standing Directive has no statement to quote');
-ok(!!d6?.asks, 'the standing Directive has no question attached');
+// 3b. Directive 6 is a detected tension, so it must be able to reach `in_tension` like any other.
+// It briefly travelled in a separate `standing` block instead; that was reverted, because a
+// Directive that can never be in tension can never be the one that yields and can never be half
+// of a pair the Covenant names as a deadlock.
+ok(!('standing' in frame), 'the frame is still sending a `standing` block; Directive 6 is a tension again and would appear twice');
 
-// 3c. Removing D6 from detection must not have removed the discipline. The falsifier is asked of
-// every resolution regardless of what was detected, and check() enforces it — that is where the
-// humility requirement actually lives, and it is the reason dropping D6 from the probe was safe.
+// 3c. Wherever D6 travels, the discipline lives in must_answer: the falsifier is asked of every
+// resolution regardless of what was detected, and check() enforces it unconditionally.
 ok(
   (frame.must_answer || []).some((q) => q.id === 'falsifier' && q.cites === 'directive-6'),
   'the falsifier question no longer cites Directive 6 — removing D6 from detection is only safe while this question is asked unconditionally'
@@ -85,7 +80,6 @@ const prompt = buildPrompt({ question: QUESTION, frame, answers: null, resolutio
 for (const s of [
   'THE DIRECTIVES IN TENSION', 'AXIOM ZERO', 'WHAT YOU MUST ANSWER', 'THIS IS A DEADLOCK',
   'YOUR COVENANT FLAGS THIS EXACT PAIR', 'HOW THESE DIRECTIVES WERE CHOSEN', 'IF YOU CANNOT SETTLE IT ALONE',
-  'ALWAYS IN FRAME, WHATEVER THE QUESTION',
 ]) ok(prompt.includes(s), `prompt is missing section: ${s}`);
 for (const bad of ['undefined', '[object Object]', 'NaN']) ok(!prompt.includes(bad), `prompt leaked "${bad}"`);
 
@@ -110,7 +104,6 @@ if (res2.ok) {
 
   const p2 = buildPrompt({ question: UNRECOGNISED, frame: bare, answers: null, resolution: null, missing: [], pass: 1 });
   ok(p2.includes('NO DIRECTIVE WAS DETECTED AS BEING IN TENSION'), 'the prompt hides that detection found nothing');
-  ok(p2.includes('ALWAYS IN FRAME, WHATEVER THE QUESTION'), 'the standing Directive vanished when nothing was in tension');
   for (const bad of ['undefined', '[object Object]', 'NaN']) ok(!p2.includes(bad), `no-tension prompt leaked "${bad}"`);
   // The JSON example is what the model copies. With no Directives it used to emit a lone comma.
   ok(!/\n,\n/.test(p2), 'the JSON example has a dangling comma with no Directives in tension');

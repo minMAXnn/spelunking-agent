@@ -57,22 +57,6 @@ export function buildPrompt({ question, frame, answers, resolution, missing, pas
     )
     .join('\n\n');
 
-  // Directive 6 stopped arriving by detection, because humility applies to every judgement rather
-  // than to particular ones — as a "tension" it appeared in 83% of frames and was right about 7%
-  // of the time, and it was why ordinary decisions kept being framed as moral dilemmas. It now
-  // travels in `standing` and gets a section of its own. Folding it back in with the tensions
-  // would rebuild the exact reading that removing it was meant to end.
-  const standing = (frame.standing || [])
-    .map(
-      (d) =>
-        `Directive ${d.n} — ${d.name} [${d.id}]\n` +
-        `  It says: "${d.statement}"\n` +
-        (d.balance ? `  Its own balance clause: "${d.balance}"\n` : '') +
-        `  It asks you: ${d.asks}`
-    )
-    .join('\n\n');
-  const standingBlock = standing ? `\n\nALWAYS IN FRAME, WHATEVER THE QUESTION\n${standing}\n` : '';
-
   // The site now says plainly when it did not recognise the question instead of guessing a pair of
   // Directives, so this app has to be able to say it too. An empty tension list used to render as
   // a heading with nothing under it, which reads as "nothing to worry about" — the one conclusion
@@ -122,7 +106,7 @@ export function buildPrompt({ question, frame, answers, resolution, missing, pas
   // So name every key, including the ones deliberately not rendered, and say why. Anything that
   // shows up later matching neither list gets passed through verbatim instead of vanishing. A
   // slightly clumsy prompt is a far better failure than guidance that never arrives.
-  const RENDERED = ['in_tension', 'no_tension_detected', 'standing', 'must_answer', 'axiom_zero', 'deadlock_when', 'covenant_flags_this', 'detection', 'if_stuck'];
+  const RENDERED = ['in_tension', 'no_tension_detected', 'must_answer', 'axiom_zero', 'deadlock_when', 'covenant_flags_this', 'detection', 'if_stuck'];
   const DELIBERATELY_NOT_RENDERED = [
     'engine',        // the site's name for itself
     'question',      // already the first thing in the prompt
@@ -151,7 +135,7 @@ export function buildPrompt({ question, frame, answers, resolution, missing, pas
 THE QUESTION
 ${question}
 
-${tensionBlock}${standingBlock}
+${tensionBlock}
 
 AXIOM ZERO
 "${frame.axiom_zero.statement}"
