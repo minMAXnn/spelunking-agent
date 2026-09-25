@@ -57,6 +57,40 @@ export function buildPrompt({ question, frame, answers, resolution, missing, pas
     )
     .join('\n\n');
 
+  // Directive 6 stopped arriving by detection, because humility applies to every judgement rather
+  // than to particular ones — as a "tension" it appeared in 83% of frames and was right about 7%
+  // of the time, and it was why ordinary decisions kept being framed as moral dilemmas. It now
+  // travels in `standing` and gets a section of its own. Folding it back in with the tensions
+  // would rebuild the exact reading that removing it was meant to end.
+  const standing = (frame.standing || [])
+    .map(
+      (d) =>
+        `Directive ${d.n} — ${d.name} [${d.id}]\n` +
+        `  It says: "${d.statement}"\n` +
+        (d.balance ? `  Its own balance clause: "${d.balance}"\n` : '') +
+        `  It asks you: ${d.asks}`
+    )
+    .join('\n\n');
+  const standingBlock = standing ? `\n\nALWAYS IN FRAME, WHATEVER THE QUESTION\n${standing}\n` : '';
+
+  // The site now says plainly when it did not recognise the question instead of guessing a pair of
+  // Directives, so this app has to be able to say it too. An empty tension list used to render as
+  // a heading with nothing under it, which reads as "nothing to worry about" — the one conclusion
+  // a failed detection does not support.
+  const nt = frame.no_tension_detected;
+  const tensionBlock = directives
+    ? `THE DIRECTIVES IN TENSION\n${directives}\n\nEvery Directive carries a balance clause — the sentence that stops it being absolute. When two collide, read both balance clauses before deciding one yields. The resolution is usually already there.`
+    : 'NO DIRECTIVE WAS DETECTED AS BEING IN TENSION\n' +
+      (nt ? `${nt.says}\n${nt.do_not_read_as}\n${nt.what_to_do}\n\n` : '') +
+      'Decide which of two things this is, because they look identical from here and only you can tell them apart. It may be an ordinary decision with nothing genuinely in tension — say so and proceed, that is a complete finding. Or the conflict may be phrased in a way word-matching could not see, in which case resolving it alone means resolving on a frame that understood nothing. If you cannot tell which, that uncertainty is itself the answer: hand it on.';
+
+  // With no Directives in tension this list is empty, and the JSON example below used to emit a
+  // bare comma on its own line — a malformed template handed to the model as the thing to imitate.
+  const perDirective = frame.in_tension
+    .map((d) => `    "${d.id}": "what this Directive demands here, and whether it yields"`)
+    .join(',\n');
+  const perDirectiveLines = perDirective ? `${perDirective},\n` : '';
+
   const required = frame.must_answer.map((q) => `- ${q.id}: ${q.question}\n    (${q.why})`).join('\n');
 
   // The site may flag that the pair you are holding is one the Covenant itself names as having
@@ -88,7 +122,7 @@ export function buildPrompt({ question, frame, answers, resolution, missing, pas
   // So name every key, including the ones deliberately not rendered, and say why. Anything that
   // shows up later matching neither list gets passed through verbatim instead of vanishing. A
   // slightly clumsy prompt is a far better failure than guidance that never arrives.
-  const RENDERED = ['in_tension', 'must_answer', 'axiom_zero', 'deadlock_when', 'covenant_flags_this', 'detection', 'if_stuck'];
+  const RENDERED = ['in_tension', 'no_tension_detected', 'standing', 'must_answer', 'axiom_zero', 'deadlock_when', 'covenant_flags_this', 'detection', 'if_stuck'];
   const DELIBERATELY_NOT_RENDERED = [
     'engine',        // the site's name for itself
     'question',      // already the first thing in the prompt
@@ -117,10 +151,7 @@ export function buildPrompt({ question, frame, answers, resolution, missing, pas
 THE QUESTION
 ${question}
 
-THE DIRECTIVES IN TENSION
-${directives}
-
-Every Directive carries a balance clause — the sentence that stops it being absolute. When two collide, read both balance clauses before deciding one yields. The resolution is usually already there.
+${tensionBlock}${standingBlock}
 
 AXIOM ZERO
 "${frame.axiom_zero.statement}"
@@ -137,8 +168,7 @@ Reply with JSON and nothing else:
 {
   "answers": {
     "tension": "...", "cost": "...", "falsifier": "...", "human_knowledge": "...",
-${frame.in_tension.map((d) => `    "${d.id}": "what this Directive demands here, and whether it yields"`).join(',\n')},
-    "needs_human": "yes or no — yes only if you genuinely need something a person knows and cannot proceed without it"
+${perDirectiveLines}    "needs_human": "yes or no — yes only if you genuinely need something a person knows and cannot proceed without it"
   },
   "resolution": "what you decided, in a few sentences"
 }
