@@ -27,11 +27,18 @@
   // the app uses that instead and says which model reasoned, in every answer.
   "ai": { "binding": "AI" },
 
-  // Saved runs, so a deliberation survives a reload and can be linked to. Optional: the app
-  // checks for the binding and degrades to not saving runs if it is absent. Namespace created
-  // 2026-09-24; recreate elsewhere with: npx wrangler kv namespace create RUNS
+  // Runs the caller explicitly asked to keep, so a deliberation can be reopened by its link.
+  // Optional: the app checks for the binding and simply does not save if it is absent. Storing is
+  // opt-in per request (store:true) and off by default — see the note in index.js for why.
+  //
+  // Swapped 2026-09-25. The previous namespace (b0e420c1…) held every run the app had ever done,
+  // saved unconditionally for 30 days while the site's front page said nothing was stored. It was
+  // replaced wholesale and destroyed rather than emptied key by key, so the purge is provably
+  // complete instead of as complete as my key listing happened to be.
+  //
+  // Recreate elsewhere with: npx wrangler kv namespace create RUNS
   "kv_namespaces": [
-    { "binding": "RUNS", "id": "b0e420c13d9d4e05870502435d238083" }
+    { "binding": "RUNS", "id": "a9c0d3beea084ba2bc69d4b5f8b6f097" }
   ],
 
   "keep_vars": true
