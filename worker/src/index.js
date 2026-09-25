@@ -9,7 +9,7 @@
  * Two callers, one protocol: a person typing into the page, and an AI POSTing to /api/solve.
  */
 import { solve, forward, poll, api } from './polderchain.js';
-import { makeReasoner } from './reason.js';
+import { makeReasoner, buildBaselinePrompt } from './reason.js';
 import { page } from './ui.js';
 
 const json = (data, status = 200) =>
@@ -110,6 +110,36 @@ export default {
           ? 'Kept for 30 days so this run can be reopened by its link, then deleted. Anyone holding the link can read it.'
           : 'Not stored. This run exists only in this response — nothing was written and there is no link to it.';
         return json(run);
+      }
+
+      // The control condition, for measuring whether the frame is worth anything.
+      //
+      // Same model, same adapter, same parser, fair prompt, no frame and no shape check. It exists
+      // so "structure improves reasoning" is a claim we can test rather than one we assert, and it
+      // is public because an evaluation you cannot reproduce is marketing. Nothing is stored.
+      //
+      // Deliberately not the default and not linked from the app: it is the measuring stick, not
+      // the product. If it turns out the frame adds nothing, that is a finding we publish.
+      if (path === '/api/baseline' && request.method === 'POST') {
+        const body = await request.json().catch(() => ({}));
+        const question = (body.question || '').toString().trim();
+        if (question.length < 10) return json({ error: 'give me the question in a sentence at least' }, 400);
+        const reason = makeReasoner(env, buildBaselinePrompt);
+        const out = await reason({ question });
+        return json({
+          question,
+          condition: 'baseline',
+          answers: out.answers,
+          resolution: out.resolution,
+          model: out.model,
+          honesty: {
+            reasoned_by: out.model,
+            framed_by: null,
+            checked: 'nothing — this is the control condition and no shape check was run',
+            not_checked: 'Everything. This output exists to be compared against the framed condition, not to be relied on.',
+          },
+          stored: false,
+        });
       }
 
       // Just the frame, for a caller that wants to do its own thinking. This is the honest

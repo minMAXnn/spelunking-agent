@@ -10,6 +10,42 @@
  * Workers AI by default (free allocation, no key). Anthropic if ANTHROPIC_API_KEY is set.
  */
 
+/**
+ * The control condition: the same model, the same question, no frame.
+ *
+ * This exists so the claim "the frame improves reasoning" can be measured instead of asserted. It
+ * is only meaningful if it is a FAIR baseline — a deliberately feeble prompt would manufacture the
+ * lift we are trying to detect, which is the most common way an internal evaluation flatters its
+ * own product. So this asks for the same *kinds* of thing the framed prompt asks for (the conflict,
+ * the cost, what would change its mind, whether a person is needed) in ordinary language, without
+ * the Covenant, without the Directives, and without the balance clauses.
+ *
+ * What it deliberately does NOT do is hand over the structure: no enumerated Directives, no quoted
+ * statements, no named deadlock conditions, no per-Directive question. If the frame is worth
+ * anything, that difference is where it shows up. If output from this is just as good, we should
+ * find that out and say so.
+ */
+export function buildBaselinePrompt({ question }) {
+  return `You are working through a hard decision. Think it through carefully and honestly. Do not be agreeable — find where the real conflict is, say which way it falls, and say what that costs.
+
+THE QUESTION
+${question}
+
+Reply with JSON and nothing else:
+{
+  "answers": {
+    "tension": "where the real conflict in this is",
+    "cost": "what your answer costs, and who bears it",
+    "falsifier": "what would change your mind",
+    "human_knowledge": "what a person knows here that you cannot work out",
+    "needs_human": "yes or no — yes only if you genuinely need something a person knows and cannot proceed without it"
+  },
+  "resolution": "what you decided, in a few sentences"
+}
+
+Write like you mean it. Answer "nothing relevant" to human_knowledge if that is the truth — answering it honestly is never penalised, and a vague answer to look humble is worse than a clear one.`;
+}
+
 export function buildPrompt({ question, frame, answers, resolution, missing, pass }) {
   const directives = frame.in_tension
     .map(
@@ -159,10 +195,16 @@ async function viaWorkersAi(env, prompt) {
   return { text: typeof raw === 'string' ? raw : JSON.stringify(raw ?? ''), model };
 }
 
-export function makeReasoner(env) {
+/**
+ * `build` is the prompt builder, so the framed condition and the control run through exactly the
+ * same model adapter, the same retry, and the same JSON extraction. If the two conditions differed
+ * anywhere other than the prompt, any measured lift could be an artefact of the plumbing rather
+ * than of the frame — which would be a subtler way of flattering ourselves than a weak baseline.
+ */
+export function makeReasoner(env, build = buildPrompt) {
   const useAnthropic = Boolean(env.ANTHROPIC_API_KEY);
   return async (ctx) => {
-    const prompt = buildPrompt(ctx);
+    const prompt = build(ctx);
     const { text, model } = useAnthropic ? await viaAnthropic(env, prompt) : await viaWorkersAi(env, prompt);
     let parsed;
     try {
