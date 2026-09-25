@@ -52,7 +52,15 @@ export async function solve(env, question, { reason, maxPasses = MAX_PASSES, onS
   };
 
   const frame = await api(site, '/covenant/deliberate', { question, directives });
-  step({ step: 'frame', directives: frame.in_tension.map((d) => d.id), must_answer: frame.must_answer.map((q) => q.id) });
+  step({
+    step: 'frame',
+    directives: (frame.in_tension || []).map((d) => d.id),
+    // An empty list is a finding, not the absence of one. Recorded explicitly so anyone reading
+    // the trace can tell "nothing is in tension here" from "the frame did not recognise this
+    // question" -- the site distinguishes them and the trace should not flatten them back.
+    no_tension_detected: !!frame.no_tension_detected,
+    must_answer: frame.must_answer.map((q) => q.id),
+  });
 
   let answers = {};
   let resolution = '';

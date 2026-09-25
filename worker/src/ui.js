@@ -84,13 +84,26 @@ function showSteps(active){
 }
 
 function renderFrame(f){
-  return '<div class="card"><h2>What the Covenant puts to this</h2>' +
-    f.in_tension.map(d =>
-      '<div class="d"><b>Directive '+d.n+' — '+esc(d.name)+'</b>' +
-      '<q>"'+esc(d.statement)+'"</q>' +
-      (d.balance ? '<span class="bal">Its own balance clause: "'+esc(d.balance)+'"</span>' : '') +
-      '<span class="ask">'+esc(d.asks)+'</span></div>'
-    ).join('') +
+  const ds = (f.in_tension || []).map(d =>
+    '<div class="d"><b>Directive '+d.n+' — '+esc(d.name)+'</b>' +
+    '<q>"'+esc(d.statement)+'"</q>' +
+    (d.balance ? '<span class="bal">Its own balance clause: "'+esc(d.balance)+'"</span>' : '') +
+    '<span class="ask">'+esc(d.asks)+'</span></div>'
+  ).join('');
+
+  // The site can now come back with nothing in tension, and say so. Before it could, this list
+  // was never empty, so an empty one rendered as a heading with only Axiom Zero beneath it --
+  // which reads as "the Covenant has no objection", the one conclusion a failed detection does
+  // not support. Say what actually happened instead.
+  const nt = f.no_tension_detected;
+  const none = ds ? '' :
+    '<div class="d" style="border-color:var(--dim)"><b>No Directive was detected as being in tension</b>' +
+    (nt ? '<q>"'+esc(nt.says)+'"</q><span class="bal">'+esc(nt.do_not_read_as)+'</span>' +
+          '<span class="ask">'+esc(nt.what_to_do)+'</span>'
+        : '<span class="ask">Nothing has been cleared — the frame did not recognise the question.</span>') +
+    '</div>';
+
+  return '<div class="card"><h2>What the Covenant puts to this</h2>' + ds + none +
     '<div class="d" style="border-color:var(--dim)"><b>'+esc(f.axiom_zero.name)+'</b><q>"'+esc(f.axiom_zero.statement)+'"</q>' +
     '<span class="ask">'+esc(f.axiom_zero.asks)+'</span></div></div>';
 }
