@@ -67,7 +67,13 @@ export default {
           site: env.SITE || 'https://spelunking.ai',
           reasoner: env.ANTHROPIC_API_KEY ? env.ANTHROPIC_MODEL || 'claude-sonnet-4-5' : env.MODEL,
           can_forward_to_human: Boolean(env.SPK_API_KEY),
-          saves_runs: Boolean(env.RUNS),
+          // `saves_runs: true` read as "this app keeps your questions", which was accurate and
+          // alarming, and it was also the only public hint that the front page's "Nothing is
+          // stored" was false. Say the actual policy instead of whether a binding exists.
+          run_storage: env.RUNS
+            ? 'opt-in per request (store:true); kept 30 days and readable by anyone with the link. Off by default.'
+            : 'no KV namespace bound, so no run is ever saved',
+          stores_by_default: false,
         });
       }
 
@@ -82,8 +88,27 @@ export default {
           maxPasses: Math.min(3, Math.max(1, Number(body.passes) || 3)),
           directives: Array.isArray(body.directives) ? body.directives : [],
         });
-        run.id = rid();
-        ctx.waitUntil(save(env, run.id, run));
+        // Storing is OPT-IN, and the default is off.
+        //
+        // This used to save every run unconditionally for 30 days, readable by anyone with the id,
+        // while the reasoner on the site's own front page told visitors "Nothing is stored". That
+        // sentence was written about the site's stateless frame endpoint and then applied to this
+        // app, which is a different component with different behaviour — the same mistake as the
+        // privacy text that promised a deletion living in another plugin.
+        //
+        // A question worth bringing here is often one the caller would not publish. So the default
+        // is not to keep it, and a caller that wants a reopenable link asks for one. An id is only
+        // returned when there is actually something behind it; handing back an id for a run that
+        // was never saved would be its own small lie.
+        const keep = body.store === true && Boolean(env.RUNS);
+        if (keep) {
+          run.id = rid();
+          ctx.waitUntil(save(env, run.id, run));
+        }
+        run.stored = keep;
+        run.retention = keep
+          ? 'Kept for 30 days so this run can be reopened by its link, then deleted. Anyone holding the link can read it.'
+          : 'Not stored. This run exists only in this response — nothing was written and there is no link to it.';
         return json(run);
       }
 

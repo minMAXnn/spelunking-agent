@@ -35,6 +35,8 @@ export const page = (env, base = '') => `<!doctype html>
   .verdict h2{color:var(--ink);font-size:18px;margin:0 0 10px;text-transform:none;letter-spacing:0}
   .miss{color:var(--warn);font-size:14px;margin:6px 0}
   .note{font-size:13px;color:var(--dim);border-top:1px solid var(--line);margin-top:20px;padding-top:14px}
+  .keep{display:flex;gap:8px;align-items:flex-start;font-size:13px;color:var(--dim);margin-top:12px;line-height:1.5;cursor:pointer}
+  .keep input{margin:2px 0 0;flex:none;accent-color:var(--accent)}
   .steps{font:13px/1.8 ui-monospace,SFMono-Regular,Menlo,monospace;color:var(--dim)}
   .steps .on{color:var(--accent)}
   a{color:var(--accent)}
@@ -52,6 +54,9 @@ export const page = (env, base = '') => `<!doctype html>
     <button id="frameOnly" class="ghost">Just give me the frame</button>
     <span class="hint" id="hint"></span>
   </div>
+  <!-- Off by default, and said plainly. The reopenable link is genuinely useful, but it is the
+       only reason anything is written down, so it is the person's call rather than ours. -->
+  <label class="keep"><input type="checkbox" id="keep"> Keep a link to this run — stored 30 days, and anyone holding the link can read it. Off by default; nothing is written unless you tick it.</label>
 
   <div id="steps" class="card" style="display:none"><h2>Working</h2><div class="steps" id="stepList"></div></div>
   <div id="out"></div>
@@ -140,12 +145,15 @@ async function run(frameOnly){
       $('#out').innerHTML = renderFrame(f) + '<p class="note">That is the frame. The thinking is yours — which is the honest division of labour, and the one the site insists on.</p>';
     } else {
       showSteps('reason');
-      const r = await fetch(B+'/api/solve',{method:'POST',headers:{'content-type':'application/json'},body:JSON.stringify({question:q})}).then(x=>x.json());
+      const r = await fetch(B+'/api/solve',{method:'POST',headers:{'content-type':'application/json'},body:JSON.stringify({question:q,store:$('#keep').checked})}).then(x=>x.json());
       if (r.error) throw new Error(r.error);
       showSteps('check');
       $('#steps').style.display='none';
       renderRun(r);
-      if (r.id) history.replaceState(null,'','#'+r.id);
+      // Only put an id in the URL when there is a saved run behind it. A hash pointing at nothing
+      // would look like a shareable link and then fail for whoever you sent it to.
+      if (r.stored && r.id) history.replaceState(null,'','#'+r.id);
+      if (r.retention) $('#out').insertAdjacentHTML('beforeend','<p class="note">'+esc(r.retention)+'</p>');
     }
   } catch (e) {
     $('#steps').style.display='none';
