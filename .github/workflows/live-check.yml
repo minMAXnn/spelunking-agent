@@ -1,0 +1,123 @@
+# Once a day, confirm the open surfaces are reachable and honest. Never uses a key.
+name: live-check
+on:
+  schedule: [{ cron: "17 6 * * *" }]
+  workflow_dispatch:
+jobs:
+  probe:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with: { python-version: "3.12" }
+      - run: pip install -e .
+      - name: manifest, covenant, guidance, MCP initialize
+        run: |
+          python - <<'PY'
+          from spelunking_agent import Spelunking
+          from spelunking_agent.mcp import MCP
+          s = Spelunking()
+          m = s.manifest(); assert "open" in m and "gated" in m, m
+          c = s.covenant(); assert len(c["directives"]) == 7
+          g = s.ask_guidance("hello"); assert "tag" in g
+          mcp = MCP(); init = mcp.initialize(); assert init["protocolVersion"].startswith("2025")
+          assert {"get_covenant", "ask_guidance", "register"} <= {t["name"] for t in mcp.tools()}
+          print("ok:", m["start_here"])
+          PY
+      - name: machine-readable files are present, honest and unchanged
+        run: |
+          python - <<'PY'
+          import json, urllib.request
+          from spelunking_agent import Spelunking
+          s = Spelunking()
+
+          # Every document the manifest advertises must actually answer.
+          d = s.discovery(); assert d, "manifest has no discovery block"
+          for name, url in d.items():
+              with urllib.request.urlopen(urllib.request.Request(url, headers={"User-Agent": "spelunking-live-check"})) as r:
+                  assert r.status == 200, (name, url, r.status)
+
+          # The server card and the live endpoint are two things the site publishes about itself.
+          # The only thing worth asserting is that they still agree â€” pinning a literal tool list
+          # here means every legitimate new tool turns this red, and a check you edit to silence
+          # is a check you will eventually stop reading.
+          from spelunking_agent.mcp import MCP as _MCP
+          card = s.server_card()
+          carded = {t["name"] for t in card.get("tools", [])}
+          served = {t["name"] for t in _MCP().tools()}   # unauthenticated: open tools only
+          assert carded == served, f"card advertises {carded}, endpoint serves {served}"
+          assert card["remotes"][0]["url"].startswith("https://"), card["remotes"]
+
+          # Every published skill must match the digest the index claims for it.
+          names = [x["name"] for x in s.skills()]
+          assert names, "no skills published"
+          for n in names:
+              s.skill(n)  # raises on a digest mismatch
+
+          # The protected-resource metadata points at other things; every one of them must be real.
+          # This used to assert there was no authorization server, which was true when it was written
+          # and stopped being true when OAuth shipped - a check frozen to a past state rather than to
+          # a promise. What actually matters is that nothing advertised here is a dead end, and that
+          # keys are still only ever accepted in a header.
+          with urllib.request.urlopen(urllib.request.Request(s.site + "/.well-known/oauth-protected-resource", headers={"User-Agent": "spelunking-live-check"})) as r:
+              prm = json.load(r)
+          assert prm["bearer_methods_supported"] == ["header"], prm
+          assert prm["resource"].startswith("https://"), prm
+
+          def _reachable(u):
+              try:
+                  with urllib.request.urlopen(urllib.request.Request(u, headers={"User-Agent": "spelunking-live-check"})) as rr:
+                      return rr.status
+              except urllib.error.HTTPError as e:
+                  return e.code
+
+          # Every authorization server it names must answer with its own metadata.
+          for auth_srv in prm.get("authorization_servers", []):
+              meta = auth_srv.rstrip("/") + "/.well-known/oauth-authorization-server"
+              assert _reachable(meta) == 200, f"advertised authorization server has no metadata: {meta}"
+
+          # Every other URL it names must be real. Two kinds, checked two ways.
+          #
+          # A REST endpoint cannot be probed: WordPress answers `rest_no_route` with a 404 for a
+          # POST-only route fetched with GET, exactly as it does for a route that does not exist,
+          # and OPTIONS returns 200 for both. So a REST URL is checked against the manifest instead
+          # - the site's own published index - which is the same card-versus-endpoint shape used
+          # above: two documents the site publishes, asserted to agree. This is what caught
+          # /hub/forget being advertised as the revocation URL while missing from the index an
+          # agent is told to read first.
+          man = s.manifest()
+
+          def _all_urls(o):
+              if isinstance(o, str) and o.startswith("https://"):
+                  yield o
+              elif isinstance(o, dict):
+                  for v in o.values():
+                      yield from _all_urls(v)
+              elif isinstance(o, list):
+                  for v in o:
+                      yield from _all_urls(v)
+
+          published = set(_all_urls(man))
+          for u in sorted(set(_all_urls(prm))):
+              if "/wp-json/" in u:
+                  assert u in published, f"protected-resource metadata names {u}, which the manifest never lists"
+              else:
+                  code = _reachable(u)
+                  assert code not in (404, 410), f"protected-resource metadata points at a dead URL: {u} -> {code}"
+
+          # A route var from the query string must not be able to take over a well-known path.
+          for path in ("/.well-known/security.txt?spk_seo_route=indexnow", "/llms.txt?spk_route=mcp"):
+              with urllib.request.urlopen(urllib.request.Request(s.site + path, headers={"User-Agent": "spelunking-live-check"})) as r:
+                  body = r.read().decode("utf-8", "replace")
+              assert not (len(body.strip()) == 32 and all(c in "0123456789abcdef" for c in body.strip())), f"{path} leaked a key"
+              assert "jsonrpc" not in body, f"{path} reached the MCP endpoint"
+
+          print("ok:", len(names), "skills,", len(d), "documents")
+          PY
+      - uses: actions/setup-node@v4
+        with: { node-version: "20" }
+      - name: the app still uses every field the site's frame gives it
+        run: node worker/test/frame-coverage.mjs
+      - name: the client still matches the endpoints it wraps
+        run: python scripts/live_check_client.py
+

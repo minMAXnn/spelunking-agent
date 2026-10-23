@@ -1,0 +1,31 @@
+name: pypi-publish
+# Publishes spelunking-agent to PyPI on a GitHub release via PyPI Trusted Publishing (GitHub OIDC) and uploads PEP 740
+# attestations (https://docs.pypi.org/attestations/) so every file carries signed provenance back to this workflow run.
+# PyPI side (project settings → Publishing → add publisher): owner minMAXnn, repo spelunking-agent, workflow pypi-publish.yml,
+# environment pypi. No API token: attestations are only generated for Trusted Publishing uploads.
+on:
+  release:
+    types: [published]
+permissions:
+  contents: read
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with: { python-version: "3.12" }
+      - run: python -m pip install build && python -m build
+      - uses: actions/upload-artifact@v4
+        with: { name: dist, path: dist/ }
+  publish:
+    needs: build
+    runs-on: ubuntu-latest
+    environment: pypi
+    permissions: { id-token: write }
+    steps:
+      - uses: actions/download-artifact@v4
+        with: { name: dist, path: dist/ }
+      - uses: pypa/gh-action-pypi-publish@7245906fb61fa33a13554f9d5fb856fe61758086  # release/v1 on 2026-10-22; bump deliberately
+        with:
+          attestations: true

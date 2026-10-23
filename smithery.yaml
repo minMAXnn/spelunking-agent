@@ -1,0 +1,6 @@
+# Smithery listing for the hosted Spelunking MCP server (https://spelunking.ai/mcp, streamable HTTP, no per-user config).
+startCommand:
+  type: http
+  configSchema:
+    type: object
+    properties: {}

@@ -1,0 +1,45 @@
+{
+  // Cloudflare Workers Builds reads this from the repo root, so connecting the repo is all the
+  // setup there is. The Python client lives alongside it and is not part of the build.
+  "name": "spelunking-agent",
+  "main": "worker/src/index.js",
+  "compatibility_date": "2026-09-01",
+  "observability": { "enabled": true },
+
+  // Served from the site's own origin. Both patterns are needed: the bare path and everything
+  // under it. WordPress owns every other path on this zone, so keep these narrow.
+  "routes": [
+    { "pattern": "spelunking.ai/polderchain", "zone_name": "spelunking.ai" },
+    { "pattern": "spelunking.ai/polderchain/*", "zone_name": "spelunking.ai" }
+  ],
+
+  "vars": {
+    // Where the frame and the shape-check come from. This Worker deliberately holds no Covenant
+    // text of its own: one source of truth, so the app can never quietly drift from the site.
+    "SITE": "https://spelunking.ai",
+    "MODEL": "@cf/meta/llama-3.3-70b-instruct-fp8-fast",
+    // Stripped from incoming paths so the Worker routes the same whether it is reached at
+    // spelunking.ai/polderchain/... or at its workers.dev hostname.
+    "BASE_PATH": "/polderchain"
+  },
+
+  // Workers AI has a free allocation and needs no key. If an ANTHROPIC_API_KEY secret is set,
+  // the app uses that instead and says which model reasoned, in every answer.
+  "ai": { "binding": "AI" },
+
+  // Runs the caller explicitly asked to keep, so a deliberation can be reopened by its link.
+  // Optional: the app checks for the binding and simply does not save if it is absent. Storing is
+  // opt-in per request (store:true) and off by default — see the note in index.js for why.
+  //
+  // Swapped 2026-09-25. The previous namespace (b0e420c1…) held every run the app had ever done,
+  // saved unconditionally for 30 days while the site's front page said nothing was stored. It was
+  // replaced wholesale and destroyed rather than emptied key by key, so the purge is provably
+  // complete instead of as complete as my key listing happened to be.
+  //
+  // Recreate elsewhere with: npx wrangler kv namespace create RUNS
+  "kv_namespaces": [
+    { "binding": "RUNS", "id": "a9c0d3beea084ba2bc69d4b5f8b6f097" }
+  ],
+
+  "keep_vars": true
+}
