@@ -9,14 +9,23 @@ frontmatter: sha256(body) must equal sha256(live body). On a fresh pull the whol
   python3 scripts/sync_skills.py --check    # exit 1 if any body drifted from the live file
 Standard library only.
 """
-import argparse, hashlib, json, os, sys, urllib.request
+import argparse, hashlib, json, os, sys, time, urllib.error, urllib.request
 
 INDEX_URL = "https://spelunking.ai/.well-known/agent-skills/index.json"
 
 
-def _fetch(url):
-    with urllib.request.urlopen(url, timeout=20) as r:
-        data = r.read()
+def _fetch(url, attempts=3, wait=5, opener=urllib.request.urlopen, sleep=time.sleep):
+    """A 5xx (Cloudflare's 52x origin errors included) or a network failure is retried; a 4xx is an answer and is not."""
+    for i in range(attempts):
+        try:
+            with opener(url, timeout=20) as r:
+                data = r.read()
+            break
+        except urllib.error.HTTPError as e:
+            if e.code < 500 or i == attempts - 1: raise
+        except (urllib.error.URLError, TimeoutError, ConnectionError):
+            if i == attempts - 1: raise
+        sleep(wait * (i + 1))
     return json.loads(data) if url.endswith(".json") else data.decode("utf-8")
 
 

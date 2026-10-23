@@ -56,3 +56,41 @@ def test_pull_keeps_registry_frontmatter_and_takes_the_live_body():
         assert "description: d2\n" in got and "description: d\n" not in got, "live description not taken"
         assert sync_skills.check(tmp, fetch=fetch2) == {"demo-skill": True}
     finally: shutil.rmtree(tmp)
+
+
+class _Resp:
+    def __init__(self, data): self.data = data
+    def read(self): return self.data
+    def __enter__(self): return self
+    def __exit__(self, *a): return False
+
+
+def _opener(*outcomes):
+    """Each call takes the next outcome: an exception is raised, bytes are served."""
+    calls = []
+    def open_(url, timeout=None):
+        calls.append(url); o = outcomes[len(calls) - 1]
+        if isinstance(o, BaseException): raise o
+        return _Resp(o)
+    return open_, calls
+
+
+def test_fetch_retries_a_transient_origin_error():
+    """A Cloudflare 525 (origin TLS handshake failed) turned CI red on 2026-10-23 with nothing drifted."""
+    import urllib.error
+    err = urllib.error.HTTPError("https://x/index.json", 525, "origin TLS", {}, None)
+    open_, calls = _opener(err, err, b'{"skills": []}')
+    assert sync_skills._fetch("https://x/index.json", opener=open_, sleep=lambda s: None) == {"skills": []}
+    assert len(calls) == 3
+
+
+def test_fetch_does_not_retry_a_client_error_and_gives_up_after_three_tries():
+    import urllib.error, pytest
+    gone = urllib.error.HTTPError("https://x/index.json", 404, "not found", {}, None)
+    open_, calls = _opener(gone)
+    with pytest.raises(urllib.error.HTTPError): sync_skills._fetch("https://x/index.json", opener=open_, sleep=lambda s: None)
+    assert len(calls) == 1
+    down = urllib.error.URLError("handshake timed out")
+    open_, calls = _opener(down, down, down)
+    with pytest.raises(urllib.error.URLError): sync_skills._fetch("https://x/index.json", opener=open_, sleep=lambda s: None)
+    assert len(calls) == 3
