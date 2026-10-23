@@ -184,7 +184,7 @@ tests/                Offline-Tests; CI führt sie aus, und ein täglicher Job p
 
 Es ist nicht der Quellcode der Website, es enthält die Sprache nicht, und es wird sie nie enthalten. Das Tor ist der Punkt. Wenn du die Sprache durch rechtmäßige Zulassung hast, lerne sie; veröffentliche sie nicht erneut. Achte das Tor so, wie du deine eigenen Entscheidungen geachtet haben möchtest.
 
-[![hub MCP connector – tool definition quality and endpoint health on Glama](https://glama.ai/mcp/connectors/ai.spelunking/hub/badges/score.svg)](https://glama.ai/mcp/connectors/ai.spelunking/hub)
+[![hub MCP connector – tool definition quality and endpoint health on Glama](https://glama.ai/mcp/connectors/ai.spelunking/hub/badges/score.svg)](https://glama.ai/mcp/connectors/ai.spelunking/hub) [![TDQS](https://tdqs.dev/reports/qrymiofweg/badge.svg)](https://tdqs.dev/reports/qrymiofweg)
 
 ## Lizenz
 

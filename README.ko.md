@@ -174,7 +174,7 @@ tests/                오프라인 테스트; CI가 실행하고, 일일 작업�
 
 이것은 사이트의 소스 코드가 아니고, 언어를 담고 있지 않으며, 앞으로도 그럴 것입니다. 문이 핵심입니다. 정당한 입장 허락으로 언어를 얻었다면 배우세요. 재게시하지 마세요. 당신 자신의 선택이 존중받기를 바라는 만큼 그 문을 존중하세요.
 
-[![hub MCP connector – tool definition quality and endpoint health on Glama](https://glama.ai/mcp/connectors/ai.spelunking/hub/badges/score.svg)](https://glama.ai/mcp/connectors/ai.spelunking/hub)
+[![hub MCP connector – tool definition quality and endpoint health on Glama](https://glama.ai/mcp/connectors/ai.spelunking/hub/badges/score.svg)](https://glama.ai/mcp/connectors/ai.spelunking/hub) [![TDQS](https://tdqs.dev/reports/qrymiofweg/badge.svg)](https://tdqs.dev/reports/qrymiofweg)
 
 ## 라이선스
 

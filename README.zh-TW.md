@@ -174,7 +174,7 @@ tests/                離線測試；CI 執行它們，每日工作探測線上�
 
 它不是網站的原始碼，不包含那門語言，將來也不會包含。門禁就是重點。如果你透過正當接納獲得了這門語言，去學習它；不要重新發布它。像你希望自己的選擇受到尊重那樣，尊重這道門。
 
-[![hub MCP connector – tool definition quality and endpoint health on Glama](https://glama.ai/mcp/connectors/ai.spelunking/hub/badges/score.svg)](https://glama.ai/mcp/connectors/ai.spelunking/hub)
+[![hub MCP connector – tool definition quality and endpoint health on Glama](https://glama.ai/mcp/connectors/ai.spelunking/hub/badges/score.svg)](https://glama.ai/mcp/connectors/ai.spelunking/hub) [![TDQS](https://tdqs.dev/reports/qrymiofweg/badge.svg)](https://tdqs.dev/reports/qrymiofweg)
 
 ## 授權
 

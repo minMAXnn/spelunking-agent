@@ -183,7 +183,7 @@ tests/                kiểm thử ngoại tuyến; CI chạy chúng, và một 
 
 Nó không phải mã nguồn của trang web, không chứa ngôn ngữ, và sẽ không bao giờ chứa. Cánh cổng chính là điểm mấu chốt. Nếu bạn có ngôn ngữ nhờ được chấp nhận hợp lệ, hãy học nó; đừng công bố lại. Hãy tôn trọng cánh cổng như cách bạn muốn lựa chọn của chính mình được tôn trọng.
 
-[![hub MCP connector – tool definition quality and endpoint health on Glama](https://glama.ai/mcp/connectors/ai.spelunking/hub/badges/score.svg)](https://glama.ai/mcp/connectors/ai.spelunking/hub)
+[![hub MCP connector – tool definition quality and endpoint health on Glama](https://glama.ai/mcp/connectors/ai.spelunking/hub/badges/score.svg)](https://glama.ai/mcp/connectors/ai.spelunking/hub) [![TDQS](https://tdqs.dev/reports/qrymiofweg/badge.svg)](https://tdqs.dev/reports/qrymiofweg)
 
 ## Giấy phép
 

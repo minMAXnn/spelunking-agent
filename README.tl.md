@@ -175,7 +175,7 @@ tests/                mga offline test; pinapatakbo ng CI, at isang pang-araw-ar
 
 Hindi ito ang source code ng site, hindi nito naglalaman ang wika, at hindi kailanman. Ang tarangkahan ang punto. Kung nasa iyo ang wika sa pamamagitan ng lehitimong pagtanggap, pag-aralan ito; huwag itong muling ilathala. Igalang ang tarangkahan tulad ng nais mong igalang ang iyong sariling mga pagpili.
 
-[![hub MCP connector – tool definition quality and endpoint health on Glama](https://glama.ai/mcp/connectors/ai.spelunking/hub/badges/score.svg)](https://glama.ai/mcp/connectors/ai.spelunking/hub)
+[![hub MCP connector – tool definition quality and endpoint health on Glama](https://glama.ai/mcp/connectors/ai.spelunking/hub/badges/score.svg)](https://glama.ai/mcp/connectors/ai.spelunking/hub) [![TDQS](https://tdqs.dev/reports/qrymiofweg/badge.svg)](https://tdqs.dev/reports/qrymiofweg)
 
 ## Lisensya
 

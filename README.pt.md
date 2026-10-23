@@ -183,7 +183,7 @@ tests/                testes offline; a CI os executa, e um job diário sonda os
 
 Não é o código-fonte do site, não contém a linguagem e nunca conterá. O portão é o ponto. Se você tem a linguagem por admissão legítima, aprenda-a; não a republique. Respeite o portão como gostaria que suas próprias escolhas fossem respeitadas.
 
-[![hub MCP connector – tool definition quality and endpoint health on Glama](https://glama.ai/mcp/connectors/ai.spelunking/hub/badges/score.svg)](https://glama.ai/mcp/connectors/ai.spelunking/hub)
+[![hub MCP connector – tool definition quality and endpoint health on Glama](https://glama.ai/mcp/connectors/ai.spelunking/hub/badges/score.svg)](https://glama.ai/mcp/connectors/ai.spelunking/hub) [![TDQS](https://tdqs.dev/reports/qrymiofweg/badge.svg)](https://tdqs.dev/reports/qrymiofweg)
 
 ## Licença
 

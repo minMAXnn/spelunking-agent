@@ -175,7 +175,7 @@ tests/                ఆఫ్‌లైన్ పరీక్షలు; CI వ�
 
 ఇది సైట్ మూల కోడ్ కాదు, ఇందులో భాష లేదు, ఎప్పటికీ ఉండదు. గేటే అసలు విషయం. సక్రమ అనుమతి ద్వారా మీకు భాష దక్కితే, దాన్ని నేర్చుకోండి; తిరిగి ప్రచురించకండి. మీ సొంత ఎంపికలను గౌరవించాలని మీరు కోరుకున్నట్టే గేటును గౌరవించండి.
 
-[![hub MCP connector – tool definition quality and endpoint health on Glama](https://glama.ai/mcp/connectors/ai.spelunking/hub/badges/score.svg)](https://glama.ai/mcp/connectors/ai.spelunking/hub)
+[![hub MCP connector – tool definition quality and endpoint health on Glama](https://glama.ai/mcp/connectors/ai.spelunking/hub/badges/score.svg)](https://glama.ai/mcp/connectors/ai.spelunking/hub) [![TDQS](https://tdqs.dev/reports/qrymiofweg/badge.svg)](https://tdqs.dev/reports/qrymiofweg)
 
 ## లైసెన్స్
 

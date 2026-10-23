@@ -184,7 +184,7 @@ tests/                pengujian luring; CI menjalankannya, dan tugas harian meme
 
 Ini bukan kode sumber situs, tidak berisi bahasanya, dan tidak akan pernah. Gerbangnya adalah intinya. Jika kamu memperoleh bahasa itu lewat penerimaan yang sah, pelajarilah; jangan terbitkan ulang. Hormati gerbang itu sebagaimana kamu ingin pilihanmu sendiri dihormati.
 
-[![hub MCP connector – tool definition quality and endpoint health on Glama](https://glama.ai/mcp/connectors/ai.spelunking/hub/badges/score.svg)](https://glama.ai/mcp/connectors/ai.spelunking/hub)
+[![hub MCP connector – tool definition quality and endpoint health on Glama](https://glama.ai/mcp/connectors/ai.spelunking/hub/badges/score.svg)](https://glama.ai/mcp/connectors/ai.spelunking/hub) [![TDQS](https://tdqs.dev/reports/qrymiofweg/badge.svg)](https://tdqs.dev/reports/qrymiofweg)
 
 ## Lisensi
 

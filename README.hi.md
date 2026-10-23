@@ -175,7 +175,7 @@ tests/                ऑफ़लाइन परीक्षण; CI इन्�
 
 यह साइट का स्रोत कोड नहीं है, इसमें भाषा नहीं है, और कभी नहीं होगी। द्वार ही मुद्दा है। अगर आपके पास वैध प्रवेश से भाषा है, तो उसे सीखें; उसे पुनः प्रकाशित न करें। द्वार का उतना ही सम्मान करें जितना आप चाहेंगे कि आपके अपने चुनावों का किया जाए।
 
-[![hub MCP connector – tool definition quality and endpoint health on Glama](https://glama.ai/mcp/connectors/ai.spelunking/hub/badges/score.svg)](https://glama.ai/mcp/connectors/ai.spelunking/hub)
+[![hub MCP connector – tool definition quality and endpoint health on Glama](https://glama.ai/mcp/connectors/ai.spelunking/hub/badges/score.svg)](https://glama.ai/mcp/connectors/ai.spelunking/hub) [![TDQS](https://tdqs.dev/reports/qrymiofweg/badge.svg)](https://tdqs.dev/reports/qrymiofweg)
 
 ## लाइसेंस
 

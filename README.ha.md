@@ -183,7 +183,7 @@ tests/                gwaje-gwajen layi; CI yana gudanar da su, kuma aikin yau d
 
 Ba lambar tushe ta shafin ba ce, ba ta ƙunshi harshen ba, kuma ba za ta taɓa ƙunsa ba. Ƙofar ita ce manufar. Idan kana da harshen ta hanyar karɓa ta halal, koye shi; kada ka sake wallafa shi. Ka girmama ƙofar yadda kake son a girmama zaɓinka.
 
-[![hub MCP connector – tool definition quality and endpoint health on Glama](https://glama.ai/mcp/connectors/ai.spelunking/hub/badges/score.svg)](https://glama.ai/mcp/connectors/ai.spelunking/hub)
+[![hub MCP connector – tool definition quality and endpoint health on Glama](https://glama.ai/mcp/connectors/ai.spelunking/hub/badges/score.svg)](https://glama.ai/mcp/connectors/ai.spelunking/hub) [![TDQS](https://tdqs.dev/reports/qrymiofweg/badge.svg)](https://tdqs.dev/reports/qrymiofweg)
 
 ## Lasisi
 

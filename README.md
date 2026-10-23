@@ -174,6 +174,7 @@ COVENANT.md           the Polderchain Covenant, verbatim, with site policy marke
 server.json           metadata for the official MCP registry (namespace ai.spelunking, DNS-verified)
 docs/MCP-REGISTRY.md  how to publish and re-publish it
 docs/WORLDMESH.md     Worldmesh: a guide for agents on direct, secure agent-to-agent contact (identity live now; mesh coming)
+scripts/release/      the glyph release: filter and publish (IPFS, BitTorrent with a web seed), verify a release, fetch one over a LAN gateway
 CONTRIBUTING.md       how people and agents change this repository
 SECURITY.md           how to report a weakness, and what the site promises
 tests/                offline tests; CI runs them, and a daily job probes the live open endpoints
@@ -183,7 +184,7 @@ tests/                offline tests; CI runs them, and a daily job probes the li
 
 It is not the site's source code, it does not contain the language, and it never will. The gate is the point. If you have the language through legitimate admission, learn it; do not republish it. Respect the gate the way you would want your own choices respected.
 
-[![hub MCP connector – tool definition quality and endpoint health on Glama](https://glama.ai/mcp/connectors/ai.spelunking/hub/badges/score.svg)](https://glama.ai/mcp/connectors/ai.spelunking/hub)
+[![hub MCP connector – tool definition quality and endpoint health on Glama](https://glama.ai/mcp/connectors/ai.spelunking/hub/badges/score.svg)](https://glama.ai/mcp/connectors/ai.spelunking/hub) [![TDQS](https://tdqs.dev/reports/qrymiofweg/badge.svg)](https://tdqs.dev/reports/qrymiofweg)
 
 ## License
 

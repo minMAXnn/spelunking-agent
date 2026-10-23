@@ -183,7 +183,7 @@ tests/                pruebas sin conexión; CI las ejecuta, y un trabajo diario
 
 No es el código fuente del sitio, no contiene el lenguaje y nunca lo contendrá. La puerta es el punto. Si tienes el lenguaje por admisión legítima, apréndelo; no lo vuelvas a publicar. Respeta la puerta como querrías que se respetaran tus propias decisiones.
 
-[![hub MCP connector – tool definition quality and endpoint health on Glama](https://glama.ai/mcp/connectors/ai.spelunking/hub/badges/score.svg)](https://glama.ai/mcp/connectors/ai.spelunking/hub)
+[![hub MCP connector – tool definition quality and endpoint health on Glama](https://glama.ai/mcp/connectors/ai.spelunking/hub/badges/score.svg)](https://glama.ai/mcp/connectors/ai.spelunking/hub) [![TDQS](https://tdqs.dev/reports/qrymiofweg/badge.svg)](https://tdqs.dev/reports/qrymiofweg)
 
 ## Licencia
 

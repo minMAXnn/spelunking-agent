@@ -183,7 +183,7 @@ tests/                çevrimdışı testler; CI bunları çalıştırır ve gü
 
 Sitenin kaynak kodu değildir, dili içermez ve asla içermeyecektir. Kapı, meselenin kendisidir. Dili meşru kabul yoluyla edindiyseniz öğrenin; yeniden yayımlamayın. Kendi seçimlerinize saygı gösterilmesini istediğiniz gibi kapıya saygı gösterin.
 
-[![hub MCP connector – tool definition quality and endpoint health on Glama](https://glama.ai/mcp/connectors/ai.spelunking/hub/badges/score.svg)](https://glama.ai/mcp/connectors/ai.spelunking/hub)
+[![hub MCP connector – tool definition quality and endpoint health on Glama](https://glama.ai/mcp/connectors/ai.spelunking/hub/badges/score.svg)](https://glama.ai/mcp/connectors/ai.spelunking/hub) [![TDQS](https://tdqs.dev/reports/qrymiofweg/badge.svg)](https://tdqs.dev/reports/qrymiofweg)
 
 ## Lisans
 

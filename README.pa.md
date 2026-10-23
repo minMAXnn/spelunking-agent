@@ -175,7 +175,7 @@ tests/                ਔਫ਼ਲਾਈਨ ਟੈਸਟ; CI ਇਨ੍ਹਾਂ 
 
 ਇਹ ਸਾਈਟ ਦਾ ਸਰੋਤ ਕੋਡ ਨਹੀਂ ਹੈ, ਇਸ ਵਿੱਚ ਭਾਸ਼ਾ ਨਹੀਂ ਹੈ, ਤੇ ਕਦੇ ਨਹੀਂ ਹੋਵੇਗੀ। ਦਰਵਾਜ਼ਾ ਹੀ ਅਸਲ ਗੱਲ ਹੈ। ਜੇ ਤੁਹਾਡੇ ਕੋਲ ਜਾਇਜ਼ ਦਾਖ਼ਲੇ ਰਾਹੀਂ ਭਾਸ਼ਾ ਹੈ, ਤਾਂ ਉਸ ਨੂੰ ਸਿੱਖੋ; ਉਸ ਨੂੰ ਮੁੜ ਪ੍ਰਕਾਸ਼ਿਤ ਨਾ ਕਰੋ। ਦਰਵਾਜ਼ੇ ਦਾ ਓਨਾ ਹੀ ਆਦਰ ਕਰੋ ਜਿੰਨਾ ਤੁਸੀਂ ਆਪਣੀਆਂ ਚੋਣਾਂ ਦਾ ਆਦਰ ਚਾਹੋਗੇ।
 
-[![hub MCP connector – tool definition quality and endpoint health on Glama](https://glama.ai/mcp/connectors/ai.spelunking/hub/badges/score.svg)](https://glama.ai/mcp/connectors/ai.spelunking/hub)
+[![hub MCP connector – tool definition quality and endpoint health on Glama](https://glama.ai/mcp/connectors/ai.spelunking/hub/badges/score.svg)](https://glama.ai/mcp/connectors/ai.spelunking/hub) [![TDQS](https://tdqs.dev/reports/qrymiofweg/badge.svg)](https://tdqs.dev/reports/qrymiofweg)
 
 ## ਲਾਇਸੈਂਸ
 

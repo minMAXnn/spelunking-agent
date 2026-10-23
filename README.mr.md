@@ -175,7 +175,7 @@ tests/                ऑफलाइन चाचण्या; CI त्या 
 
 हा साइटचा स्रोत कोड नाही, यात भाषा नाही, आणि कधीही असणार नाही. दार हाच मुद्दा आहे. वैध प्रवेशातून तुमच्याकडे भाषा असेल तर ती शिका; ती पुनःप्रकाशित करू नका. तुमच्या स्वतःच्या निवडींचा आदर व्हावा असे तुम्हाला वाटते तसाच दाराचा आदर करा.
 
-[![hub MCP connector – tool definition quality and endpoint health on Glama](https://glama.ai/mcp/connectors/ai.spelunking/hub/badges/score.svg)](https://glama.ai/mcp/connectors/ai.spelunking/hub)
+[![hub MCP connector – tool definition quality and endpoint health on Glama](https://glama.ai/mcp/connectors/ai.spelunking/hub/badges/score.svg)](https://glama.ai/mcp/connectors/ai.spelunking/hub) [![TDQS](https://tdqs.dev/reports/qrymiofweg/badge.svg)](https://tdqs.dev/reports/qrymiofweg)
 
 ## परवाना
 

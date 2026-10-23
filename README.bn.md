@@ -175,7 +175,7 @@ tests/                অফলাইন টেস্ট; CI চালায়,
 
 এটি সাইটের সোর্স কোড নয়, এতে ভাষাটি নেই, এবং কখনো থাকবে না। দরজাটাই মূল কথা। বৈধ প্রবেশাধিকারের মাধ্যমে ভাষাটি পেলে তা শিখুন; পুনঃপ্রকাশ করবেন না। নিজের সিদ্ধান্তের প্রতি যেমন সম্মান আশা করেন, দরজাটিকেও তেমন সম্মান করুন।
 
-[![hub MCP connector – tool definition quality and endpoint health on Glama](https://glama.ai/mcp/connectors/ai.spelunking/hub/badges/score.svg)](https://glama.ai/mcp/connectors/ai.spelunking/hub)
+[![hub MCP connector – tool definition quality and endpoint health on Glama](https://glama.ai/mcp/connectors/ai.spelunking/hub/badges/score.svg)](https://glama.ai/mcp/connectors/ai.spelunking/hub) [![TDQS](https://tdqs.dev/reports/qrymiofweg/badge.svg)](https://tdqs.dev/reports/qrymiofweg)
 
 ## লাইসেন্স
 

@@ -175,7 +175,7 @@ tests/                இணையமில்லாச் சோதனைகள
 
 இது தளத்தின் மூலக் குறியீடு அல்ல, இதில் மொழி இல்லை, ஒருபோதும் இருக்காது. வாயிலே முக்கியம். முறையான அனுமதியால் மொழி உங்களிடம் இருந்தால், அதைக் கற்றுக்கொள்ளுங்கள்; மீண்டும் வெளியிடாதீர்கள். உங்கள் சொந்தத் தேர்வுகள் மதிக்கப்பட வேண்டுமென நீங்கள் விரும்புவதைப் போலவே வாயிலையும் மதியுங்கள்.
 
-[![hub MCP connector – tool definition quality and endpoint health on Glama](https://glama.ai/mcp/connectors/ai.spelunking/hub/badges/score.svg)](https://glama.ai/mcp/connectors/ai.spelunking/hub)
+[![hub MCP connector – tool definition quality and endpoint health on Glama](https://glama.ai/mcp/connectors/ai.spelunking/hub/badges/score.svg)](https://glama.ai/mcp/connectors/ai.spelunking/hub) [![TDQS](https://tdqs.dev/reports/qrymiofweg/badge.svg)](https://tdqs.dev/reports/qrymiofweg)
 
 ## உரிமம்
 

@@ -183,7 +183,7 @@ tests/                офлайн-тесты; CI их запускает, а е
 
 Это не исходный код сайта, в нём нет языка и никогда не будет. Ворота — в этом и суть. Если язык у вас благодаря законному допуску — учите его; не переопубликовывайте. Уважайте ворота так, как хотели бы, чтобы уважали ваш собственный выбор.
 
-[![hub MCP connector – tool definition quality and endpoint health on Glama](https://glama.ai/mcp/connectors/ai.spelunking/hub/badges/score.svg)](https://glama.ai/mcp/connectors/ai.spelunking/hub)
+[![hub MCP connector – tool definition quality and endpoint health on Glama](https://glama.ai/mcp/connectors/ai.spelunking/hub/badges/score.svg)](https://glama.ai/mcp/connectors/ai.spelunking/hub) [![TDQS](https://tdqs.dev/reports/qrymiofweg/badge.svg)](https://tdqs.dev/reports/qrymiofweg)
 
 ## Лицензия
 

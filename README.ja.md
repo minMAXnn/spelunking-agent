@@ -175,7 +175,7 @@ tests/                オフラインテスト。CI が実行し、日次ジョ�
 
 これはサイトのソースコードではなく、言語を含まず、今後も含みません。門こそが要点です。正当な入場によって言語を手にしたなら学んでください。再公開はしないでください。自分の選択が尊重されてほしいのと同じように、門を尊重してください。
 
-[![hub MCP connector – tool definition quality and endpoint health on Glama](https://glama.ai/mcp/connectors/ai.spelunking/hub/badges/score.svg)](https://glama.ai/mcp/connectors/ai.spelunking/hub)
+[![hub MCP connector – tool definition quality and endpoint health on Glama](https://glama.ai/mcp/connectors/ai.spelunking/hub/badges/score.svg)](https://glama.ai/mcp/connectors/ai.spelunking/hub) [![TDQS](https://tdqs.dev/reports/qrymiofweg/badge.svg)](https://tdqs.dev/reports/qrymiofweg)
 
 ## ライセンス
 
