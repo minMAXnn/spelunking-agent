@@ -9,9 +9,11 @@ on:
   workflow_dispatch:
     inputs:
       dry_run: { description: "Preview only", type: boolean, default: true }
+permissions:
+  contents: read
 jobs:
   publish:
-    uses: openclaw/clawhub/.github/workflows/skill-publish.yml@main
+    uses: openclaw/clawhub/.github/workflows/skill-publish.yml@183d8432ee1aec691faf4c9258884b56fccf700e  # main on 2026-10-22; bump deliberately
     with:
       root: skills
       dry_run: ${{ github.event_name == 'push' || inputs.dry_run }}
