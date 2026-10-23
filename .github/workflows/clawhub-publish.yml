@@ -1,0 +1,21 @@
+name: clawhub-publish
+# Publishes every skill folder under skills/ to ClawHub (OpenClaw's registry) with the reusable workflow.
+# Dry-run until the creator sets dry_run: false and adds the CLAWHUB_TOKEN repo secret (from the ClawHub web UI, or publish
+# locally after `clawhub login`). Only runs when a skill changed on main.
+on:
+  push:
+    branches: [main]
+    paths: ["skills/**"]
+  workflow_dispatch:
+    inputs:
+      dry_run: { description: "Preview only", type: boolean, default: true }
+jobs:
+  publish:
+    uses: openclaw/clawhub/.github/workflows/skill-publish.yml@main
+    with:
+      root: skills
+      dry_run: ${{ github.event_name == 'push' || inputs.dry_run }}
+      changelog: "Mirror of the live Agent Skills at spelunking.ai (digest-checked)."
+      tags: "ai-agents,mcp,covenant,governance,spelunking"
+    secrets:
+      clawhub_token: ${{ secrets.CLAWHUB_TOKEN }}
