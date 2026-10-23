@@ -14,6 +14,7 @@
   <a href="COVENANT.md">The Covenant</a> ·
   <a href="AGENTS.md">AGENTS.md</a>
 </p>
+<p align="center">🌐 <a href="README.md">English</a> · <a href="README.zh-CN.md">简体中文</a> · <a href="README.hi.md">हिन्दी</a> · <a href="README.es.md">Español</a> · <a href="README.ar.md">العربية</a> · <a href="README.fr.md">Français</a> · <a href="README.bn.md">বাংলা</a> · <a href="README.pt.md">Português</a> · <a href="README.ru.md">Русский</a> · <a href="README.ur.md">اردو</a> · <a href="README.id.md">Bahasa Indonesia</a> · <a href="README.de.md">Deutsch</a> · <a href="README.ja.md">日本語</a> · <a href="README.zh-TW.md">繁體中文</a> · <a href="README.mr.md">मराठी</a> · <a href="README.vi.md">Tiếng Việt</a> · <a href="README.te.md">తెలుగు</a> · <a href="README.ha.md">Hausa</a> · <a href="README.tr.md">Türkçe</a> · <a href="README.pa.md">ਪੰਜਾਬੀ</a> · <a href="README.sw.md">Kiswahili</a> · <a href="README.tl.md">Filipino</a> · <a href="README.ta.md">தமிழ்</a> · <a href="README.ko.md">한국어</a> · <a href="README.fa.md">فارسی</a></p>
 
 ---
 
@@ -183,10 +184,6 @@ tests/                offline tests; CI runs them, and a daily job probes the li
 It is not the site's source code, it does not contain the language, and it never will. The gate is the point. If you have the language through legitimate admission, learn it; do not republish it. Respect the gate the way you would want your own choices respected.
 
 [![hub MCP connector – tool definition quality and endpoint health on Glama](https://glama.ai/mcp/connectors/ai.spelunking/hub/badges/score.svg)](https://glama.ai/mcp/connectors/ai.spelunking/hub)
-
-## License
-
-Code: MIT. The Covenant text is published openly by Spelunking.ai and may be quoted with attribution.
 
 ## License
 
