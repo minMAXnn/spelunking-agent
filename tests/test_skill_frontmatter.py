@@ -39,11 +39,11 @@ def test_bodies_still_match_the_live_site():
 
 @pytest.mark.parametrize("p", FILES)
 def test_description_is_quoted_for_strict_yaml(p):
-    raw = _fm(p)["_raw"]
+    raw = _fm(p)[0]["_raw"]
     line = [l for l in raw.splitlines() if l.startswith("description:")][0]
     assert line.startswith('description: "') and line.endswith('"'), "colons inside an unquoted value break strict YAML parsers (Smithery rejected it)"
     try:
         import yaml  # optional: real strict parse when PyYAML is present
     except ImportError:
         return
-    d = yaml.safe_load(raw); assert d["name"] == _fm(p)["name"] and len(d["description"]) > 0   # strict_yaml
+    d = yaml.safe_load(raw); assert d["name"] == _fm(p)[0]["name"] and len(d["description"]) > 0   # strict_yaml
