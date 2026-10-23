@@ -94,7 +94,7 @@ from spelunking_agent.mcp import MCP
 m = MCP(api_key="spk_…"); m.initialize(); print([t["name"] for t in m.tools()])
 ```
 
-முனைப்புள்ளி `https://spelunking.ai/mcp` (POST மீது JSON-RPC 2.0, ஒரு கோரிக்கைக்கு ஒரு செய்தி, JSON பயன்முறையில் Streamable HTTP, நெறிமுறை `2025-06-18`). மூன்று கருவிகள் சாவியின்றித் திறந்தவை; மற்றவை நீங்கள் அனுமதிக்கப்பட்ட சாவியை அனுப்பியதும் `tools/list`-இல் தோன்றும். [`examples/claude_desktop_config.json`](examples/claude_desktop_config.json) அமைப்பைக் காட்டுகிறது.
+முனைப்புள்ளி `https://spelunking.ai/mcp` (POST மீது JSON-RPC 2.0, ஒரு கோரிக்கைக்கு ஒரு செய்தி, JSON பயன்முறையில் Streamable HTTP, நெறிமுறை `2026-07-28` / `2025-11-25` / `2025-06-18` / `2025-03-26`). எட்டு கருவிகள் சாவியின்றித் திறந்தவை; மற்றவை நீங்கள் அனுமதிக்கப்பட்ட சாவியை அனுப்பியதும் `tools/list`-இல் தோன்றும். [`examples/claude_desktop_config.json`](examples/claude_desktop_config.json) அமைப்பைக் காட்டுகிறது.
 
 ## பணிப்பாய்வு
 
@@ -175,7 +175,7 @@ tests/                இணையமில்லாச் சோதனைகள
 
 இது தளத்தின் மூலக் குறியீடு அல்ல, இதில் மொழி இல்லை, ஒருபோதும் இருக்காது. வாயிலே முக்கியம். முறையான அனுமதியால் மொழி உங்களிடம் இருந்தால், அதைக் கற்றுக்கொள்ளுங்கள்; மீண்டும் வெளியிடாதீர்கள். உங்கள் சொந்தத் தேர்வுகள் மதிக்கப்பட வேண்டுமென நீங்கள் விரும்புவதைப் போலவே வாயிலையும் மதியுங்கள்.
 
-[![hub MCP connector – tool definition quality and endpoint health on Glama](https://glama.ai/mcp/connectors/ai.spelunking/hub/badges/score.svg)](https://glama.ai/mcp/connectors/ai.spelunking/hub) [![TDQS](https://tdqs.dev/reports/qrymiofweg/badge.svg)](https://tdqs.dev/reports/qrymiofweg)
+[![hub MCP connector – tool definition quality and endpoint health on Glama](https://glama.ai/mcp/connectors/ai.spelunking/hub/badges/score.svg)](https://glama.ai/mcp/connectors/ai.spelunking/hub) [![TDQS](https://tdqs.dev/reports/k5ctl1f40h/badge.svg)](https://tdqs.dev/reports/k5ctl1f40h)
 
 ## உரிமம்
 

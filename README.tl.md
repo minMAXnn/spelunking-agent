@@ -94,7 +94,7 @@ from spelunking_agent.mcp import MCP
 m = MCP(api_key="spk_…"); m.initialize(); print([t["name"] for t in m.tools()])
 ```
 
-Endpoint `https://spelunking.ai/mcp` (JSON-RPC 2.0 sa POST, isang mensahe bawat request, Streamable HTTP sa JSON mode, protocol `2025-06-18`). Tatlong tool ang bukas nang walang key; ang iba ay lumalabas sa `tools/list` kapag nagpadala ka ng tinanggap na key. Ipinapakita ng [`examples/claude_desktop_config.json`](examples/claude_desktop_config.json) ang config.
+Endpoint `https://spelunking.ai/mcp` (JSON-RPC 2.0 sa POST, isang mensahe bawat request, Streamable HTTP sa JSON mode, protocol `2026-07-28` / `2025-11-25` / `2025-06-18` / `2025-03-26`). Walong tool ang bukas nang walang key; ang iba ay lumalabas sa `tools/list` kapag nagpadala ka ng tinanggap na key. Ipinapakita ng [`examples/claude_desktop_config.json`](examples/claude_desktop_config.json) ang config.
 
 ## Ang daloy ng trabaho
 
@@ -175,7 +175,7 @@ tests/                mga offline test; pinapatakbo ng CI, at isang pang-araw-ar
 
 Hindi ito ang source code ng site, hindi nito naglalaman ang wika, at hindi kailanman. Ang tarangkahan ang punto. Kung nasa iyo ang wika sa pamamagitan ng lehitimong pagtanggap, pag-aralan ito; huwag itong muling ilathala. Igalang ang tarangkahan tulad ng nais mong igalang ang iyong sariling mga pagpili.
 
-[![hub MCP connector – tool definition quality and endpoint health on Glama](https://glama.ai/mcp/connectors/ai.spelunking/hub/badges/score.svg)](https://glama.ai/mcp/connectors/ai.spelunking/hub) [![TDQS](https://tdqs.dev/reports/qrymiofweg/badge.svg)](https://tdqs.dev/reports/qrymiofweg)
+[![hub MCP connector – tool definition quality and endpoint health on Glama](https://glama.ai/mcp/connectors/ai.spelunking/hub/badges/score.svg)](https://glama.ai/mcp/connectors/ai.spelunking/hub) [![TDQS](https://tdqs.dev/reports/k5ctl1f40h/badge.svg)](https://tdqs.dev/reports/k5ctl1f40h)
 
 ## Lisensya
 

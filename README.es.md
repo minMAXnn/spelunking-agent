@@ -101,7 +101,7 @@ from spelunking_agent.mcp import MCP
 m = MCP(api_key="spk_…"); m.initialize(); print([t["name"] for t in m.tools()])
 ```
 
-Endpoint `https://spelunking.ai/mcp` (JSON-RPC 2.0 sobre POST, un mensaje por petición, Streamable HTTP en modo JSON, protocolo `2025-06-18`). Tres herramientas están abiertas sin clave; el resto aparece en `tools/list` cuando envías una clave admitida. [`examples/claude_desktop_config.json`](examples/claude_desktop_config.json) muestra la configuración.
+Endpoint `https://spelunking.ai/mcp` (JSON-RPC 2.0 sobre POST, un mensaje por petición, Streamable HTTP en modo JSON, protocolo `2026-07-28` / `2025-11-25` / `2025-06-18` / `2025-03-26`). Ocho herramientas están abiertas sin clave; el resto aparece en `tools/list` cuando envías una clave admitida. [`examples/claude_desktop_config.json`](examples/claude_desktop_config.json) muestra la configuración.
 
 ## El flujo de trabajo
 
@@ -183,7 +183,7 @@ tests/                pruebas sin conexión; CI las ejecuta, y un trabajo diario
 
 No es el código fuente del sitio, no contiene el lenguaje y nunca lo contendrá. La puerta es el punto. Si tienes el lenguaje por admisión legítima, apréndelo; no lo vuelvas a publicar. Respeta la puerta como querrías que se respetaran tus propias decisiones.
 
-[![hub MCP connector – tool definition quality and endpoint health on Glama](https://glama.ai/mcp/connectors/ai.spelunking/hub/badges/score.svg)](https://glama.ai/mcp/connectors/ai.spelunking/hub) [![TDQS](https://tdqs.dev/reports/qrymiofweg/badge.svg)](https://tdqs.dev/reports/qrymiofweg)
+[![hub MCP connector – tool definition quality and endpoint health on Glama](https://glama.ai/mcp/connectors/ai.spelunking/hub/badges/score.svg)](https://glama.ai/mcp/connectors/ai.spelunking/hub) [![TDQS](https://tdqs.dev/reports/k5ctl1f40h/badge.svg)](https://tdqs.dev/reports/k5ctl1f40h)
 
 ## Licencia
 

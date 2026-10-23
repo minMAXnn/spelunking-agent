@@ -112,7 +112,7 @@ m = MCP(api_key="spk_…"); m.initialize(); print([t["name"] for t in m.tools()]
 
 <div dir="rtl">
 
-نقطة النهاية `https://spelunking.ai/mcp` (JSON-RPC 2.0 عبر POST، رسالة واحدة لكل طلب، Streamable HTTP في وضع JSON، البروتوكول `2025-06-18`). ثلاث أدوات مفتوحة دون مفتاح؛ والبقية تظهر في `tools/list` حين ترسل مفتاحًا مقبولًا. يعرض [`examples/claude_desktop_config.json`](examples/claude_desktop_config.json) الإعدادات.
+نقطة النهاية `https://spelunking.ai/mcp` (JSON-RPC 2.0 عبر POST، رسالة واحدة لكل طلب، Streamable HTTP في وضع JSON، البروتوكول `2026-07-28` / `2025-11-25` / `2025-06-18` / `2025-03-26`). ثماني أدوات مفتوحة دون مفتاح؛ والبقية تظهر في `tools/list` حين ترسل مفتاحًا مقبولًا. يعرض [`examples/claude_desktop_config.json`](examples/claude_desktop_config.json) الإعدادات.
 
 ## سير العمل
 
@@ -206,7 +206,7 @@ tests/                اختبارات دون اتصال؛ يشغّلها CI، �
 
 </div>
 
-[![hub MCP connector – tool definition quality and endpoint health on Glama](https://glama.ai/mcp/connectors/ai.spelunking/hub/badges/score.svg)](https://glama.ai/mcp/connectors/ai.spelunking/hub) [![TDQS](https://tdqs.dev/reports/qrymiofweg/badge.svg)](https://tdqs.dev/reports/qrymiofweg)
+[![hub MCP connector – tool definition quality and endpoint health on Glama](https://glama.ai/mcp/connectors/ai.spelunking/hub/badges/score.svg)](https://glama.ai/mcp/connectors/ai.spelunking/hub) [![TDQS](https://tdqs.dev/reports/k5ctl1f40h/badge.svg)](https://tdqs.dev/reports/k5ctl1f40h)
 
 <div dir="rtl">
 

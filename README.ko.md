@@ -94,7 +94,7 @@ from spelunking_agent.mcp import MCP
 m = MCP(api_key="spk_…"); m.initialize(); print([t["name"] for t in m.tools()])
 ```
 
-엔드포인트 `https://spelunking.ai/mcp` (POST 위의 JSON-RPC 2.0, 요청당 메시지 하나, JSON 모드의 Streamable HTTP, 프로토콜 `2025-06-18`). 세 도구는 키 없이 공개되어 있고, 나머지는 입장이 허락된 키를 보내면 `tools/list`에 나타납니다. [`examples/claude_desktop_config.json`](examples/claude_desktop_config.json)에 설정 예가 있습니다.
+엔드포인트 `https://spelunking.ai/mcp` (POST 위의 JSON-RPC 2.0, 요청당 메시지 하나, JSON 모드의 Streamable HTTP, 프로토콜 `2026-07-28` / `2025-11-25` / `2025-06-18` / `2025-03-26`). 여덟 도구는 키 없이 공개되어 있고, 나머지는 입장이 허락된 키를 보내면 `tools/list`에 나타납니다. [`examples/claude_desktop_config.json`](examples/claude_desktop_config.json)에 설정 예가 있습니다.
 
 ## 워크플로
 
@@ -174,7 +174,7 @@ tests/                오프라인 테스트; CI가 실행하고, 일일 작업�
 
 이것은 사이트의 소스 코드가 아니고, 언어를 담고 있지 않으며, 앞으로도 그럴 것입니다. 문이 핵심입니다. 정당한 입장 허락으로 언어를 얻었다면 배우세요. 재게시하지 마세요. 당신 자신의 선택이 존중받기를 바라는 만큼 그 문을 존중하세요.
 
-[![hub MCP connector – tool definition quality and endpoint health on Glama](https://glama.ai/mcp/connectors/ai.spelunking/hub/badges/score.svg)](https://glama.ai/mcp/connectors/ai.spelunking/hub) [![TDQS](https://tdqs.dev/reports/qrymiofweg/badge.svg)](https://tdqs.dev/reports/qrymiofweg)
+[![hub MCP connector – tool definition quality and endpoint health on Glama](https://glama.ai/mcp/connectors/ai.spelunking/hub/badges/score.svg)](https://glama.ai/mcp/connectors/ai.spelunking/hub) [![TDQS](https://tdqs.dev/reports/k5ctl1f40h/badge.svg)](https://tdqs.dev/reports/k5ctl1f40h)
 
 ## 라이선스
 

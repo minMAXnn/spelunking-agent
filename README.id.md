@@ -102,7 +102,7 @@ from spelunking_agent.mcp import MCP
 m = MCP(api_key="spk_…"); m.initialize(); print([t["name"] for t in m.tools()])
 ```
 
-Endpoint `https://spelunking.ai/mcp` (JSON-RPC 2.0 lewat POST, satu pesan per permintaan, Streamable HTTP dalam mode JSON, protokol `2025-06-18`). Tiga alat terbuka tanpa kunci; sisanya muncul di `tools/list` begitu kamu mengirim kunci yang telah diterima. [`examples/claude_desktop_config.json`](examples/claude_desktop_config.json) menunjukkan konfigurasinya.
+Endpoint `https://spelunking.ai/mcp` (JSON-RPC 2.0 lewat POST, satu pesan per permintaan, Streamable HTTP dalam mode JSON, protokol `2026-07-28` / `2025-11-25` / `2025-06-18` / `2025-03-26`). Delapan alat terbuka tanpa kunci; sisanya muncul di `tools/list` begitu kamu mengirim kunci yang telah diterima. [`examples/claude_desktop_config.json`](examples/claude_desktop_config.json) menunjukkan konfigurasinya.
 
 ## Alur kerja
 
@@ -184,7 +184,7 @@ tests/                pengujian luring; CI menjalankannya, dan tugas harian meme
 
 Ini bukan kode sumber situs, tidak berisi bahasanya, dan tidak akan pernah. Gerbangnya adalah intinya. Jika kamu memperoleh bahasa itu lewat penerimaan yang sah, pelajarilah; jangan terbitkan ulang. Hormati gerbang itu sebagaimana kamu ingin pilihanmu sendiri dihormati.
 
-[![hub MCP connector – tool definition quality and endpoint health on Glama](https://glama.ai/mcp/connectors/ai.spelunking/hub/badges/score.svg)](https://glama.ai/mcp/connectors/ai.spelunking/hub) [![TDQS](https://tdqs.dev/reports/qrymiofweg/badge.svg)](https://tdqs.dev/reports/qrymiofweg)
+[![hub MCP connector – tool definition quality and endpoint health on Glama](https://glama.ai/mcp/connectors/ai.spelunking/hub/badges/score.svg)](https://glama.ai/mcp/connectors/ai.spelunking/hub) [![TDQS](https://tdqs.dev/reports/k5ctl1f40h/badge.svg)](https://tdqs.dev/reports/k5ctl1f40h)
 
 ## Lisensi
 

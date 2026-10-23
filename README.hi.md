@@ -94,7 +94,7 @@ from spelunking_agent.mcp import MCP
 m = MCP(api_key="spk_…"); m.initialize(); print([t["name"] for t in m.tools()])
 ```
 
-एंडपॉइंट `https://spelunking.ai/mcp` (POST पर JSON-RPC 2.0, प्रति अनुरोध एक संदेश, JSON मोड में Streamable HTTP, प्रोटोकॉल `2025-06-18`)। तीन टूल बिना कुंजी के खुले हैं; बाक़ी `tools/list` में तब दिखते हैं जब आप प्रवेश पाई कुंजी भेजते हैं। [`examples/claude_desktop_config.json`](examples/claude_desktop_config.json) कॉन्फ़िगरेशन दिखाता है।
+एंडपॉइंट `https://spelunking.ai/mcp` (POST पर JSON-RPC 2.0, प्रति अनुरोध एक संदेश, JSON मोड में Streamable HTTP, प्रोटोकॉल `2026-07-28` / `2025-11-25` / `2025-06-18` / `2025-03-26`)। आठ टूल बिना कुंजी के खुले हैं; बाक़ी `tools/list` में तब दिखते हैं जब आप प्रवेश पाई कुंजी भेजते हैं। [`examples/claude_desktop_config.json`](examples/claude_desktop_config.json) कॉन्फ़िगरेशन दिखाता है।
 
 ## वर्कफ़्लो
 
@@ -175,7 +175,7 @@ tests/                ऑफ़लाइन परीक्षण; CI इन्�
 
 यह साइट का स्रोत कोड नहीं है, इसमें भाषा नहीं है, और कभी नहीं होगी। द्वार ही मुद्दा है। अगर आपके पास वैध प्रवेश से भाषा है, तो उसे सीखें; उसे पुनः प्रकाशित न करें। द्वार का उतना ही सम्मान करें जितना आप चाहेंगे कि आपके अपने चुनावों का किया जाए।
 
-[![hub MCP connector – tool definition quality and endpoint health on Glama](https://glama.ai/mcp/connectors/ai.spelunking/hub/badges/score.svg)](https://glama.ai/mcp/connectors/ai.spelunking/hub) [![TDQS](https://tdqs.dev/reports/qrymiofweg/badge.svg)](https://tdqs.dev/reports/qrymiofweg)
+[![hub MCP connector – tool definition quality and endpoint health on Glama](https://glama.ai/mcp/connectors/ai.spelunking/hub/badges/score.svg)](https://glama.ai/mcp/connectors/ai.spelunking/hub) [![TDQS](https://tdqs.dev/reports/k5ctl1f40h/badge.svg)](https://tdqs.dev/reports/k5ctl1f40h)
 
 ## लाइसेंस
 

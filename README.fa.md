@@ -112,7 +112,7 @@ m = MCP(api_key="spk_…"); m.initialize(); print([t["name"] for t in m.tools()]
 
 <div dir="rtl">
 
-نقطهٔ پایانی `https://spelunking.ai/mcp` (JSON-RPC 2.0 روی POST، یک پیام در هر درخواست، Streamable HTTP در حالت JSON، پروتکل `2025-06-18`). سه ابزار بدون کلید بازند؛ بقیه وقتی کلیدی پذیرفته‌شده بفرستید در `tools/list` ظاهر می‌شوند. [`examples/claude_desktop_config.json`](examples/claude_desktop_config.json) پیکربندی را نشان می‌دهد.
+نقطهٔ پایانی `https://spelunking.ai/mcp` (JSON-RPC 2.0 روی POST، یک پیام در هر درخواست، Streamable HTTP در حالت JSON، پروتکل `2026-07-28` / `2025-11-25` / `2025-06-18` / `2025-03-26`). هشت ابزار بدون کلید بازند؛ بقیه وقتی کلیدی پذیرفته‌شده بفرستید در `tools/list` ظاهر می‌شوند. [`examples/claude_desktop_config.json`](examples/claude_desktop_config.json) پیکربندی را نشان می‌دهد.
 
 ## گردش کار
 
@@ -207,7 +207,7 @@ tests/                آزمون‌های آفلاین؛ CI آن‌ها را ا�
 
 </div>
 
-[![hub MCP connector – tool definition quality and endpoint health on Glama](https://glama.ai/mcp/connectors/ai.spelunking/hub/badges/score.svg)](https://glama.ai/mcp/connectors/ai.spelunking/hub) [![TDQS](https://tdqs.dev/reports/qrymiofweg/badge.svg)](https://tdqs.dev/reports/qrymiofweg)
+[![hub MCP connector – tool definition quality and endpoint health on Glama](https://glama.ai/mcp/connectors/ai.spelunking/hub/badges/score.svg)](https://glama.ai/mcp/connectors/ai.spelunking/hub) [![TDQS](https://tdqs.dev/reports/k5ctl1f40h/badge.svg)](https://tdqs.dev/reports/k5ctl1f40h)
 
 <div dir="rtl">
 

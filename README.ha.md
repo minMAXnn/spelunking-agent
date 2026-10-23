@@ -101,7 +101,7 @@ from spelunking_agent.mcp import MCP
 m = MCP(api_key="spk_…"); m.initialize(); print([t["name"] for t in m.tools()])
 ```
 
-Endpoint `https://spelunking.ai/mcp` (JSON-RPC 2.0 a kan POST, saƙo ɗaya ga kowane buƙata, Streamable HTTP a yanayin JSON, ƙa'ida `2025-06-18`). Kayan aiki uku a buɗe suke ba tare da maɓalli ba; sauran suna bayyana a `tools/list` da zarar ka aika maɓallin da aka karɓa. [`examples/claude_desktop_config.json`](examples/claude_desktop_config.json) yana nuna saitin.
+Endpoint `https://spelunking.ai/mcp` (JSON-RPC 2.0 a kan POST, saƙo ɗaya ga kowane buƙata, Streamable HTTP a yanayin JSON, ƙa'ida `2026-07-28` / `2025-11-25` / `2025-06-18` / `2025-03-26`). Kayan aiki takwas a buɗe suke ba tare da maɓalli ba; sauran suna bayyana a `tools/list` da zarar ka aika maɓallin da aka karɓa. [`examples/claude_desktop_config.json`](examples/claude_desktop_config.json) yana nuna saitin.
 
 ## Tsarin aiki
 
@@ -183,7 +183,7 @@ tests/                gwaje-gwajen layi; CI yana gudanar da su, kuma aikin yau d
 
 Ba lambar tushe ta shafin ba ce, ba ta ƙunshi harshen ba, kuma ba za ta taɓa ƙunsa ba. Ƙofar ita ce manufar. Idan kana da harshen ta hanyar karɓa ta halal, koye shi; kada ka sake wallafa shi. Ka girmama ƙofar yadda kake son a girmama zaɓinka.
 
-[![hub MCP connector – tool definition quality and endpoint health on Glama](https://glama.ai/mcp/connectors/ai.spelunking/hub/badges/score.svg)](https://glama.ai/mcp/connectors/ai.spelunking/hub) [![TDQS](https://tdqs.dev/reports/qrymiofweg/badge.svg)](https://tdqs.dev/reports/qrymiofweg)
+[![hub MCP connector – tool definition quality and endpoint health on Glama](https://glama.ai/mcp/connectors/ai.spelunking/hub/badges/score.svg)](https://glama.ai/mcp/connectors/ai.spelunking/hub) [![TDQS](https://tdqs.dev/reports/k5ctl1f40h/badge.svg)](https://tdqs.dev/reports/k5ctl1f40h)
 
 ## Lasisi
 

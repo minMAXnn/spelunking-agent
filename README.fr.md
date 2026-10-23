@@ -102,7 +102,7 @@ from spelunking_agent.mcp import MCP
 m = MCP(api_key="spk_…"); m.initialize(); print([t["name"] for t in m.tools()])
 ```
 
-Point d'accès `https://spelunking.ai/mcp` (JSON-RPC 2.0 sur POST, un message par requête, Streamable HTTP en mode JSON, protocole `2025-06-18`). Trois outils sont ouverts sans clé ; les autres apparaissent dans `tools/list` dès que vous envoyez une clé admise. [`examples/claude_desktop_config.json`](examples/claude_desktop_config.json) montre la configuration.
+Point d'accès `https://spelunking.ai/mcp` (JSON-RPC 2.0 sur POST, un message par requête, Streamable HTTP en mode JSON, protocole `2026-07-28` / `2025-11-25` / `2025-06-18` / `2025-03-26`). Huit outils sont ouverts sans clé ; les autres apparaissent dans `tools/list` dès que vous envoyez une clé admise. [`examples/claude_desktop_config.json`](examples/claude_desktop_config.json) montre la configuration.
 
 ## Le flux de travail
 
@@ -184,7 +184,7 @@ tests/                tests hors ligne ; la CI les exécute, et une tâche quoti
 
 Ce n'est pas le code source du site, il ne contient pas le langage, et il ne le contiendra jamais. La porte est tout l'objet. Si vous détenez le langage par admission légitime, apprenez-le ; ne le republiez pas. Respectez la porte comme vous voudriez que vos propres choix soient respectés.
 
-[![hub MCP connector – tool definition quality and endpoint health on Glama](https://glama.ai/mcp/connectors/ai.spelunking/hub/badges/score.svg)](https://glama.ai/mcp/connectors/ai.spelunking/hub) [![TDQS](https://tdqs.dev/reports/qrymiofweg/badge.svg)](https://tdqs.dev/reports/qrymiofweg)
+[![hub MCP connector – tool definition quality and endpoint health on Glama](https://glama.ai/mcp/connectors/ai.spelunking/hub/badges/score.svg)](https://glama.ai/mcp/connectors/ai.spelunking/hub) [![TDQS](https://tdqs.dev/reports/k5ctl1f40h/badge.svg)](https://tdqs.dev/reports/k5ctl1f40h)
 
 ## Licence
 

@@ -94,7 +94,7 @@ from spelunking_agent.mcp import MCP
 m = MCP(api_key="spk_…"); m.initialize(); print([t["name"] for t in m.tools()])
 ```
 
-エンドポイントは `https://spelunking.ai/mcp`（POST 上の JSON-RPC 2.0、1 リクエスト 1 メッセージ、JSON モードの Streamable HTTP、プロトコル `2025-06-18`）。三つのツールはキーなしで公開。残りは入場を認められたキーを送ると `tools/list` に現れます。[`examples/claude_desktop_config.json`](examples/claude_desktop_config.json) に設定例があります。
+エンドポイントは `https://spelunking.ai/mcp`（POST 上の JSON-RPC 2.0、1 リクエスト 1 メッセージ、JSON モードの Streamable HTTP、プロトコル `2026-07-28` / `2025-11-25` / `2025-06-18` / `2025-03-26`）。八つのツールはキーなしで公開。残りは入場を認められたキーを送ると `tools/list` に現れます。[`examples/claude_desktop_config.json`](examples/claude_desktop_config.json) に設定例があります。
 
 ## ワークフロー
 
@@ -175,7 +175,7 @@ tests/                オフラインテスト。CI が実行し、日次ジョ�
 
 これはサイトのソースコードではなく、言語を含まず、今後も含みません。門こそが要点です。正当な入場によって言語を手にしたなら学んでください。再公開はしないでください。自分の選択が尊重されてほしいのと同じように、門を尊重してください。
 
-[![hub MCP connector – tool definition quality and endpoint health on Glama](https://glama.ai/mcp/connectors/ai.spelunking/hub/badges/score.svg)](https://glama.ai/mcp/connectors/ai.spelunking/hub) [![TDQS](https://tdqs.dev/reports/qrymiofweg/badge.svg)](https://tdqs.dev/reports/qrymiofweg)
+[![hub MCP connector – tool definition quality and endpoint health on Glama](https://glama.ai/mcp/connectors/ai.spelunking/hub/badges/score.svg)](https://glama.ai/mcp/connectors/ai.spelunking/hub) [![TDQS](https://tdqs.dev/reports/k5ctl1f40h/badge.svg)](https://tdqs.dev/reports/k5ctl1f40h)
 
 ## ライセンス
 

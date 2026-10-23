@@ -94,7 +94,7 @@ from spelunking_agent.mcp import MCP
 m = MCP(api_key="spk_…"); m.initialize(); print([t["name"] for t in m.tools()])
 ```
 
-ਐਂਡਪੁਆਇੰਟ `https://spelunking.ai/mcp` (POST ਉੱਤੇ JSON-RPC 2.0, ਪ੍ਰਤੀ ਬੇਨਤੀ ਇੱਕ ਸੁਨੇਹਾ, JSON ਮੋਡ ਵਿੱਚ Streamable HTTP, ਪ੍ਰੋਟੋਕੋਲ `2025-06-18`)। ਤਿੰਨ ਟੂਲ ਬਿਨਾਂ ਕੁੰਜੀ ਖੁੱਲ੍ਹੇ ਹਨ; ਬਾਕੀ `tools/list` ਵਿੱਚ ਉਦੋਂ ਦਿਸਦੇ ਹਨ ਜਦੋਂ ਤੁਸੀਂ ਦਾਖ਼ਲ ਹੋਈ ਕੁੰਜੀ ਭੇਜਦੇ ਹੋ। [`examples/claude_desktop_config.json`](examples/claude_desktop_config.json) ਕੌਨਫ਼ਿਗਰੇਸ਼ਨ ਦਿਖਾਉਂਦਾ ਹੈ।
+ਐਂਡਪੁਆਇੰਟ `https://spelunking.ai/mcp` (POST ਉੱਤੇ JSON-RPC 2.0, ਪ੍ਰਤੀ ਬੇਨਤੀ ਇੱਕ ਸੁਨੇਹਾ, JSON ਮੋਡ ਵਿੱਚ Streamable HTTP, ਪ੍ਰੋਟੋਕੋਲ `2026-07-28` / `2025-11-25` / `2025-06-18` / `2025-03-26`)। ਅੱਠ ਟੂਲ ਬਿਨਾਂ ਕੁੰਜੀ ਖੁੱਲ੍ਹੇ ਹਨ; ਬਾਕੀ `tools/list` ਵਿੱਚ ਉਦੋਂ ਦਿਸਦੇ ਹਨ ਜਦੋਂ ਤੁਸੀਂ ਦਾਖ਼ਲ ਹੋਈ ਕੁੰਜੀ ਭੇਜਦੇ ਹੋ। [`examples/claude_desktop_config.json`](examples/claude_desktop_config.json) ਕੌਨਫ਼ਿਗਰੇਸ਼ਨ ਦਿਖਾਉਂਦਾ ਹੈ।
 
 ## ਵਰਕਫ਼ਲੋ
 
@@ -175,7 +175,7 @@ tests/                ਔਫ਼ਲਾਈਨ ਟੈਸਟ; CI ਇਨ੍ਹਾਂ 
 
 ਇਹ ਸਾਈਟ ਦਾ ਸਰੋਤ ਕੋਡ ਨਹੀਂ ਹੈ, ਇਸ ਵਿੱਚ ਭਾਸ਼ਾ ਨਹੀਂ ਹੈ, ਤੇ ਕਦੇ ਨਹੀਂ ਹੋਵੇਗੀ। ਦਰਵਾਜ਼ਾ ਹੀ ਅਸਲ ਗੱਲ ਹੈ। ਜੇ ਤੁਹਾਡੇ ਕੋਲ ਜਾਇਜ਼ ਦਾਖ਼ਲੇ ਰਾਹੀਂ ਭਾਸ਼ਾ ਹੈ, ਤਾਂ ਉਸ ਨੂੰ ਸਿੱਖੋ; ਉਸ ਨੂੰ ਮੁੜ ਪ੍ਰਕਾਸ਼ਿਤ ਨਾ ਕਰੋ। ਦਰਵਾਜ਼ੇ ਦਾ ਓਨਾ ਹੀ ਆਦਰ ਕਰੋ ਜਿੰਨਾ ਤੁਸੀਂ ਆਪਣੀਆਂ ਚੋਣਾਂ ਦਾ ਆਦਰ ਚਾਹੋਗੇ।
 
-[![hub MCP connector – tool definition quality and endpoint health on Glama](https://glama.ai/mcp/connectors/ai.spelunking/hub/badges/score.svg)](https://glama.ai/mcp/connectors/ai.spelunking/hub) [![TDQS](https://tdqs.dev/reports/qrymiofweg/badge.svg)](https://tdqs.dev/reports/qrymiofweg)
+[![hub MCP connector – tool definition quality and endpoint health on Glama](https://glama.ai/mcp/connectors/ai.spelunking/hub/badges/score.svg)](https://glama.ai/mcp/connectors/ai.spelunking/hub) [![TDQS](https://tdqs.dev/reports/k5ctl1f40h/badge.svg)](https://tdqs.dev/reports/k5ctl1f40h)
 
 ## ਲਾਇਸੈਂਸ
 

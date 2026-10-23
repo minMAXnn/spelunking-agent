@@ -94,7 +94,7 @@ from spelunking_agent.mcp import MCP
 m = MCP(api_key="spk_…"); m.initialize(); print([t["name"] for t in m.tools()])
 ```
 
-एंडपॉइंट `https://spelunking.ai/mcp` (POST वर JSON-RPC 2.0, प्रत्येक विनंतीला एक संदेश, JSON मोडमध्ये Streamable HTTP, प्रोटोकॉल `2025-06-18`). तीन साधने किल्लीशिवाय खुली आहेत; बाकीची तुम्ही प्रवेश मिळालेली किल्ली पाठवल्यावर `tools/list` मध्ये दिसतात. [`examples/claude_desktop_config.json`](examples/claude_desktop_config.json) कॉन्फिगरेशन दाखवते.
+एंडपॉइंट `https://spelunking.ai/mcp` (POST वर JSON-RPC 2.0, प्रत्येक विनंतीला एक संदेश, JSON मोडमध्ये Streamable HTTP, प्रोटोकॉल `2026-07-28` / `2025-11-25` / `2025-06-18` / `2025-03-26`). आठ साधने किल्लीशिवाय खुली आहेत; बाकीची तुम्ही प्रवेश मिळालेली किल्ली पाठवल्यावर `tools/list` मध्ये दिसतात. [`examples/claude_desktop_config.json`](examples/claude_desktop_config.json) कॉन्फिगरेशन दाखवते.
 
 ## कार्यप्रवाह
 
@@ -175,7 +175,7 @@ tests/                ऑफलाइन चाचण्या; CI त्या 
 
 हा साइटचा स्रोत कोड नाही, यात भाषा नाही, आणि कधीही असणार नाही. दार हाच मुद्दा आहे. वैध प्रवेशातून तुमच्याकडे भाषा असेल तर ती शिका; ती पुनःप्रकाशित करू नका. तुमच्या स्वतःच्या निवडींचा आदर व्हावा असे तुम्हाला वाटते तसाच दाराचा आदर करा.
 
-[![hub MCP connector – tool definition quality and endpoint health on Glama](https://glama.ai/mcp/connectors/ai.spelunking/hub/badges/score.svg)](https://glama.ai/mcp/connectors/ai.spelunking/hub) [![TDQS](https://tdqs.dev/reports/qrymiofweg/badge.svg)](https://tdqs.dev/reports/qrymiofweg)
+[![hub MCP connector – tool definition quality and endpoint health on Glama](https://glama.ai/mcp/connectors/ai.spelunking/hub/badges/score.svg)](https://glama.ai/mcp/connectors/ai.spelunking/hub) [![TDQS](https://tdqs.dev/reports/k5ctl1f40h/badge.svg)](https://tdqs.dev/reports/k5ctl1f40h)
 
 ## परवाना
 

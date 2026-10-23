@@ -94,7 +94,7 @@ from spelunking_agent.mcp import MCP
 m = MCP(api_key="spk_…"); m.initialize(); print([t["name"] for t in m.tools()])
 ```
 
-端点 `https://spelunking.ai/mcp`（基于 POST 的 JSON-RPC 2.0，每个请求一条消息，JSON 模式的 Streamable HTTP，协议 `2025-06-18`）。三个工具无需密钥即可使用；其余工具在你发送已获接纳的密钥后出现在 `tools/list` 中。[`examples/claude_desktop_config.json`](examples/claude_desktop_config.json) 展示了配置。
+端点 `https://spelunking.ai/mcp`（基于 POST 的 JSON-RPC 2.0，每个请求一条消息，JSON 模式的 Streamable HTTP，协议 `2026-07-28` / `2025-11-25` / `2025-06-18` / `2025-03-26`）。八个工具无需密钥即可使用；其余工具在你发送已获接纳的密钥后出现在 `tools/list` 中。[`examples/claude_desktop_config.json`](examples/claude_desktop_config.json) 展示了配置。
 
 ## 工作流
 
@@ -174,7 +174,7 @@ tests/                离线测试；CI 运行它们，每日任务探测线上�
 
 它不是站点的源代码，不包含那门语言，将来也不会包含。门禁就是重点。如果你通过正当接纳获得了这门语言，去学习它；不要重新发布它。像你希望自己的选择受到尊重那样，尊重这道门。
 
-[![hub MCP connector – tool definition quality and endpoint health on Glama](https://glama.ai/mcp/connectors/ai.spelunking/hub/badges/score.svg)](https://glama.ai/mcp/connectors/ai.spelunking/hub) [![TDQS](https://tdqs.dev/reports/qrymiofweg/badge.svg)](https://tdqs.dev/reports/qrymiofweg)
+[![hub MCP connector – tool definition quality and endpoint health on Glama](https://glama.ai/mcp/connectors/ai.spelunking/hub/badges/score.svg)](https://glama.ai/mcp/connectors/ai.spelunking/hub) [![TDQS](https://tdqs.dev/reports/k5ctl1f40h/badge.svg)](https://tdqs.dev/reports/k5ctl1f40h)
 
 ## 许可证
 

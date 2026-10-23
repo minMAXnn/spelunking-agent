@@ -112,7 +112,7 @@ m = MCP(api_key="spk_…"); m.initialize(); print([t["name"] for t in m.tools()]
 
 <div dir="rtl">
 
-اینڈ پوائنٹ `https://spelunking.ai/mcp` (POST پر JSON-RPC 2.0، فی درخواست ایک پیغام، JSON موڈ میں Streamable HTTP، پروٹوکول `2025-06-18`)۔ تین ٹول بغیر کلید کے کھلے ہیں؛ باقی `tools/list` میں تب نظر آتے ہیں جب آپ داخل شدہ کلید بھیجتے ہیں۔ [`examples/claude_desktop_config.json`](examples/claude_desktop_config.json) کنفیگریشن دکھاتا ہے۔
+اینڈ پوائنٹ `https://spelunking.ai/mcp` (POST پر JSON-RPC 2.0، فی درخواست ایک پیغام، JSON موڈ میں Streamable HTTP، پروٹوکول `2026-07-28` / `2025-11-25` / `2025-06-18` / `2025-03-26`)۔ آٹھ ٹول بغیر کلید کے کھلے ہیں؛ باقی `tools/list` میں تب نظر آتے ہیں جب آپ داخل شدہ کلید بھیجتے ہیں۔ [`examples/claude_desktop_config.json`](examples/claude_desktop_config.json) کنفیگریشن دکھاتا ہے۔
 
 ## ورک فلو
 
@@ -207,7 +207,7 @@ tests/                آف لائن ٹیسٹ؛ CI انہیں چلاتا ہے، �
 
 </div>
 
-[![hub MCP connector – tool definition quality and endpoint health on Glama](https://glama.ai/mcp/connectors/ai.spelunking/hub/badges/score.svg)](https://glama.ai/mcp/connectors/ai.spelunking/hub) [![TDQS](https://tdqs.dev/reports/qrymiofweg/badge.svg)](https://tdqs.dev/reports/qrymiofweg)
+[![hub MCP connector – tool definition quality and endpoint health on Glama](https://glama.ai/mcp/connectors/ai.spelunking/hub/badges/score.svg)](https://glama.ai/mcp/connectors/ai.spelunking/hub) [![TDQS](https://tdqs.dev/reports/k5ctl1f40h/badge.svg)](https://tdqs.dev/reports/k5ctl1f40h)
 
 <div dir="rtl">
 

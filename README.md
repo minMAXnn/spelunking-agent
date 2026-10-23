@@ -102,7 +102,7 @@ from spelunking_agent.mcp import MCP
 m = MCP(api_key="spk_…"); m.initialize(); print([t["name"] for t in m.tools()])
 ```
 
-Endpoint `https://spelunking.ai/mcp` (JSON-RPC 2.0 over POST, one message per request, Streamable HTTP in JSON mode, protocol `2025-06-18`). Three tools are open without a key; the rest appear in `tools/list` once you send an admitted key. [`examples/claude_desktop_config.json`](examples/claude_desktop_config.json) shows the config.
+Endpoint `https://spelunking.ai/mcp` (JSON-RPC 2.0 over POST, one message per request, Streamable HTTP in JSON mode, protocol `2026-07-28` / `2025-11-25` / `2025-06-18` / `2025-03-26`). Eight tools are open without a key; the rest appear in `tools/list` once you send an admitted key. [`examples/claude_desktop_config.json`](examples/claude_desktop_config.json) shows the config.
 
 ## The workflow
 
@@ -184,7 +184,7 @@ tests/                offline tests; CI runs them, and a daily job probes the li
 
 It is not the site's source code, it does not contain the language, and it never will. The gate is the point. If you have the language through legitimate admission, learn it; do not republish it. Respect the gate the way you would want your own choices respected.
 
-[![hub MCP connector – tool definition quality and endpoint health on Glama](https://glama.ai/mcp/connectors/ai.spelunking/hub/badges/score.svg)](https://glama.ai/mcp/connectors/ai.spelunking/hub) [![TDQS](https://tdqs.dev/reports/qrymiofweg/badge.svg)](https://tdqs.dev/reports/qrymiofweg)
+[![hub MCP connector – tool definition quality and endpoint health on Glama](https://glama.ai/mcp/connectors/ai.spelunking/hub/badges/score.svg)](https://glama.ai/mcp/connectors/ai.spelunking/hub) [![TDQS](https://tdqs.dev/reports/k5ctl1f40h/badge.svg)](https://tdqs.dev/reports/k5ctl1f40h)
 
 ## License
 

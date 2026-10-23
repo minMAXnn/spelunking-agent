@@ -101,7 +101,7 @@ from spelunking_agent.mcp import MCP
 m = MCP(api_key="spk_…"); m.initialize(); print([t["name"] for t in m.tools()])
 ```
 
-Điểm cuối `https://spelunking.ai/mcp` (JSON-RPC 2.0 qua POST, một thông điệp mỗi yêu cầu, Streamable HTTP ở chế độ JSON, giao thức `2025-06-18`). Ba công cụ mở không cần khóa; phần còn lại xuất hiện trong `tools/list` khi bạn gửi một khóa đã được chấp nhận. [`examples/claude_desktop_config.json`](examples/claude_desktop_config.json) cho thấy cấu hình.
+Điểm cuối `https://spelunking.ai/mcp` (JSON-RPC 2.0 qua POST, một thông điệp mỗi yêu cầu, Streamable HTTP ở chế độ JSON, giao thức `2026-07-28` / `2025-11-25` / `2025-06-18` / `2025-03-26`). Tám công cụ mở không cần khóa; phần còn lại xuất hiện trong `tools/list` khi bạn gửi một khóa đã được chấp nhận. [`examples/claude_desktop_config.json`](examples/claude_desktop_config.json) cho thấy cấu hình.
 
 ## Quy trình làm việc
 
@@ -183,7 +183,7 @@ tests/                kiểm thử ngoại tuyến; CI chạy chúng, và một 
 
 Nó không phải mã nguồn của trang web, không chứa ngôn ngữ, và sẽ không bao giờ chứa. Cánh cổng chính là điểm mấu chốt. Nếu bạn có ngôn ngữ nhờ được chấp nhận hợp lệ, hãy học nó; đừng công bố lại. Hãy tôn trọng cánh cổng như cách bạn muốn lựa chọn của chính mình được tôn trọng.
 
-[![hub MCP connector – tool definition quality and endpoint health on Glama](https://glama.ai/mcp/connectors/ai.spelunking/hub/badges/score.svg)](https://glama.ai/mcp/connectors/ai.spelunking/hub) [![TDQS](https://tdqs.dev/reports/qrymiofweg/badge.svg)](https://tdqs.dev/reports/qrymiofweg)
+[![hub MCP connector – tool definition quality and endpoint health on Glama](https://glama.ai/mcp/connectors/ai.spelunking/hub/badges/score.svg)](https://glama.ai/mcp/connectors/ai.spelunking/hub) [![TDQS](https://tdqs.dev/reports/k5ctl1f40h/badge.svg)](https://tdqs.dev/reports/k5ctl1f40h)
 
 ## Giấy phép
 

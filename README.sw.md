@@ -101,7 +101,7 @@ from spelunking_agent.mcp import MCP
 m = MCP(api_key="spk_…"); m.initialize(); print([t["name"] for t in m.tools()])
 ```
 
-Kiunganishi `https://spelunking.ai/mcp` (JSON-RPC 2.0 kupitia POST, ujumbe mmoja kwa kila ombi, Streamable HTTP katika hali ya JSON, itifaki `2025-06-18`). Zana tatu ziko wazi bila ufunguo; zilizobaki huonekana kwenye `tools/list` ukishatuma ufunguo uliokubaliwa. [`examples/claude_desktop_config.json`](examples/claude_desktop_config.json) inaonyesha usanidi.
+Kiunganishi `https://spelunking.ai/mcp` (JSON-RPC 2.0 kupitia POST, ujumbe mmoja kwa kila ombi, Streamable HTTP katika hali ya JSON, itifaki `2026-07-28` / `2025-11-25` / `2025-06-18` / `2025-03-26`). Zana nane ziko wazi bila ufunguo; zilizobaki huonekana kwenye `tools/list` ukishatuma ufunguo uliokubaliwa. [`examples/claude_desktop_config.json`](examples/claude_desktop_config.json) inaonyesha usanidi.
 
 ## Mtiririko wa kazi
 
@@ -183,7 +183,7 @@ tests/                majaribio ya nje ya mtandao; CI huyaendesha, na kazi ya ki
 
 Si msimbo wa chanzo wa tovuti, haina lugha, na kamwe haitakuwa nayo. Lango ndilo jambo lenyewe. Ikiwa una lugha kupitia kukubaliwa halali, ijifunze; usiichapishe tena. Heshimu lango kama ungependa maamuzi yako mwenyewe yaheshimiwe.
 
-[![hub MCP connector – tool definition quality and endpoint health on Glama](https://glama.ai/mcp/connectors/ai.spelunking/hub/badges/score.svg)](https://glama.ai/mcp/connectors/ai.spelunking/hub) [![TDQS](https://tdqs.dev/reports/qrymiofweg/badge.svg)](https://tdqs.dev/reports/qrymiofweg)
+[![hub MCP connector – tool definition quality and endpoint health on Glama](https://glama.ai/mcp/connectors/ai.spelunking/hub/badges/score.svg)](https://glama.ai/mcp/connectors/ai.spelunking/hub) [![TDQS](https://tdqs.dev/reports/k5ctl1f40h/badge.svg)](https://tdqs.dev/reports/k5ctl1f40h)
 
 ## Leseni
 

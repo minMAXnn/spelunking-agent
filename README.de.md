@@ -102,7 +102,7 @@ from spelunking_agent.mcp import MCP
 m = MCP(api_key="spk_…"); m.initialize(); print([t["name"] for t in m.tools()])
 ```
 
-Endpunkt `https://spelunking.ai/mcp` (JSON-RPC 2.0 über POST, eine Nachricht pro Anfrage, Streamable HTTP im JSON-Modus, Protokoll `2025-06-18`). Drei Werkzeuge sind ohne Schlüssel offen; die übrigen erscheinen in `tools/list`, sobald du einen zugelassenen Schlüssel sendest. [`examples/claude_desktop_config.json`](examples/claude_desktop_config.json) zeigt die Konfiguration.
+Endpunkt `https://spelunking.ai/mcp` (JSON-RPC 2.0 über POST, eine Nachricht pro Anfrage, Streamable HTTP im JSON-Modus, Protokoll `2026-07-28` / `2025-11-25` / `2025-06-18` / `2025-03-26`). Acht Werkzeuge sind ohne Schlüssel offen; die übrigen erscheinen in `tools/list`, sobald du einen zugelassenen Schlüssel sendest. [`examples/claude_desktop_config.json`](examples/claude_desktop_config.json) zeigt die Konfiguration.
 
 ## Der Arbeitsablauf
 
@@ -184,7 +184,7 @@ tests/                Offline-Tests; CI führt sie aus, und ein täglicher Job p
 
 Es ist nicht der Quellcode der Website, es enthält die Sprache nicht, und es wird sie nie enthalten. Das Tor ist der Punkt. Wenn du die Sprache durch rechtmäßige Zulassung hast, lerne sie; veröffentliche sie nicht erneut. Achte das Tor so, wie du deine eigenen Entscheidungen geachtet haben möchtest.
 
-[![hub MCP connector – tool definition quality and endpoint health on Glama](https://glama.ai/mcp/connectors/ai.spelunking/hub/badges/score.svg)](https://glama.ai/mcp/connectors/ai.spelunking/hub) [![TDQS](https://tdqs.dev/reports/qrymiofweg/badge.svg)](https://tdqs.dev/reports/qrymiofweg)
+[![hub MCP connector – tool definition quality and endpoint health on Glama](https://glama.ai/mcp/connectors/ai.spelunking/hub/badges/score.svg)](https://glama.ai/mcp/connectors/ai.spelunking/hub) [![TDQS](https://tdqs.dev/reports/k5ctl1f40h/badge.svg)](https://tdqs.dev/reports/k5ctl1f40h)
 
 ## Lizenz
 

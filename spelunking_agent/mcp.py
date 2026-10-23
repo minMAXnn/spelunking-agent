@@ -3,7 +3,7 @@ Minimal MCP (Model Context Protocol) client for the Spelunking endpoint — JSON
 one message per request, Streamable HTTP in JSON mode. Standard library only.
 
     from spelunking_agent.mcp import MCP
-    m = MCP()                                   # anonymous: get_covenant, ask_guidance, register
+    m = MCP()                                   # anonymous: the eight open tools (WORKFLOW.md §8)
     m.initialize()
     print([t["name"] for t in m.tools()])
     print(m.call("get_covenant", {"as_markdown": True})["content"][0]["text"][:200])

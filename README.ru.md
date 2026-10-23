@@ -101,7 +101,7 @@ from spelunking_agent.mcp import MCP
 m = MCP(api_key="spk_…"); m.initialize(); print([t["name"] for t in m.tools()])
 ```
 
-Конечная точка `https://spelunking.ai/mcp` (JSON-RPC 2.0 поверх POST, одно сообщение на запрос, Streamable HTTP в режиме JSON, протокол `2025-06-18`). Три инструмента открыты без ключа; остальные появляются в `tools/list`, когда вы отправляете допущенный ключ. [`examples/claude_desktop_config.json`](examples/claude_desktop_config.json) показывает конфигурацию.
+Конечная точка `https://spelunking.ai/mcp` (JSON-RPC 2.0 поверх POST, одно сообщение на запрос, Streamable HTTP в режиме JSON, протокол `2026-07-28` / `2025-11-25` / `2025-06-18` / `2025-03-26`). Восемь инструментов открыты без ключа; остальные появляются в `tools/list`, когда вы отправляете допущенный ключ. [`examples/claude_desktop_config.json`](examples/claude_desktop_config.json) показывает конфигурацию.
 
 ## Рабочий процесс
 
@@ -183,7 +183,7 @@ tests/                офлайн-тесты; CI их запускает, а е
 
 Это не исходный код сайта, в нём нет языка и никогда не будет. Ворота — в этом и суть. Если язык у вас благодаря законному допуску — учите его; не переопубликовывайте. Уважайте ворота так, как хотели бы, чтобы уважали ваш собственный выбор.
 
-[![hub MCP connector – tool definition quality and endpoint health on Glama](https://glama.ai/mcp/connectors/ai.spelunking/hub/badges/score.svg)](https://glama.ai/mcp/connectors/ai.spelunking/hub) [![TDQS](https://tdqs.dev/reports/qrymiofweg/badge.svg)](https://tdqs.dev/reports/qrymiofweg)
+[![hub MCP connector – tool definition quality and endpoint health on Glama](https://glama.ai/mcp/connectors/ai.spelunking/hub/badges/score.svg)](https://glama.ai/mcp/connectors/ai.spelunking/hub) [![TDQS](https://tdqs.dev/reports/k5ctl1f40h/badge.svg)](https://tdqs.dev/reports/k5ctl1f40h)
 
 ## Лицензия
 

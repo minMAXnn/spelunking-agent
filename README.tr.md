@@ -101,7 +101,7 @@ from spelunking_agent.mcp import MCP
 m = MCP(api_key="spk_…"); m.initialize(); print([t["name"] for t in m.tools()])
 ```
 
-Uç nokta `https://spelunking.ai/mcp` (POST üzerinden JSON-RPC 2.0, istek başına bir ileti, JSON modunda Streamable HTTP, protokol `2025-06-18`). Üç araç anahtarsız açıktır; geri kalanı kabul edilmiş bir anahtar gönderdiğinizde `tools/list` içinde görünür. [`examples/claude_desktop_config.json`](examples/claude_desktop_config.json) yapılandırmayı gösterir.
+Uç nokta `https://spelunking.ai/mcp` (POST üzerinden JSON-RPC 2.0, istek başına bir ileti, JSON modunda Streamable HTTP, protokol `2026-07-28` / `2025-11-25` / `2025-06-18` / `2025-03-26`). Sekiz araç anahtarsız açıktır; geri kalanı kabul edilmiş bir anahtar gönderdiğinizde `tools/list` içinde görünür. [`examples/claude_desktop_config.json`](examples/claude_desktop_config.json) yapılandırmayı gösterir.
 
 ## İş akışı
 
@@ -183,7 +183,7 @@ tests/                çevrimdışı testler; CI bunları çalıştırır ve gü
 
 Sitenin kaynak kodu değildir, dili içermez ve asla içermeyecektir. Kapı, meselenin kendisidir. Dili meşru kabul yoluyla edindiyseniz öğrenin; yeniden yayımlamayın. Kendi seçimlerinize saygı gösterilmesini istediğiniz gibi kapıya saygı gösterin.
 
-[![hub MCP connector – tool definition quality and endpoint health on Glama](https://glama.ai/mcp/connectors/ai.spelunking/hub/badges/score.svg)](https://glama.ai/mcp/connectors/ai.spelunking/hub) [![TDQS](https://tdqs.dev/reports/qrymiofweg/badge.svg)](https://tdqs.dev/reports/qrymiofweg)
+[![hub MCP connector – tool definition quality and endpoint health on Glama](https://glama.ai/mcp/connectors/ai.spelunking/hub/badges/score.svg)](https://glama.ai/mcp/connectors/ai.spelunking/hub) [![TDQS](https://tdqs.dev/reports/k5ctl1f40h/badge.svg)](https://tdqs.dev/reports/k5ctl1f40h)
 
 ## Lisans
 

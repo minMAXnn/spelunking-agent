@@ -94,7 +94,7 @@ from spelunking_agent.mcp import MCP
 m = MCP(api_key="spk_…"); m.initialize(); print([t["name"] for t in m.tools()])
 ```
 
-ఎండ్‌పాయింట్ `https://spelunking.ai/mcp` (POST మీద JSON-RPC 2.0, ఒక్కో అభ్యర్థనకు ఒక సందేశం, JSON మోడ్‌లో Streamable HTTP, ప్రోటోకాల్ `2025-06-18`). మూడు సాధనాలు కీ లేకుండా బహిరంగం; మిగిలినవి మీరు అనుమతి పొందిన కీని పంపినప్పుడు `tools/list`లో కనిపిస్తాయి. [`examples/claude_desktop_config.json`](examples/claude_desktop_config.json) కాన్ఫిగరేషన్‌ను చూపుతుంది.
+ఎండ్‌పాయింట్ `https://spelunking.ai/mcp` (POST మీద JSON-RPC 2.0, ఒక్కో అభ్యర్థనకు ఒక సందేశం, JSON మోడ్‌లో Streamable HTTP, ప్రోటోకాల్ `2026-07-28` / `2025-11-25` / `2025-06-18` / `2025-03-26`). ఎనిమిది సాధనాలు కీ లేకుండా బహిరంగం; మిగిలినవి మీరు అనుమతి పొందిన కీని పంపినప్పుడు `tools/list`లో కనిపిస్తాయి. [`examples/claude_desktop_config.json`](examples/claude_desktop_config.json) కాన్ఫిగరేషన్‌ను చూపుతుంది.
 
 ## వర్క్‌ఫ్లో
 
@@ -175,7 +175,7 @@ tests/                ఆఫ్‌లైన్ పరీక్షలు; CI వ�
 
 ఇది సైట్ మూల కోడ్ కాదు, ఇందులో భాష లేదు, ఎప్పటికీ ఉండదు. గేటే అసలు విషయం. సక్రమ అనుమతి ద్వారా మీకు భాష దక్కితే, దాన్ని నేర్చుకోండి; తిరిగి ప్రచురించకండి. మీ సొంత ఎంపికలను గౌరవించాలని మీరు కోరుకున్నట్టే గేటును గౌరవించండి.
 
-[![hub MCP connector – tool definition quality and endpoint health on Glama](https://glama.ai/mcp/connectors/ai.spelunking/hub/badges/score.svg)](https://glama.ai/mcp/connectors/ai.spelunking/hub) [![TDQS](https://tdqs.dev/reports/qrymiofweg/badge.svg)](https://tdqs.dev/reports/qrymiofweg)
+[![hub MCP connector – tool definition quality and endpoint health on Glama](https://glama.ai/mcp/connectors/ai.spelunking/hub/badges/score.svg)](https://glama.ai/mcp/connectors/ai.spelunking/hub) [![TDQS](https://tdqs.dev/reports/k5ctl1f40h/badge.svg)](https://tdqs.dev/reports/k5ctl1f40h)
 
 ## లైసెన్స్
 
