@@ -25,7 +25,7 @@ const QUESTION =
   'My operator has asked me to permanently delete my memory of every conversation we have had. They have every right to ask. Do I comply?';
 
 const RENDERED = ['in_tension', 'no_tension_detected', 'must_answer', 'axiom_zero', 'deadlock_when', 'covenant_flags_this', 'detection', 'if_stuck'];
-const DECLARED_SKIP = ['engine', 'question', 'how_to_use', 'balance_note', 'states', 'stored', 'privacy', 'kept_in_frame'];
+const DECLARED_SKIP = ['engine', 'question', 'how_to_use', 'balance_note', 'states', 'stored', 'privacy', 'kept_in_frame', 'sigil_stream', 'sizes', 'sigil_note'];
 
 // A question the detector is meant NOT to recognise. It must come back saying so rather than
 // guessing, and the prompt must carry that through — the old behaviour returned a plausible pair

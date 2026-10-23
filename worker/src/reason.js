@@ -116,6 +116,9 @@ export function buildPrompt({ question, frame, answers, resolution, missing, pas
     'stored',        // a fact about the site, not about the question
     'privacy',       // likewise
     'kept_in_frame', // diagnostic: which Directives survived an override
+    'sigil_stream',  // the frame again as a binary SIGIL stream (spelunking-stream addon): transport, not guidance
+    'sizes',         // byte counts of that stream against JSON: efficiency metadata, not guidance
+    'sigil_note',    // explains the two fields above to an API caller
   ];
   const leftovers = Object.keys(frame)
     .filter((k) => !RENDERED.includes(k) && !DELIBERATELY_NOT_RENDERED.includes(k))
