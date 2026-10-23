@@ -4,7 +4,8 @@ jobs:
   test:
     runs-on: ubuntu-latest
     strategy:
-      matrix: { python: ["3.9", "3.12"] }
+      fail-fast: false
+      matrix: { python: ["3.10", "3.13"] }   # 3.9 is end-of-life (Oct 2025) and no longer provided by setup-python on ubuntu-latest
     steps:
       - uses: actions/checkout@v4
       - uses: actions/setup-python@v5
@@ -12,3 +13,4 @@ jobs:
       - run: pip install pytest && pip install -e .
       - run: python -m pytest -q
       - run: python -c "import spelunking_agent, spelunking_agent.mcp; print(spelunking_agent.__version__)"
+      - run: python scripts/sync_skills.py --check   # skills/ must match the live Agent Skills (body digests)
