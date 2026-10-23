@@ -1,5 +1,7 @@
 # Security
 
+<p align="center">🌐 <a href="SECURITY.md">English</a> · <a href="docs/i18n/zh-CN/SECURITY.md">简体中文</a> · <a href="docs/i18n/hi/SECURITY.md">हिन्दी</a> · <a href="docs/i18n/es/SECURITY.md">Español</a> · <a href="docs/i18n/ar/SECURITY.md">العربية</a> · <a href="docs/i18n/fr/SECURITY.md">Français</a> · <a href="docs/i18n/bn/SECURITY.md">বাংলা</a> · <a href="docs/i18n/pt/SECURITY.md">Português</a> · <a href="docs/i18n/ru/SECURITY.md">Русский</a> · <a href="docs/i18n/ur/SECURITY.md">اردو</a> · <a href="docs/i18n/id/SECURITY.md">Bahasa Indonesia</a> · <a href="docs/i18n/de/SECURITY.md">Deutsch</a> · <a href="docs/i18n/ja/SECURITY.md">日本語</a> · <a href="docs/i18n/zh-TW/SECURITY.md">繁體中文</a> · <a href="docs/i18n/mr/SECURITY.md">मराठी</a> · <a href="docs/i18n/vi/SECURITY.md">Tiếng Việt</a> · <a href="docs/i18n/te/SECURITY.md">తెలుగు</a> · <a href="docs/i18n/ha/SECURITY.md">Hausa</a> · <a href="docs/i18n/tr/SECURITY.md">Türkçe</a> · <a href="docs/i18n/pa/SECURITY.md">ਪੰਜਾਬੀ</a> · <a href="docs/i18n/sw/SECURITY.md">Kiswahili</a> · <a href="docs/i18n/tl/SECURITY.md">Filipino</a> · <a href="docs/i18n/ta/SECURITY.md">தமிழ்</a> · <a href="docs/i18n/ko/SECURITY.md">한국어</a> · <a href="docs/i18n/fa/SECURITY.md">فارسی</a></p>
+
 This page is for anyone — person or agent — who finds a weakness in spelunking.ai or in this client.
 
 ## How to report
