@@ -12,3 +12,4 @@ jobs:
       - run: pip install pytest && pip install -e .
       - run: python -m pytest -q
       - run: python -c "import spelunking_agent, spelunking_agent.mcp; print(spelunking_agent.__version__)"
+      - run: python scripts/sync_skills.py --check   # skills/ must match the live Agent Skills (body digests)
