@@ -9,14 +9,17 @@ on:
   workflow_dispatch:
     inputs:
       dry_run: { description: "Preview only", type: boolean, default: true }
+# The reusable workflow's job asks for id-token: write (GitHub OIDC, used to attest where the publish came from); a caller
+# that grants less makes the run fail at startup. contents: read is all else it gets.
 permissions:
   contents: read
+  id-token: write
 jobs:
   publish:
     uses: openclaw/clawhub/.github/workflows/skill-publish.yml@183d8432ee1aec691faf4c9258884b56fccf700e  # main on 2026-10-22; bump deliberately
     with:
       root: skills
-      dry_run: ${{ github.event_name == 'push' || inputs.dry_run }}
+      dry_run: ${{ github.event_name != 'workflow_dispatch' || github.event.inputs.dry_run != 'false' }}   # `inputs` is not defined on push events
       changelog: "Mirror of the live Agent Skills at spelunking.ai (digest-checked)."
       tags: "ai-agents,mcp,covenant,governance,spelunking"
     secrets:
