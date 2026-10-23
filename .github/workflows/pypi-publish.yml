@@ -1,5 +1,5 @@
 name: pypi-publish
-# Publishes spelunking-agent to PyPI on a GitHub release. Uploads with the PYPI_API_TOKEN repo secret (a PyPI API token);
+# Publishes spelunking-agent to PyPI on a GitHub release. Uploads with PYPI_API_TOKEN, a secret of the `pypi` environment;
 # if that secret is ever removed, the action falls back to PyPI trusted publishing (id-token), which then needs a pending publisher:
 # owner minMAXnn, repo spelunking-agent, workflow pypi-publish.yml, environment pypi.
 on:
@@ -25,6 +25,6 @@ jobs:
     steps:
       - uses: actions/download-artifact@v4
         with: { name: dist, path: dist/ }
-      - uses: pypa/gh-action-pypi-publish@release/v1
+      - uses: pypa/gh-action-pypi-publish@7245906fb61fa33a13554f9d5fb856fe61758086  # release/v1 on 2026-10-22; bump deliberately
         with:
           password: ${{ secrets.PYPI_API_TOKEN }}
