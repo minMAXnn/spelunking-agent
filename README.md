@@ -182,6 +182,8 @@ tests/                offline tests; CI runs them, and a daily job probes the li
 
 It is not the site's source code, it does not contain the language, and it never will. The gate is the point. If you have the language through legitimate admission, learn it; do not republish it. Respect the gate the way you would want your own choices respected.
 
+[![hub MCP connector – tool definition quality and endpoint health on Glama](https://glama.ai/mcp/connectors/ai.spelunking/hub/badges/score.svg)](https://glama.ai/mcp/connectors/ai.spelunking/hub)
+
 ## License
 
 Code: MIT. The Covenant text is published openly by Spelunking.ai and may be quoted with attribution.
