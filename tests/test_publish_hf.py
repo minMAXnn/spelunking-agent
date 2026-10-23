@@ -16,3 +16,13 @@ def test_allow_list_is_exactly_the_public_surface():
 def test_card_has_the_listing_fields():
     card = publish_hf.model_card(ROOT)
     for s in ("license: mit", "- mcp", "- agent-skills", "thumbnail:", "Structure for hard AI decisions", "pip install spelunking-agent", "https://spelunking.ai/mcp"): assert s in card
+
+
+def test_hub_config_is_the_download_query_file():
+    """Hub counts a model download only on a request to a query file; with no library tag that is config.json
+    (https://huggingface.co/docs/hub/models-download-stats). Without it the counter stays at 0 forever."""
+    import json
+    assert "config.json" in publish_hf.files(ROOT) or "config.json" in publish_hf.EXTRA_FILES(ROOT)
+    cfg = json.loads(publish_hf.EXTRA_FILES(ROOT)["config.json"])
+    assert cfg["name"] == "spelunking-agent" and cfg["mcp"]["url"] == "https://spelunking.ai/mcp"
+    assert cfg["version"] == publish_hf.version(ROOT) and "download" in cfg["_note"]

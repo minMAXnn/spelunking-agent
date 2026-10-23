@@ -19,6 +19,24 @@ def files(root):
     return sorted(f for f in out if "__pycache__" not in f)
 
 
+def version(root):
+    import re
+    return re.search(r'__version__\s*=\s*"([^"]+)"', open(os.path.join(root, "spelunking_agent", "__init__.py"), encoding="utf-8").read()).group(1)
+
+
+def EXTRA_FILES(root):
+    """Generated at publish time, not kept in the repo. config.json is the Hub's download query file for a repo
+    with no library tag (docs/hub/models-download-stats): every GET/HEAD of it is one counted download, so
+    `hf download` / snapshot_download register, and the counter is honest (one file, fetched once per download)."""
+    import json
+    cfg = {"name": "spelunking-agent", "version": version(root), "kind": "mcp-client+agent-skills",
+           "mcp": {"url": "https://spelunking.ai/mcp", "discovery": "https://spelunking.ai/.well-known/mcp.json"},
+           "skills": "https://spelunking.ai/.well-known/agent-skills/index.json", "pypi": "spelunking-agent",
+           "source": "https://github.com/minMAXnn/spelunking-agent", "license": "MIT",
+           "_note": "This file is the Hub's download query file for this repo (no library tag => config.json is counted)."}
+    return {"config.json": json.dumps(cfg, indent=2) + "\n"}
+
+
 def model_card(root):
     readme = open(os.path.join(root, "README.md"), encoding="utf-8").read()
     body = readme.split("## What Spelunking.ai is", 1)[-1] if "## What Spelunking.ai is" in readme else readme
@@ -61,13 +79,15 @@ def main(argv=None):
     ap.add_argument("--repo", default="Pcmode/spelunking-agent"); ap.add_argument("--space", default="Pcmode/spelunking"); ap.add_argument("--dry-run", action="store_true")
     ap.add_argument("--root", default=os.path.dirname(os.path.dirname(os.path.abspath(__file__))))
     a = ap.parse_args(argv); fl = files(a.root)
-    print(f"repo {a.repo}: {len(fl)} files"); [print("  " + f) for f in fl]; print(f"space {a.space}: README.md, index.html")
+    print(f"repo {a.repo}: {len(fl)} files + generated {sorted(EXTRA_FILES(a.root))}"); [print("  " + f) for f in fl]; print(f"space {a.space}: README.md, index.html")
     if a.dry_run: return 0
     from huggingface_hub import HfApi
     api = HfApi()
     api.create_repo(a.repo, repo_type="model", exist_ok=True)
     api.upload_folder(repo_id=a.repo, repo_type="model", folder_path=a.root, allow_patterns=ALLOW_TOP + ALLOW_GLOBS, ignore_patterns=["**/__pycache__/**"], commit_message="spelunking-agent 0.8.0: client, four Agent Skills, brand set")
     api.upload_file(repo_id=a.repo, repo_type="model", path_or_fileobj=model_card(a.root).encode("utf-8"), path_in_repo="README.md", commit_message="model card")
+    for name, content in EXTRA_FILES(a.root).items():
+        api.upload_file(repo_id=a.repo, repo_type="model", path_or_fileobj=content.encode("utf-8"), path_in_repo=name, commit_message=f"{name}: download query file")
     api.create_repo(a.space, repo_type="space", space_sdk="static", exist_ok=True)
     for name, content in space_files(a.root).items():
         api.upload_file(repo_id=a.space, repo_type="space", path_or_fileobj=content.encode("utf-8"), path_in_repo=name, commit_message=f"space: {name}")
