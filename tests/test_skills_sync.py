@@ -38,3 +38,21 @@ def test_check_fails_on_a_tampered_body_but_not_on_extra_frontmatter():
         open(p, "w").write(LIVE.replace("body text", "other text"))
         assert sync_skills.check(tmp, fetch=fetch) == {"demo-skill": False}
     finally: shutil.rmtree(tmp)
+
+
+def test_pull_keeps_registry_frontmatter_and_takes_the_live_body():
+    """The repo copy carries ClawHub's metadata.openclaw block, which the site never serves. A re-pull must keep it,
+    take the live description, and replace the body — otherwise every site change wipes the registry block (2026-10-23)."""
+    tmp = tempfile.mkdtemp(); idx, fetch = _setup(tmp)
+    try:
+        sync_skills.pull(tmp, fetch=fetch); p = os.path.join(tmp, "skills", "demo-skill", "SKILL.md")
+        local = open(p, encoding="utf-8").read().replace("---\n\n", "metadata:\n  openclaw:\n    emoji: \"🪔\"\n    homepage: https://x/\n---\n\n", 1)
+        assert "metadata:" in local; open(p, "w", encoding="utf-8").write(local)
+        new_live = LIVE.replace("body text", "changed text").replace("description: d\n", "description: d2\n")
+        idx2, fetch2 = _setup(tmp, live=new_live)
+        sync_skills.pull(tmp, fetch=fetch2); got = open(p, encoding="utf-8").read()
+        assert "metadata:\n  openclaw:" in got and "homepage: https://x/" in got, "registry block dropped"
+        assert "changed text" in got and "body text" not in got, "live body not taken"
+        assert "description: d2\n" in got and "description: d\n" not in got, "live description not taken"
+        assert sync_skills.check(tmp, fetch=fetch2) == {"demo-skill": True}
+    finally: shutil.rmtree(tmp)

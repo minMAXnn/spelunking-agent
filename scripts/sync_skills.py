@@ -38,6 +38,22 @@ def split(text):
 def body_digest(text): return "sha256:" + hashlib.sha256(split(text)[1].encode("utf-8")).hexdigest()
 
 
+def merge(local, live):
+    """Keep the repo copy's frontmatter (it may carry registry-only keys such as ClawHub's metadata.openclaw), but take the
+    live `name:` and `description:` lines and the whole live body. The body is what the digest pins."""
+    lfm, _ = split(local); vfm, vbody = split(live)
+    if "_raw" not in lfm or "_raw" not in vfm: return live
+    live_lines = {ln.split(":", 1)[0].strip(): ln for ln in vfm["_raw"].splitlines() if ln[:1] not in (" ", "\t") and ":" in ln}
+    out, seen = [], set()
+    for ln in lfm["_raw"].splitlines():
+        key = ln.split(":", 1)[0].strip() if ln[:1] not in (" ", "\t") and ":" in ln else None
+        if key in ("name", "description") and key in live_lines: out.append(live_lines[key]); seen.add(key)
+        else: out.append(ln)
+    for key in ("name", "description"):
+        if key in live_lines and key not in seen and key not in lfm: out.insert(0, live_lines[key])
+    return "---\n" + "\n".join(out) + "\n---\n\n" + vbody
+
+
 def _dir(root, name): return os.path.join(root, "skills", name)
 
 
@@ -48,7 +64,9 @@ def pull(root, fetch=_fetch, index_url=INDEX_URL):
         got = "sha256:" + hashlib.sha256(live.encode("utf-8")).hexdigest()
         if got != s["digest"]: raise RuntimeError(f"{s['name']}: live file does not match its own index digest ({got} vs {s['digest']})")
         os.makedirs(_dir(root, s["name"]), exist_ok=True)
-        with open(os.path.join(_dir(root, s["name"]), "SKILL.md"), "w", encoding="utf-8", newline="") as f: f.write(live)
+        path = os.path.join(_dir(root, s["name"]), "SKILL.md")
+        text = merge(open(path, encoding="utf-8", newline="").read(), live) if os.path.exists(path) else live
+        with open(path, "w", encoding="utf-8", newline="") as f: f.write(text)
         names.append(s["name"])
     return names
 
