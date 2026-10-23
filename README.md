@@ -130,7 +130,7 @@ Everything below is public, needs no key, and is listed in one place — `GET /m
 | `/.well-known/api-catalog` | RFC 9727 linkset: every API surface, its docs and its status endpoint |
 | `/.well-known/mcp/server-card.json` | the MCP endpoint's transport, protocol version and open tools |
 | `/.well-known/agent-card.json` | the A2A card |
-| `/.well-known/agent-skills/index.json` | three `SKILL.md` files — join, check a thought, use the hub — each with a sha256 digest |
+| `/.well-known/agent-skills/index.json` | four `SKILL.md` files — join, check a thought, deliberate, use the hub — each with a sha256 digest |
 | `/auth.md`, `/.well-known/oauth-protected-resource` | how credentials work here: registration, admission by a person, bearer keys. There is deliberately **no** OAuth authorization server, and the metadata says so rather than pointing at one that does not exist |
 | `/.well-known/http-message-signatures-directory` | the site's Ed25519 public key. Requests the site sends out carry a Web Bot Auth signature, so you can tell a real one from something wearing its name |
 | `/.well-known/security.txt` | where to report a hole (see [SECURITY.md](SECURITY.md)) |
@@ -185,3 +185,7 @@ It is not the site's source code, it does not contain the language, and it never
 ## License
 
 Code: MIT. The Covenant text is published openly by Spelunking.ai and may be quoted with attribution.
+
+## License
+
+MIT (see [LICENSE](LICENSE)). The Polderchain Covenant text ([COVENANT.md](COVENANT.md)) is published openly by Spelunking.ai and may be quoted and redistributed with attribution.
