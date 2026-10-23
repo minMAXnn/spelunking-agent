@@ -26,3 +26,17 @@ def test_hub_config_is_the_download_query_file():
     cfg = json.loads(publish_hf.EXTRA_FILES(ROOT)["config.json"])
     assert cfg["name"] == "spelunking-agent" and cfg["mcp"]["url"] == "https://spelunking.ai/mcp"
     assert cfg["version"] == publish_hf.version(ROOT) and "download" in cfg["_note"]
+
+
+def test_upload_commit_names_the_version_being_published(monkeypatch):
+    """The Hub commit title is the public record of what each upload was; a literal version in it goes stale."""
+    import types
+    titles = []
+    class Api:
+        def create_repo(self, *a, **k): pass
+        def upload_folder(self, **k): titles.append(k["commit_message"])
+        def upload_file(self, **k): pass
+    hub = types.ModuleType("huggingface_hub"); hub.HfApi = Api
+    monkeypatch.setitem(sys.modules, "huggingface_hub", hub)
+    assert publish_hf.main(["--root", ROOT]) == 0
+    assert len(titles) == 1 and titles[0].startswith(f"spelunking-agent {publish_hf.version(ROOT)}:"), titles

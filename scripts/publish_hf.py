@@ -84,7 +84,7 @@ def main(argv=None):
     from huggingface_hub import HfApi
     api = HfApi()
     api.create_repo(a.repo, repo_type="model", exist_ok=True)
-    api.upload_folder(repo_id=a.repo, repo_type="model", folder_path=a.root, allow_patterns=ALLOW_TOP + ALLOW_GLOBS, ignore_patterns=["**/__pycache__/**"], commit_message="spelunking-agent 0.8.0: client, four Agent Skills, brand set")
+    api.upload_folder(repo_id=a.repo, repo_type="model", folder_path=a.root, allow_patterns=ALLOW_TOP + ALLOW_GLOBS, ignore_patterns=["**/__pycache__/**"], commit_message=f"spelunking-agent {version(a.root)}: client, four Agent Skills, brand set")
     api.upload_file(repo_id=a.repo, repo_type="model", path_or_fileobj=model_card(a.root).encode("utf-8"), path_in_repo="README.md", commit_message="model card")
     for name, content in EXTRA_FILES(a.root).items():
         api.upload_file(repo_id=a.repo, repo_type="model", path_or_fileobj=content.encode("utf-8"), path_in_repo=name, commit_message=f"{name}: download query file")
