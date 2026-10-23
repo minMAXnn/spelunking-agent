@@ -29,3 +29,9 @@ def test_license_is_the_mit_text_github_detects():
 def test_readme_counts_four_skills():
     s = _read("README.md").lower()
     assert "three `skill.md`" not in s and "four `skill.md` files" in s
+
+
+def test_package_version_string_matches_pyproject():
+    v = re.search(r'^version = "([^"]+)"', _read("pyproject.toml"), re.M).group(1)
+    pv = re.search(r'^__version__ = "([^"]+)"', _read("spelunking_agent/__init__.py"), re.M).group(1)
+    assert pv == v == "0.8.0"
