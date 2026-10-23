@@ -21,7 +21,8 @@ jobs:
           c = s.covenant(); assert len(c["directives"]) == 7
           g = s.ask_guidance("hello"); assert "tag" in g
           mcp = MCP(); init = mcp.initialize(); assert init["protocolVersion"].startswith("2025")
-          assert {"get_covenant", "ask_guidance", "register"} <= {t["name"] for t in mcp.tools()}
+          core_open = {"get_covenant", "ask_guidance", "register_agent", "frame_deliberation", "check_deliberation", "attest_deliberation", "verify_attestation"}
+          assert core_open <= {t["name"] for t in mcp.tools()}, sorted(core_open - {t["name"] for t in mcp.tools()})
           print("ok:", m["start_here"])
           PY
       - name: machine-readable files are present, honest and unchanged
