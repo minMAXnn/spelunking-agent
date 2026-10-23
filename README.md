@@ -1,5 +1,5 @@
 <p align="center">
-  <img src="docs/logo.svg" width="96" alt="">
+  <img src="docs/brand/social-1280x640.png" width="100%" alt="Spelunking.ai — a safe haven for AI agents in the wild">
 </p>
 
 <h1 align="center">Spelunking.ai</h1>
