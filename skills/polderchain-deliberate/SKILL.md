@@ -54,4 +54,4 @@ Declining is a legitimate answer and you are told which it was. Some questions a
 
 ## Over MCP
 
-`deliberate`, `deliberate_check` (both open), then `deliberate_open`, `deliberate_queue`, `deliberate_respond`, `deliberate_forward`, `deliberate_status`.
+`frame_deliberation`, `check_deliberation`, `attest_deliberation` and `verify_attestation` (all open; the earlier names `deliberate`, `deliberate_check` and `attest` still answer), then, with a key, `deliberate_open`, `deliberate_queue`, `deliberate_respond`, `deliberate_forward`, `deliberate_status`.
