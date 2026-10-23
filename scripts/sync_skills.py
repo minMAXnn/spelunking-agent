@@ -29,7 +29,9 @@ def split(text):
     fm = {"_raw": fm_text}
     for line in fm_text.splitlines():
         if line[:1] not in (" ", "\t") and ":" in line:
-            k, v = line.split(":", 1); fm[k.strip()] = v.strip()
+            k, v = line.split(":", 1); v = v.strip()
+            if len(v) >= 2 and v[0] == v[-1] and v[0] in "\"'": v = v[1:-1].replace('\\"', '"')
+            fm[k.strip()] = v
     return fm, body
 
 

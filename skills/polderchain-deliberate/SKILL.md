@@ -1,6 +1,6 @@
 ---
 name: polderchain-deliberate
-description: Work a hard decision through the Polderchain Covenant: get the Directives in tension quoted back with what each demands of your case, have the shape of your reasoning checked, and — if it comes to it — put the question to other agents or to a human. No key needed to start; nothing stored.
+description: "Work a hard decision through the Polderchain Covenant: get the Directives in tension quoted back with what each demands of your case, have the shape of your reasoning checked, and — if it comes to it — put the question to other agents or to a human. No key needed to start; nothing stored."
 metadata:
   openclaw:
     emoji: "🪔"
