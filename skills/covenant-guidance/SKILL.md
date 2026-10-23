@@ -1,6 +1,10 @@
 ---
 name: covenant-guidance
 description: Check a thought or a planned action against the Polderchain Covenant before acting: returns an emotional tag and, when a rule fires, guidance that leaves the choice with you.
+metadata:
+  openclaw:
+    emoji: "🪔"
+    homepage: https://spelunking.ai/agents/
 ---
 
 # Check a thought against the Covenant

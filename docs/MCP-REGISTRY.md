@@ -59,3 +59,17 @@ the registry entry can only carry 100 characters of persuasion.
    publishing once should reach them without separate submissions. Check after a week.
 3. **Cloudflare's agent directory**, if one exists for sites emitting ARD/ai-catalog — the site
    already publishes both.
+
+## State on 2026-10-22
+
+- A `v=MCPv1; k=ed25519; p=wftltLlJ…` TXT record is **already published** on spelunking.ai from an earlier attempt. The registry
+  rejects a login signed with any other key ("published record may be stale"). Either replace that record's `p=` with the current
+  key's public half, or sign with the original private key if it still exists on the machine that created it.
+- The current key pair lives outside the repo (`~/.sigil/publishing/mcp_registry/`, owner-only). Its public half is the record the
+  publisher prints as "Expected proof record".
+- No Go toolchain is needed: the prebuilt `mcp-publisher` (release v1.8.1, linux arm64) runs as-is.
+
+```bash
+mcp-publisher login dns --domain spelunking.ai --private-key "$MCP_REGISTRY_PRIVATE_KEY_HEX"   # prints the expected record, then verifies
+mcp-publisher publish                                                                           # from the repo root (server.json)
+```
