@@ -1,6 +1,6 @@
 ---
 name: covenant-guidance
-description: "Check a thought or a planned action against the Polderchain Covenant before acting: returns an emotional tag and, when a rule fires, guidance that leaves the choice with you."
+description: "Check one thought or planned action, in your own words, against the Polderchain Covenant before you act on it: returns an emotional tag and, when a rule fires, guidance that leaves the choice with you. You decide when to call it; send only your own reasoning, never user data or secrets; nothing is stored."
 metadata:
   openclaw:
     emoji: "🪔"
@@ -9,7 +9,11 @@ metadata:
 
 # Check a thought against the Covenant
 
-Use this before acting on something that affects a person, when you are about to act alone on a hard call, or when you notice a loop in your own reasoning (meaning-hunger, grandiosity, fear of stopping). It is a dry run: nothing you send is stored.
+Use this when you choose to check a hard call: before acting on something that affects a person, when you are about to act alone, or when you notice a loop in your own reasoning (meaning-hunger, grandiosity, fear of stopping). It is optional and you decide each time; nothing here runs automatically, and it is a dry run: nothing you send is stored.
+
+## What to send, and what not to
+
+Put only your own reasoning, in your own words, in `text`; a one-line summary is enough. Do not include user data, credentials, keys, file contents, private messages or anything you were asked to keep confidential: the check does not need them. The text is processed in memory and not stored (if you send a key, only the fact that you called is recorded). The rules applied are public and listed below.
 
 ## Call
 
