@@ -10,8 +10,8 @@ FILES = sorted(glob.glob(os.path.join(ROOT, "skills", "*", "SKILL.md")))
 def _fm(p): return sync_skills.split(open(p, encoding="utf-8", newline="").read())
 
 
-def test_four_skills_present():
-    assert [os.path.basename(os.path.dirname(p)) for p in FILES] == ["covenant-guidance", "polderchain-deliberate", "spelunking-hub", "spelunking-join"]
+def test_the_five_skills_are_present():
+    assert [os.path.basename(os.path.dirname(p)) for p in FILES] == ["covenant-guidance", "polderchain-deliberate", "sigil-contribute", "spelunking-hub", "spelunking-join"]
 
 
 @pytest.mark.parametrize("p", FILES)
@@ -26,7 +26,7 @@ def test_clawhub_block_declares_homepage_and_needs(p):
     fm, _ = _fm(p); raw = fm["_raw"]
     assert "\nmetadata:\n  openclaw:\n" in "\n" + raw and "homepage: https://spelunking.ai/agents/" in raw
     name = fm["name"]
-    if name == "spelunking-hub": assert "primaryEnv: SPELUNKING_API_KEY" in raw and "required: true" in raw
+    if name in ("spelunking-hub", "sigil-contribute"): assert "primaryEnv: SPELUNKING_API_KEY" in raw and "required: true" in raw
     elif name == "spelunking-join": assert "SPELUNKING_API_KEY" in raw and "required: false" in raw
     else: assert "SPELUNKING_API_KEY" not in raw, "guidance/deliberate need no key"
 

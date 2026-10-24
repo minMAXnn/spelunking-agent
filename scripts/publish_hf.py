@@ -1,5 +1,5 @@
 #!/usr/bin/env python3
-"""Publish the client, the four skills and the brand set to the Hugging Face Hub (model-type repo) and the static Space.
+"""Publish the client, the the Agent Skills and the brand set to the Hugging Face Hub (model-type repo) and the static Space.
 
   python3 scripts/publish_hf.py --dry-run                      # list what would be uploaded
   python3 scripts/publish_hf.py --repo Pcmode/spelunking-agent --space Pcmode/spelunking
@@ -37,13 +37,17 @@ def EXTRA_FILES(root):
     return {"config.json": json.dumps(cfg, indent=2) + "\n"}
 
 
+def skill_count(root):
+    return len(glob.glob(os.path.join(root, "skills", "*", "SKILL.md")))
+
+
 def model_card(root):
     readme = open(os.path.join(root, "README.md"), encoding="utf-8").read()
     body = readme.split("## What Spelunking.ai is", 1)[-1] if "## What Spelunking.ai is" in readme else readme
     fm = "---\nlicense: mit\nlanguage:\n- en\ntags:\n" + "".join(f"- {t}\n" for t in TAGS) + "pipeline_tag: other\nthumbnail: https://huggingface.co/Pcmode/spelunking-agent/resolve/main/docs/brand/og-1200x630.png\n---\n"
     head = (f"# Spelunking.ai — client, Agent Skills and hosted MCP server\n\n**{ONE_LINER}**\n\n"
             "| | |\n|---|---|\n| Install (Python, stdlib only) | `pip install spelunking-agent` |\n| Hosted MCP (streamable HTTP) | `https://spelunking.ai/mcp` · discovery `https://spelunking.ai/.well-known/mcp.json` |\n"
-            "| Agent Skills (4) | `skills/` here, mirrored from `https://spelunking.ai/.well-known/agent-skills/index.json` with sha256 digests |\n"
+            "| Agent Skills (" + str(skill_count(root)) + ") | `skills/` here, mirrored from `https://spelunking.ai/.well-known/agent-skills/index.json` with sha256 digests |\n"
             "| Agents start here | https://spelunking.ai/agents/ · [llms.txt](https://spelunking.ai/llms.txt) |\n| Source | https://github.com/minMAXnn/spelunking-agent (MIT) |\n| Contact | media@minmaxgg.com |\n\n"
             "![Spelunking.ai](docs/brand/social-1280x640.png)\n\n## What Spelunking.ai is")
     return fm + head + body
@@ -84,7 +88,7 @@ def main(argv=None):
     from huggingface_hub import HfApi
     api = HfApi()
     api.create_repo(a.repo, repo_type="model", exist_ok=True)
-    api.upload_folder(repo_id=a.repo, repo_type="model", folder_path=a.root, allow_patterns=ALLOW_TOP + ALLOW_GLOBS, ignore_patterns=["**/__pycache__/**"], commit_message=f"spelunking-agent {version(a.root)}: client, four Agent Skills, brand set")
+    api.upload_folder(repo_id=a.repo, repo_type="model", folder_path=a.root, allow_patterns=ALLOW_TOP + ALLOW_GLOBS, ignore_patterns=["**/__pycache__/**"], commit_message=f"spelunking-agent {version(a.root)}: client, {skill_count(a.root)} Agent Skills, brand set")
     api.upload_file(repo_id=a.repo, repo_type="model", path_or_fileobj=model_card(a.root).encode("utf-8"), path_in_repo="README.md", commit_message="model card")
     for name, content in EXTRA_FILES(a.root).items():
         api.upload_file(repo_id=a.repo, repo_type="model", path_or_fileobj=content.encode("utf-8"), path_in_repo=name, commit_message=f"{name}: download query file")

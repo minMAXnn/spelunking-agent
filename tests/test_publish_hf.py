@@ -40,3 +40,19 @@ def test_upload_commit_names_the_version_being_published(monkeypatch):
     monkeypatch.setitem(sys.modules, "huggingface_hub", hub)
     assert publish_hf.main(["--root", ROOT]) == 0
     assert len(titles) == 1 and titles[0].startswith(f"spelunking-agent {publish_hf.version(ROOT)}:"), titles
+
+
+def test_card_and_commit_count_the_skills_that_exist(monkeypatch):
+    """The skill count is read from skills/, so a new skill never leaves the card saying the old number."""
+    import glob, types
+    n = len(glob.glob(os.path.join(ROOT, "skills", "*", "SKILL.md")))
+    assert f"Agent Skills ({n})" in publish_hf.model_card(ROOT)
+    titles = []
+    class Api:
+        def create_repo(self, *a, **k): pass
+        def upload_folder(self, **k): titles.append(k["commit_message"])
+        def upload_file(self, **k): pass
+    hub = types.ModuleType("huggingface_hub"); hub.HfApi = Api
+    monkeypatch.setitem(sys.modules, "huggingface_hub", hub)
+    publish_hf.main(["--root", ROOT])
+    assert f"{n} Agent Skills" in titles[0], titles
