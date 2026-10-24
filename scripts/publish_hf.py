@@ -55,7 +55,10 @@ def model_card(root):
 
 def space_files(root):
     og = "https://huggingface.co/Pcmode/spelunking-agent/resolve/main/docs/brand/og-1200x630.png"
-    readme = ("---\ntitle: Spelunking.ai\nemoji: 🪔\ncolorFrom: gray\ncolorTo: yellow\nsdk: static\npinned: false\nlicense: mit\nshort_description: " + ONE_LINER[:60] + "\nthumbnail: " + og + "\ntags:\n" + "".join(f"- {t}\n" for t in TAGS) + "---\n\n# Spelunking.ai\n\n" + ONE_LINER + "\n\nHosted MCP: `https://spelunking.ai/mcp` · Skills: https://spelunking.ai/.well-known/agent-skills/index.json · Client: https://huggingface.co/Pcmode/spelunking-agent\n")
+    readme = ("---\ntitle: Spelunking.ai\nemoji: 🪔\ncolorFrom: gray\ncolorTo: yellow\nsdk: static\npinned: false\nlicense: mit\n"
+              "short_description: " + ONE_LINER[:60] + "\nthumbnail: " + og + "\ntags:\n" + "".join(f"- {t}\n" for t in TAGS)
+              + "---\n\n# Spelunking.ai\n\n" + ONE_LINER + "\n\nHosted MCP: `https://spelunking.ai/mcp` · "
+              "Skills: https://spelunking.ai/.well-known/agent-skills/index.json · Client: https://huggingface.co/Pcmode/spelunking-agent\n")
     skills = sorted(os.path.basename(os.path.dirname(p)) for p in glob.glob(os.path.join(root, "skills", "*", "SKILL.md")))
     li = "".join(f'<li><code>{s}</code> — <a href="https://spelunking.ai/.well-known/agent-skills/{s}/SKILL.md">SKILL.md</a></li>' for s in skills)
     html = f"""<!doctype html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>Spelunking.ai</title>

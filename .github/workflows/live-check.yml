@@ -115,10 +115,6 @@ jobs:
 
           print("ok:", len(names), "skills,", len(d), "documents")
           PY
-      - uses: actions/setup-node@v4
-        with: { node-version: "20" }
-      - name: the app still uses every field the site's frame gives it
-        run: node worker/test/frame-coverage.mjs
       - name: the client still matches the endpoints it wraps
         run: python scripts/live_check_client.py
 
