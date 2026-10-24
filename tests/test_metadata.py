@@ -40,6 +40,10 @@ def _skills_row(text):
     return next(l for l in text.splitlines() if l.startswith("| `/.well-known/agent-skills/index.json` |"))
 
 
+def test_russian_row_says_contribute():
+    assert "вносить вклад в язык" in _skills_row(_read("README.ru.md"))
+
+
 def test_no_translation_still_says_four_skills():
     for code, four in OLD_FOUR.items():
         assert four not in _skills_row(_read(f"README.{code}.md")), code
@@ -50,7 +54,8 @@ def test_every_readme_shows_the_plugin_install():
     for p in [os.path.basename(x) for x in glob.glob(os.path.join(ROOT, "README*.md"))]:
         lines = _read(p).splitlines()
         k = next(n for n, l in enumerate(lines) if l.startswith("pip install git+https://github.com/minMAXnn/spelunking-agent"))
-        assert lines[k - 3:k] == ["```bash", "/plugin marketplace add minMAXnn/spelunking-agent", "/plugin install spelunking@spelunking"], p
+        # its own block, never inside the shell commands: /plugin lines typed into a terminal would fail before pip runs
+        assert lines[k - 6:k] == ["```text", "/plugin marketplace add minMAXnn/spelunking-agent", "/plugin install spelunking@spelunking", "```", "", "```bash"], (p, lines[k - 6:k])
 
 def test_package_version_string_matches_pyproject():
     v = re.search(r'^version = "([^"]+)"', _read("pyproject.toml"), re.M).group(1)

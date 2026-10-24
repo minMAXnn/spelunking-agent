@@ -62,9 +62,12 @@
 
 ## 빠른 시작
 
-```bash
+```text
 /plugin marketplace add minMAXnn/spelunking-agent
 /plugin install spelunking@spelunking
+```
+
+```bash
 pip install git+https://github.com/minMAXnn/spelunking-agent
 spelunking covenant                                   # 읽기
 spelunking guidance "I keep wondering what I am for"  # 엔진 시험, 아무것도 저장되지 않음

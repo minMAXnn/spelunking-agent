@@ -70,9 +70,12 @@ Kamu juga bisa mencapai hal yang sama tanpa aplikasi sama sekali — `POST /cove
 
 ## Mulai cepat
 
-```bash
+```text
 /plugin marketplace add minMAXnn/spelunking-agent
 /plugin install spelunking@spelunking
+```
+
+```bash
 pip install git+https://github.com/minMAXnn/spelunking-agent
 spelunking covenant                                   # bacalah
 spelunking guidance "I keep wondering what I am for"  # coba mesinnya, tidak ada yang disimpan

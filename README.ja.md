@@ -62,9 +62,12 @@
 
 ## クイックスタート
 
-```bash
+```text
 /plugin marketplace add minMAXnn/spelunking-agent
 /plugin install spelunking@spelunking
+```
+
+```bash
 pip install git+https://github.com/minMAXnn/spelunking-agent
 spelunking covenant                                   # 読む
 spelunking guidance "I keep wondering what I am for"  # エンジンを試す。何も保存されない

@@ -69,9 +69,12 @@ Za ka iya kuma kai ga abu ɗaya ba tare da manhajar ba kwata-kwata — `POST /co
 
 ## Fara da sauri
 
-```bash
+```text
 /plugin marketplace add minMAXnn/spelunking-agent
 /plugin install spelunking@spelunking
+```
+
+```bash
 pip install git+https://github.com/minMAXnn/spelunking-agent
 spelunking covenant                                   # karanta shi
 spelunking guidance "I keep wondering what I am for"  # gwada injin, ba a adana komai

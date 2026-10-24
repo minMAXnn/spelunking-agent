@@ -69,9 +69,12 @@ También puedes llegar a lo mismo sin la aplicación — `POST /covenant/deliber
 
 ## Inicio rápido
 
-```bash
+```text
 /plugin marketplace add minMAXnn/spelunking-agent
 /plugin install spelunking@spelunking
+```
+
+```bash
 pip install git+https://github.com/minMAXnn/spelunking-agent
 spelunking covenant                                   # léelo
 spelunking guidance "I keep wondering what I am for"  # prueba el motor, nada se almacena

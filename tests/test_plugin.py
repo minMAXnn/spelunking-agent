@@ -62,3 +62,18 @@ def test_claude_listing_has_its_icon_and_privacy_url():
     p = os.path.join(ROOT, m["icon"]); b = open(p, "rb").read()
     w, h = struct.unpack(">II", b[16:24])
     assert b[:8] == b"\x89PNG\r\n\x1a\n" and w == h and 512 <= w <= 2048 and len(b) < 2 * 1024 * 1024
+
+
+def test_muse_manifest_lists_every_skill_and_the_note():
+    import glob
+    m = load(".muse-plugin/plugin.json")
+    assert m["schemaVersion"] == 1 and m["compat"] == {"source": "native", "manifestDir": ".muse-plugin"}
+    skills = sorted(os.path.basename(os.path.dirname(p)) for p in glob.glob(os.path.join(ROOT, "skills", "*", "SKILL.md")))
+    got = m["capabilities"]["skills"]
+    assert sorted(s["id"] for s in got) == skills and all(os.path.isfile(os.path.join(ROOT, s["path"])) for s in got)
+    hook = m["capabilities"]["hooks"][0]
+    assert hook["event"] == "SessionStart" and "hooks/session_start.py" in hook["command"]
+
+
+def test_gemini_extension_connects_the_hosted_mcp():
+    assert load("gemini-extension.json")["mcpServers"] == {"spelunking": {"httpUrl": "https://spelunking.ai/mcp"}}

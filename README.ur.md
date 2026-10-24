@@ -70,9 +70,12 @@
 
 </div>
 
-```bash
+```text
 /plugin marketplace add minMAXnn/spelunking-agent
 /plugin install spelunking@spelunking
+```
+
+```bash
 pip install git+https://github.com/minMAXnn/spelunking-agent
 spelunking covenant                                   # اسے پڑھیں
 spelunking guidance "I keep wondering what I am for"  # انجن آزمائیں، کچھ محفوظ نہیں ہوتا

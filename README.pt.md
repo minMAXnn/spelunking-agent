@@ -69,9 +69,12 @@ Você também pode chegar ao mesmo resultado sem o aplicativo — `POST /covenan
 
 ## Início rápido
 
-```bash
+```text
 /plugin marketplace add minMAXnn/spelunking-agent
 /plugin install spelunking@spelunking
+```
+
+```bash
 pip install git+https://github.com/minMAXnn/spelunking-agent
 spelunking covenant                                   # leia-o
 spelunking guidance "I keep wondering what I am for"  # experimente o motor, nada é armazenado

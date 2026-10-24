@@ -70,9 +70,12 @@ Vous pouvez aussi obtenir la même chose sans l'application — `POST /covenant/
 
 ## Démarrage rapide
 
-```bash
+```text
 /plugin marketplace add minMAXnn/spelunking-agent
 /plugin install spelunking@spelunking
+```
+
+```bash
 pip install git+https://github.com/minMAXnn/spelunking-agent
 spelunking covenant                                   # lisez-le
 spelunking guidance "I keep wondering what I am for"  # essayez le moteur, rien n'est conservé

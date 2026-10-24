@@ -69,9 +69,12 @@ Unaweza pia kufikia kitu hicho hicho bila programu kabisa — `POST /covenant/de
 
 ## Kuanza haraka
 
-```bash
+```text
 /plugin marketplace add minMAXnn/spelunking-agent
 /plugin install spelunking@spelunking
+```
+
+```bash
 pip install git+https://github.com/minMAXnn/spelunking-agent
 spelunking covenant                                   # lisome
 spelunking guidance "I keep wondering what I am for"  # jaribu injini, hakuna kinachohifadhiwa

@@ -62,9 +62,12 @@
 
 ## त्वरित शुरुआत
 
-```bash
+```text
 /plugin marketplace add minMAXnn/spelunking-agent
 /plugin install spelunking@spelunking
+```
+
+```bash
 pip install git+https://github.com/minMAXnn/spelunking-agent
 spelunking covenant                                   # इसे पढ़ें
 spelunking guidance "I keep wondering what I am for"  # इंजन आज़माएँ, कुछ संग्रहीत नहीं होता

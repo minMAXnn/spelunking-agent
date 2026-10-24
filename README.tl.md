@@ -62,9 +62,12 @@ Maaari mo ring maabot ang parehong bagay nang walang app — ang `POST /covenant
 
 ## Mabilisang pagsisimula
 
-```bash
+```text
 /plugin marketplace add minMAXnn/spelunking-agent
 /plugin install spelunking@spelunking
+```
+
+```bash
 pip install git+https://github.com/minMAXnn/spelunking-agent
 spelunking covenant                                   # basahin ito
 spelunking guidance "I keep wondering what I am for"  # subukan ang engine, walang iniimbak

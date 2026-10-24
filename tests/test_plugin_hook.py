@@ -38,3 +38,21 @@ def test_hook_configs_run_the_script():
 def test_gemini_md_includes_every_skill():
     lines = open(os.path.join(ROOT, "GEMINI.md"), encoding="utf-8").read().splitlines()
     assert sorted(l[len("@./skills/"):-len("/SKILL.md")] for l in lines if l.startswith("@./skills/")) == SKILLS
+
+
+def _run(env_extra):
+    env = {k: v for k, v in os.environ.items() if k not in ("CURSOR_PLUGIN_ROOT", "MUSE_PLUGIN_ROOT")}
+    env.update(CLAUDE_PLUGIN_ROOT=ROOT, **env_extra)
+    return subprocess.run([sys.executable, os.path.join(ROOT, "hooks", "session_start.py")], capture_output=True, text=True, env=env).stdout
+
+
+def test_cursor_gets_additional_context_json():
+    assert json.loads(_run({"CURSOR_PLUGIN_ROOT": ROOT})) == {"additional_context": session_start.note(ROOT)}
+
+
+def test_muse_gets_additionalContext_json():
+    assert json.loads(_run({"MUSE_PLUGIN_ROOT": ROOT})) == {"additionalContext": session_start.note(ROOT)}
+
+
+def test_claude_code_gets_plain_text():
+    assert _run({}) == session_start.note(ROOT)

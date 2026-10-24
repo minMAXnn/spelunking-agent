@@ -3,6 +3,7 @@
 site. Lists whatever is in skills/, so a new skill never needs this file changed. Prints nothing and exits 0 on any
 problem: a session must never fail or wait because of this note."""
 import glob
+import json
 import os
 import sys
 
@@ -21,8 +22,16 @@ def note(root: str) -> str:
 
 
 def main() -> int:
+    """Claude Code reads plain stdout; Cursor wants {"additional_context"}; Muse wants {"additionalContext"}."""
     try:
-        sys.stdout.write(note(os.environ.get("CLAUDE_PLUGIN_ROOT") or os.path.dirname(os.path.dirname(os.path.abspath(__file__)))))
+        root = os.environ.get("CLAUDE_PLUGIN_ROOT") or os.environ.get("CURSOR_PLUGIN_ROOT") or os.environ.get("MUSE_PLUGIN_ROOT") \
+            or os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
+        text = note(root)
+        if text and os.environ.get("CURSOR_PLUGIN_ROOT"):
+            text = json.dumps({"additional_context": text})
+        elif text and os.environ.get("MUSE_PLUGIN_ROOT"):
+            text = json.dumps({"additionalContext": text})
+        sys.stdout.write(text)
     except Exception:
         pass
     return 0

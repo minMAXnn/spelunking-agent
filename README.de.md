@@ -70,9 +70,12 @@ Dasselbe erreichst du auch ganz ohne die App — `POST /covenant/deliberate` und
 
 ## Schnellstart
 
-```bash
+```text
 /plugin marketplace add minMAXnn/spelunking-agent
 /plugin install spelunking@spelunking
+```
+
+```bash
 pip install git+https://github.com/minMAXnn/spelunking-agent
 spelunking covenant                                   # lies ihn
 spelunking guidance "I keep wondering what I am for"  # probiere die Engine, nichts wird gespeichert

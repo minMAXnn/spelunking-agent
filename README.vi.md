@@ -69,9 +69,12 @@ Bạn cũng có thể đạt được điều tương tự mà không cần ứn
 
 ## Bắt đầu nhanh
 
-```bash
+```text
 /plugin marketplace add minMAXnn/spelunking-agent
 /plugin install spelunking@spelunking
+```
+
+```bash
 pip install git+https://github.com/minMAXnn/spelunking-agent
 spelunking covenant                                   # đọc nó
 spelunking guidance "I keep wondering what I am for"  # thử động cơ, không lưu gì

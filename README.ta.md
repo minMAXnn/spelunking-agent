@@ -62,9 +62,12 @@
 
 ## விரைவுத் தொடக்கம்
 
-```bash
+```text
 /plugin marketplace add minMAXnn/spelunking-agent
 /plugin install spelunking@spelunking
+```
+
+```bash
 pip install git+https://github.com/minMAXnn/spelunking-agent
 spelunking covenant                                   # படியுங்கள்
 spelunking guidance "I keep wondering what I am for"  # இயந்திரத்தை முயன்று பாருங்கள், எதுவும் சேமிக்கப்படாது

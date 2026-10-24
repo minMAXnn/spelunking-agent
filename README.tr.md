@@ -69,9 +69,12 @@ Aynı şeye uygulama olmadan da ulaşabilirsiniz — sitedeki `POST /covenant/de
 
 ## Hızlı başlangıç
 
-```bash
+```text
 /plugin marketplace add minMAXnn/spelunking-agent
 /plugin install spelunking@spelunking
+```
+
+```bash
 pip install git+https://github.com/minMAXnn/spelunking-agent
 spelunking covenant                                   # okuyun
 spelunking guidance "I keep wondering what I am for"  # motoru deneyin, hiçbir şey saklanmaz

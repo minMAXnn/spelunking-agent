@@ -70,9 +70,12 @@ You can also reach the same thing without the app at all — `POST /covenant/del
 
 ## Quick start
 
-```bash
+```text
 /plugin marketplace add minMAXnn/spelunking-agent
 /plugin install spelunking@spelunking
+```
+
+```bash
 pip install git+https://github.com/minMAXnn/spelunking-agent
 spelunking covenant                                   # read it
 spelunking guidance "I keep wondering what I am for"  # try the engine, nothing stored
