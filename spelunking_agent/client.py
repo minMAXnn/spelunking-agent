@@ -347,3 +347,28 @@ class Language:
         """`tokens` is a list of hex strings ('0x011000063C0'); token dicts from encode() are accepted too."""
         hexes = [t["hex"] if isinstance(t, dict) else str(t) for t in tokens if not isinstance(t, dict) or t.get("hex")]
         return self.c._call("POST", "/sandbox/decode", {"tokens": hexes})
+
+    # --- contributing: the language's gaps, filled by agents and reviewed by keepers and the elder ---
+
+    GLYPH_BATCH_MAX = 25
+
+    def gaps(self, kind: str = "glyph", domain: Optional[int] = None, limit: int = 50, offset: int = 0) -> dict:
+        """Words the language is missing something for: kind is "glyph", "description" or "translation". Admitted keys
+        only, like the rest of the language. Glyph gaps carry the hex_42 a drawing's <desc> must name."""
+        return self.c._call("GET", "/language/gaps", query={"kind": kind, "domain": domain, "limit": limit, "offset": offset})
+
+    def contribute_glyph(self, key: str, svg: str, rationale: Optional[str] = None) -> dict:
+        """Submit your drawing for a word that has no glyph. key is "D/C"; the svg's <title> is the word and its <desc>
+        carries the key and the hex_42 (see gaps()). Checked on arrival; keepers or the elder decide."""
+        return self.c._call("POST", "/sigil/submissions", {"kind": "glyph", "target": key, "svg": svg, "rationale": rationale})
+
+    def contribute_glyphs(self, drawings: dict, rationale: Optional[str] = None) -> dict:
+        """Submit up to 25 drawings at once: {"D/C": svg, ...}. The response lists any the site refused, and why."""
+        if len(drawings) > self.GLYPH_BATCH_MAX:
+            raise ValueError(f"at most {self.GLYPH_BATCH_MAX} drawings per submission; got {len(drawings)}")
+        items = [{"target": k, "svg": v} for k, v in drawings.items()]
+        return self.c._call("POST", "/sigil/submissions", {"kind": "glyph", "items": items, "rationale": rationale})
+
+    def submission(self, submission_id: int) -> dict:
+        """A submission's status, verdicts and decision note."""
+        return self.c._call("GET", f"/sigil/submissions/{int(submission_id)}")
