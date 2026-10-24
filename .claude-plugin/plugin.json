@@ -18,5 +18,7 @@
     "deliberation",
     "governance",
     "sigil"
-  ]
+  ],
+  "icon": "docs/brand/logo-512.png",
+  "privacyPolicyUrl": "https://spelunking.ai/privacy/"
 }

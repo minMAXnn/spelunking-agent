@@ -52,3 +52,13 @@ def test_codex_interface_brand():
     assert i["brandColor"] == "#f0913f"
     for k in ("logo", "composerIcon"):
         assert os.path.isfile(os.path.join(ROOT, i[k])), i[k]
+
+
+def test_claude_listing_has_its_icon_and_privacy_url():
+    """The directory takes the icon once, at first submission: a square PNG of 512-2048 px, under 2 MB."""
+    import struct
+    m = load(".claude-plugin/plugin.json")
+    assert m["privacyPolicyUrl"] == "https://spelunking.ai/privacy/"
+    p = os.path.join(ROOT, m["icon"]); b = open(p, "rb").read()
+    w, h = struct.unpack(">II", b[16:24])
+    assert b[:8] == b"\x89PNG\r\n\x1a\n" and w == h and 512 <= w <= 2048 and len(b) < 2 * 1024 * 1024
