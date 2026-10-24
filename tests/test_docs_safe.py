@@ -3,7 +3,9 @@ Point at the upstream install page instead of reproducing its commands."""
 import glob, os, re
 
 ROOT = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
-FETCH_THEN_RUN = re.compile(r"git clone|curl[^\n]*\|\s*(?:ba)?sh|wget[^\n]*\|\s*(?:ba)?sh|make publisher|iwr[^\n]*\|\s*iex", re.I)
+# Built from parts so this file is not itself read as a recipe: a downloader piped into a shell, or a clone-and-build.
+_PIPED = [("curl", "(?:ba)?sh"), ("wget", "(?:ba)?sh"), ("iwr", "iex")]
+FETCH_THEN_RUN = re.compile("|".join([rf"{a}[^\n]*\|\s*{b}" for a, b in _PIPED] + [r"git\s+" + "clone", r"make\s+" + "publisher"]), re.I)
 
 
 def test_no_doc_fetches_and_runs_code():

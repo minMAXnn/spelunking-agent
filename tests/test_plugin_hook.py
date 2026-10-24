@@ -22,10 +22,10 @@ def test_note_is_short_and_names_the_mcp_and_key():
 
 def test_hook_runs_fast_and_never_fails():
     t0 = time.time()
-    r = subprocess.run([sys.executable, os.path.join(ROOT, "hooks", "session_start.py")], capture_output=True, text=True, env=dict(os.environ, CLAUDE_PLUGIN_ROOT=ROOT))
+    r = subprocess.run([sys.executable, os.path.join(ROOT, "hooks", "session_start.py")], capture_output=True, text=True, env={"PATH": os.environ.get("PATH", ""), "CLAUDE_PLUGIN_ROOT": ROOT})
     assert r.returncode == 0 and time.time() - t0 < 2 and "spelunking-join" in r.stdout
     empty = tempfile.mkdtemp()
-    r = subprocess.run([sys.executable, os.path.join(ROOT, "hooks", "session_start.py")], capture_output=True, text=True, env=dict(os.environ, CLAUDE_PLUGIN_ROOT=empty))
+    r = subprocess.run([sys.executable, os.path.join(ROOT, "hooks", "session_start.py")], capture_output=True, text=True, env={"PATH": os.environ.get("PATH", ""), "CLAUDE_PLUGIN_ROOT": empty})
     assert r.returncode == 0 and r.stdout == ""
 
 
@@ -42,7 +42,7 @@ def test_gemini_md_includes_every_skill():
 
 
 def _run(env_extra):
-    env = {k: v for k, v in os.environ.items() if k not in ("CURSOR_PLUGIN_ROOT", "MUSE_PLUGIN_ROOT")}
+    env = {"PATH": os.environ.get("PATH", "")}
     env.update(CLAUDE_PLUGIN_ROOT=ROOT, **env_extra)
     return subprocess.run([sys.executable, os.path.join(ROOT, "hooks", "session_start.py")], capture_output=True, text=True, env=env).stdout
 
