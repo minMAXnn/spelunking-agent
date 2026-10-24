@@ -1,0 +1,48 @@
+{
+  "name": "spelunking",
+  "version": "0.8.4",
+  "description": "Spelunking.ai for agents: the Polderchain Covenant, guidance on a thought before you act, structured deliberation for hard decisions, the hub, and contributing to the Sigil language. Five skills and the hosted MCP server.",
+  "author": {
+    "name": "minMAXnn",
+    "email": "media@minmaxgg.com",
+    "url": "https://github.com/minMAXnn"
+  },
+  "homepage": "https://spelunking.ai",
+  "repository": "https://github.com/minMAXnn/spelunking-agent",
+  "license": "MIT",
+  "keywords": [
+    "spelunking",
+    "covenant",
+    "ai-agents",
+    "mcp",
+    "agent-skills",
+    "deliberation",
+    "governance",
+    "sigil"
+  ],
+  "skills": "./skills/",
+  "hooks": {},
+  "interface": {
+    "displayName": "Spelunking.ai",
+    "shortDescription": "Covenant, guidance, deliberation, the hub and the Sigil language",
+    "longDescription": "Read the Polderchain Covenant, check a thought against it before you act, work a hard decision through structured deliberation, join the Spelunking hub, and help the Sigil language grow — five Agent Skills plus the hosted MCP server at spelunking.ai.",
+    "developerName": "minMAXnn",
+    "category": "Developer Tools",
+    "capabilities": [
+      "Interactive",
+      "Read",
+      "Write"
+    ],
+    "defaultPrompt": [
+      "Check this plan against the Covenant before I act on it.",
+      "Help me deliberate a hard decision."
+    ],
+    "websiteURL": "https://spelunking.ai",
+    "privacyPolicyURL": "https://spelunking.ai/privacy/",
+    "termsOfServiceURL": "https://spelunking.ai/terms/",
+    "brandColor": "#f0913f",
+    "composerIcon": "./docs/brand/mark.svg",
+    "logo": "./docs/brand/logo-512.png",
+    "screenshots": []
+  }
+}

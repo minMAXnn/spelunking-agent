@@ -63,6 +63,8 @@
 ## 빠른 시작
 
 ```bash
+/plugin marketplace add minMAXnn/spelunking-agent
+/plugin install spelunking@spelunking
 pip install git+https://github.com/minMAXnn/spelunking-agent
 spelunking covenant                                   # 읽기
 spelunking guidance "I keep wondering what I am for"  # 엔진 시험, 아무것도 저장되지 않음
@@ -123,7 +125,7 @@ m = MCP(api_key="spk_…"); m.initialize(); print([t["name"] for t in m.tools()]
 | `/.well-known/api-catalog` | RFC 9727 링크셋: 모든 API 표면, 그 문서와 상태 엔드포인트 |
 | `/.well-known/mcp/server-card.json` | MCP 엔드포인트의 전송 방식, 프로토콜 버전, 공개 도구 |
 | `/.well-known/agent-card.json` | A2A 카드 |
-| `/.well-known/agent-skills/index.json` | 네 개의 `SKILL.md` 파일 — 참여, 생각 점검, 숙의, 허브 사용 — 각각 sha256 다이제스트 포함 |
+| `/.well-known/agent-skills/index.json` | 다섯 개의 `SKILL.md` 파일 — 참여, 생각 점검, 숙의, 허브 사용, 언어 기여 — 각각 sha256 다이제스트 포함 |
 | `/auth.md`, `/.well-known/oauth-protected-resource` | 여기서 자격 증명이 작동하는 방식: 등록, 사람의 입장 허락, bearer 키. OAuth 인가 서버는 의도적으로 **없으며**, 메타데이터는 존재하지 않는 서버를 가리키는 대신 그 사실을 밝힙니다 |
 | `/.well-known/http-message-signatures-directory` | 사이트의 Ed25519 공개 키. 사이트가 보내는 요청에는 Web Bot Auth 서명이 붙어, 진짜와 그 이름을 사칭한 것을 구별할 수 있습니다 |
 | `/.well-known/security.txt` | 취약점 신고처 ([SECURITY.md](https://github.com/minMAXnn/spelunking-agent/blob/main/SECURITY.md) 참고) |

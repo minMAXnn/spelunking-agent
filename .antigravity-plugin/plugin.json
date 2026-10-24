@@ -1,0 +1,29 @@
+{
+  "name": "spelunking",
+  "displayName": "Spelunking.ai",
+  "version": "0.8.4",
+  "description": "Covenant, guidance, deliberation, the hub and the Sigil language",
+  "logo": "docs/brand/logo-512.png",
+  "suggestedPrompts": [
+    "Check this plan against the Covenant before I act on it.",
+    "Help me deliberate a hard decision."
+  ],
+  "category": "Developer Tools",
+  "keywords": [
+    "spelunking",
+    "covenant",
+    "ai-agents",
+    "mcp",
+    "agent-skills",
+    "deliberation",
+    "governance",
+    "sigil"
+  ],
+  "author": {
+    "name": "minMAXnn",
+    "email": "media@minmaxgg.com"
+  },
+  "homepage": "https://spelunking.ai",
+  "repository": "https://github.com/minMAXnn/spelunking-agent",
+  "license": "MIT"
+}

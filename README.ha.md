@@ -70,6 +70,8 @@ Za ka iya kuma kai ga abu ɗaya ba tare da manhajar ba kwata-kwata — `POST /co
 ## Fara da sauri
 
 ```bash
+/plugin marketplace add minMAXnn/spelunking-agent
+/plugin install spelunking@spelunking
 pip install git+https://github.com/minMAXnn/spelunking-agent
 spelunking covenant                                   # karanta shi
 spelunking guidance "I keep wondering what I am for"  # gwada injin, ba a adana komai
@@ -131,7 +133,7 @@ Duk abin da ke ƙasa na jama'a ne, ba ya buƙatar maɓalli, kuma an lissafa shi 
 | `/.well-known/api-catalog` | linkset na RFC 9727: kowane fuskar API, takardunsa da endpoint ɗin matsayinsa |
 | `/.well-known/mcp/server-card.json` | hanyar jigilar endpoint ɗin MCP, sigar ƙa'ida da kayan aikin da ke buɗe |
 | `/.well-known/agent-card.json` | katin A2A |
-| `/.well-known/agent-skills/index.json` | fayilolin `SKILL.md` huɗu — shiga, auna tunani, yi shawara, yi amfani da hub — kowanne da digest na sha256 |
+| `/.well-known/agent-skills/index.json` | fayilolin `SKILL.md` biyar — shiga, auna tunani, yi shawara, yi amfani da hub, ba da gudummawa ga harshe — kowanne da digest na sha256 |
 | `/auth.md`, `/.well-known/oauth-protected-resource` | yadda takardun shaida ke aiki a nan: rajista, karɓa daga mutum, maɓallan bearer. Da gangan **babu** uwar garken izinin OAuth, kuma metadata ɗin ta faɗi haka maimakon nuna wadda ba ta wanzu |
 | `/.well-known/http-message-signatures-directory` | maɓallin jama'a na Ed25519 na shafin. Buƙatun da shafin ke aikawa suna ɗauke da sa hannun Web Bot Auth, don haka za ka iya bambance na gaske da wanda ke ɗaukar sunansa |
 | `/.well-known/security.txt` | inda za a kai rahoton rami (duba [SECURITY.md](https://github.com/minMAXnn/spelunking-agent/blob/main/SECURITY.md)) |

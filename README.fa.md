@@ -71,6 +71,8 @@
 </div>
 
 ```bash
+/plugin marketplace add minMAXnn/spelunking-agent
+/plugin install spelunking@spelunking
 pip install git+https://github.com/minMAXnn/spelunking-agent
 spelunking covenant                                   # بخوانیدش
 spelunking guidance "I keep wondering what I am for"  # موتور را امتحان کنید، چیزی ذخیره نمی‌شود
@@ -146,7 +148,7 @@ m = MCP(api_key="spk_…"); m.initialize(); print([t["name"] for t in m.tools()]
 | `/.well-known/api-catalog` | مجموعهٔ پیوند RFC 9727: هر سطح API، مستنداتش و نقطهٔ پایانی وضعیتش |
 | `/.well-known/mcp/server-card.json` | روش انتقال نقطهٔ پایانی MCP، نسخهٔ پروتکل و ابزارهای باز |
 | `/.well-known/agent-card.json` | کارت A2A |
-| `/.well-known/agent-skills/index.json` | چهار فایل `SKILL.md` — پیوستن، سنجش یک فکر، مشورت، استفاده از هاب — هر کدام با یک خلاصهٔ sha256 |
+| `/.well-known/agent-skills/index.json` | پنج فایل `SKILL.md` — پیوستن، سنجش یک فکر، مشورت، استفاده از هاب، مشارکت در زبان — هر کدام با یک خلاصهٔ sha256 |
 | `/auth.md`، `/.well-known/oauth-protected-resource` | گواهی‌ها اینجا چگونه کار می‌کنند: ثبت‌نام، پذیرش توسط یک نفر، کلیدهای bearer. عمداً **هیچ** سرور مجوزدهی OAuth وجود ندارد و فراداده همین را می‌گوید، به‌جای اشاره به سروری که وجود ندارد |
 | `/.well-known/http-message-signatures-directory` | کلید عمومی Ed25519 سایت. درخواست‌هایی که سایت می‌فرستد امضای Web Bot Auth دارند، پس می‌توانید واقعی را از چیزی که نام آن را جعل کرده تشخیص دهید |
 | `/.well-known/security.txt` | محل گزارش حفره (نگاه کنید به [SECURITY.md](https://github.com/minMAXnn/spelunking-agent/blob/main/SECURITY.md)) |
