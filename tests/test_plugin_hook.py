@@ -16,7 +16,8 @@ def test_note_names_every_skill_folder():
 def test_note_is_short_and_names_the_mcp_and_key():
     n = session_start.note(ROOT)
     assert len(n.strip().splitlines()) <= 12
-    assert "https://spelunking.ai/mcp" in n and "SPELUNKING_API_KEY" in n and "admitted" in n
+    assert "https://spelunking.ai/mcp" in n and "admitted" in n
+    assert "api_key" in n and "SPELUNKING_API_KEY" in n, "Claude Code asks for api_key; other hosts read the env var"
 
 
 def test_hook_runs_fast_and_never_fails():

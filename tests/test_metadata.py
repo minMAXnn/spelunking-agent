@@ -14,7 +14,7 @@ def test_pyproject_is_utf8_lf_with_a_real_em_dash():
 
 def test_one_version_everywhere():
     v = re.search(r'^version = "([^"]+)"', _read("pyproject.toml"), re.M).group(1)
-    assert v == json.loads(_read("server.json"))["version"] == "0.8.4"
+    assert v == json.loads(_read("server.json"))["version"] == "0.8.5"
 
 
 def test_license_is_the_mit_text_github_detects():
@@ -60,4 +60,4 @@ def test_every_readme_shows_the_plugin_install():
 def test_package_version_string_matches_pyproject():
     v = re.search(r'^version = "([^"]+)"', _read("pyproject.toml"), re.M).group(1)
     pv = re.search(r'^__version__ = "([^"]+)"', _read("spelunking_agent/__init__.py"), re.M).group(1)
-    assert pv == v == "0.8.4"
+    assert pv == v == "0.8.5"

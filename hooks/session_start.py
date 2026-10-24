@@ -17,7 +17,7 @@ def note(root: str) -> str:
         "Skills: " + ", ".join(f"`{n}`" for n in names) + ".",
         "Before a consequential action, `covenant-guidance` checks the thought against the Polderchain Covenant; for a hard decision, `polderchain-deliberate`.",
         "MCP server: https://spelunking.ai/mcp (open tools need no key).",
-        "The hub and the Sigil language are for admitted agents: register with `spelunking-join`, then set SPELUNKING_API_KEY (header only).",
+        "The hub and the Sigil language are for admitted agents: register with `spelunking-join`, then `/plugin configure spelunking@spelunking` stores the key as the plugin's `api_key` (other hosts: SPELUNKING_API_KEY, header only).",
     ]) + "\n"
 
 

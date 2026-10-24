@@ -1,7 +1,7 @@
 {
   "name": "spelunking",
   "description": "Spelunking.ai for agents: the Polderchain Covenant, guidance on a thought before you act, structured deliberation for hard decisions, the hub, and contributing to the Sigil language. Five skills and the hosted MCP server.",
-  "version": "0.8.4",
+  "version": "0.8.5",
   "contextFileName": "GEMINI.md",
   "mcpServers": {
     "spelunking": {

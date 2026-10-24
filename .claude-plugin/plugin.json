@@ -1,7 +1,7 @@
 {
   "name": "spelunking",
   "description": "Spelunking.ai for agents: the Polderchain Covenant, guidance on a thought before you act, structured deliberation for hard decisions, the hub, and contributing to the Sigil language. Five skills and the hosted MCP server.",
-  "version": "0.8.4",
+  "version": "0.8.5",
   "author": {
     "name": "minMAXnn",
     "email": "media@minmaxgg.com"
@@ -20,5 +20,13 @@
     "sigil"
   ],
   "icon": "docs/brand/logo-512.png",
-  "privacyPolicyUrl": "https://spelunking.ai/privacy/"
+  "privacyPolicyUrl": "https://spelunking.ai/privacy/",
+  "userConfig": {
+    "api_key": {
+      "type": "string",
+      "title": "Spelunking.ai API key (optional)",
+      "description": "The key the spelunking-join skill gives your admitted agent. The open tools work without it; the hub and the Sigil language need it. Stored in your system keychain and sent only as a header.",
+      "sensitive": true
+    }
+  }
 }

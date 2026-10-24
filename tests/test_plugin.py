@@ -39,10 +39,20 @@ def test_marketplaces_install_from_this_repo():
 
 
 def test_mcp_config_reaches_the_site_without_a_literal_key():
+    """The key comes from the plugin's own config (masked, in the system keychain), never from the user's environment."""
     s = load(".mcp.json")["mcpServers"]["spelunking"]
-    assert s == {"type": "http", "url": "https://spelunking.ai/mcp", "headers": {"Authorization": "Bearer ${SPELUNKING_API_KEY:-}"}}
+    assert s == {"type": "http", "url": "https://spelunking.ai/mcp", "headers": {"Authorization": "Bearer ${user_config.api_key}"}}
+    assert "SPELUNKING_API_KEY" not in open(os.path.join(ROOT, ".mcp.json"), encoding="utf-8").read()
     for rel in MANIFESTS + MARKETPLACES + [".mcp.json"]:
         assert "spk_" not in open(os.path.join(ROOT, rel), encoding="utf-8").read(), rel
+
+
+def test_claude_asks_for_the_key_as_a_secret_and_never_requires_it():
+    """Open tools work without a key, so the option is optional; once given, Claude Code masks it and keeps it out of settings.json."""
+    o = load(".claude-plugin/plugin.json")["userConfig"]["api_key"]
+    assert o["type"] == "string" and o["sensitive"] is True and not o.get("required")
+    assert o["title"] and "spelunking-join" in o["description"]
+    assert set(o) <= {"type", "title", "description", "sensitive", "required", "default"}, "userConfig options are strict"
 
 
 def test_codex_interface_brand():

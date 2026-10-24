@@ -17,17 +17,16 @@ It also means the namespace keeps working if the repo ever moves.
 ## Steps
 
 ```bash
-# 1. get the publisher CLI
-git clone https://github.com/modelcontextprotocol/registry /tmp/mcp-registry
-cd /tmp/mcp-registry && make publisher      # builds ./bin/mcp-publisher
+# 1. install mcp-publisher from its official releases:
+#    https://github.com/modelcontextprotocol/registry/releases
 
 # 2. prove you own the domain. This prints the exact DNS TXT record to add;
 #    add it in Cloudflare, wait for it to resolve, then continue.
-./bin/mcp-publisher login dns --domain spelunking.ai
+mcp-publisher login dns --domain spelunking.ai
 
 # 3. publish
 cd D:/Spelunking.ai/site/public/spelunking-agent
-/tmp/mcp-registry/bin/mcp-publisher publish
+mcp-publisher publish
 ```
 
 Re-run `publish` after bumping `version` whenever the server's shape changes. Keep the version in
