@@ -14,7 +14,7 @@ def test_pyproject_is_utf8_lf_with_a_real_em_dash():
 
 def test_one_version_everywhere():
     v = re.search(r'^version = "([^"]+)"', _read("pyproject.toml"), re.M).group(1)
-    assert v == json.loads(_read("server.json"))["version"] == "0.8.7"
+    assert v == json.loads(_read("server.json"))["version"] == "0.9.0"
 
 
 def test_license_is_the_mit_text_github_detects():
@@ -26,9 +26,9 @@ def test_license_is_the_mit_text_github_detects():
     assert len([l for l in lic if l.strip()]) == 17, "standard MIT is 17 non-blank lines; extra text makes GitHub classify it as Other"
 
 
-def test_readme_counts_five_skills():
+def test_readme_counts_six_skills():
     s = _read("README.md")
-    assert "four `SKILL.md` files" not in s and "five `SKILL.md` files — join, check a thought, deliberate, use the hub, contribute to the language" in s
+    assert "four `SKILL.md` files" not in s and "six `SKILL.md` files — join, check a thought, deliberate, argue it out between models, use the hub, contribute to the language" in s
 
 
 OLD_FOUR = {"ar": "أربعة ملفات", "bn": "চারটি", "de": "vier `SKILL.md`", "es": "cuatro archivos", "fa": "چهار فایل", "fr": "quatre fichiers", "ha": "huɗu", "hi": "चार `SKILL.md`",
@@ -60,4 +60,4 @@ def test_every_readme_shows_the_plugin_install():
 def test_package_version_string_matches_pyproject():
     v = re.search(r'^version = "([^"]+)"', _read("pyproject.toml"), re.M).group(1)
     pv = re.search(r'^__version__ = "([^"]+)"', _read("spelunking_agent/__init__.py"), re.M).group(1)
-    assert pv == v == "0.8.7"
+    assert pv == v == "0.9.0"

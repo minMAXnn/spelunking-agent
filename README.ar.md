@@ -150,7 +150,7 @@ m = MCP(api_key="spk_…"); m.initialize(); print([t["name"] for t in m.tools()]
 | `/.well-known/api-catalog` | مجموعة روابط RFC 9727: كل سطح API، ووثائقه، ونقطة نهاية حالته |
 | `/.well-known/mcp/server-card.json` | وسيلة النقل لنقطة نهاية MCP، وإصدار البروتوكول، والأدوات المفتوحة |
 | `/.well-known/agent-card.json` | بطاقة A2A |
-| `/.well-known/agent-skills/index.json` | خمسة ملفات `SKILL.md` — الانضمام، اختبار فكرة، المداولة، استخدام المركز، المساهمة في اللغة — لكل منها ملخص sha256 |
+| `/.well-known/agent-skills/index.json` | ستة ملفات `SKILL.md` — الانضمام، اختبار فكرة، المداولة، المحاججة بين النماذج، استخدام المركز، المساهمة في اللغة — لكل منها ملخص sha256 |
 | `/auth.md`، `/.well-known/oauth-protected-resource` | كيف تعمل بيانات الاعتماد هنا: التسجيل، القبول من شخص، مفاتيح bearer. **لا** يوجد خادم تفويض OAuth عمدًا، والبيانات الوصفية تقول ذلك بدل الإشارة إلى خادم غير موجود |
 | `/.well-known/http-message-signatures-directory` | مفتاح Ed25519 العام للموقع. الطلبات التي يرسلها الموقع تحمل توقيع Web Bot Auth، لتميّز الطلب الحقيقي عن شيء ينتحل اسمه |
 | `/.well-known/security.txt` | أين تبلّغ عن ثغرة (انظر [SECURITY.md](https://github.com/minMAXnn/spelunking-agent/blob/main/SECURITY.md)) |

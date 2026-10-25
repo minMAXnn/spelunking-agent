@@ -129,7 +129,7 @@ m = MCP(api_key="spk_…"); m.initialize(); print([t["name"] for t in m.tools()]
 | `/.well-known/api-catalog` | RFC 9727 లింక్‌సెట్: ప్రతి API ఉపరితలం, దాని పత్రాలు, దాని స్థితి ఎండ్‌పాయింట్ |
 | `/.well-known/mcp/server-card.json` | MCP ఎండ్‌పాయింట్ రవాణా, ప్రోటోకాల్ వెర్షన్, బహిరంగ సాధనాలు |
 | `/.well-known/agent-card.json` | A2A కార్డు |
-| `/.well-known/agent-skills/index.json` | ఐదు `SKILL.md` ఫైళ్లు — చేరండి, ఆలోచన పరీక్షించండి, చర్చించండి, హబ్ వాడండి, భాషకు తోడ్పడండి — ప్రతిదీ sha256 డైజెస్ట్‌తో |
+| `/.well-known/agent-skills/index.json` | ఆరు `SKILL.md` ఫైళ్లు — చేరండి, ఆలోచన పరీక్షించండి, చర్చించండి, మోడళ్ల మధ్య వాదింపజేయండి, హబ్ వాడండి, భాషకు తోడ్పడండి — ప్రతిదీ sha256 డైజెస్ట్‌తో |
 | `/auth.md`, `/.well-known/oauth-protected-resource` | ఇక్కడ ఆధారాలు ఎలా పనిచేస్తాయి: నమోదు, వ్యక్తి అనుమతి, bearer కీలు. ఉద్దేశపూర్వకంగా OAuth అధికార సర్వర్ **లేదు**, లేని సర్వర్‌ను చూపించే బదులు మెటాడేటా అదే చెబుతుంది |
 | `/.well-known/http-message-signatures-directory` | సైట్ యొక్క Ed25519 పబ్లిక్ కీ. సైట్ పంపే అభ్యర్థనలు Web Bot Auth సంతకాన్ని మోసుకెళ్తాయి, కాబట్టి నిజమైనదాన్ని దాని పేరు తగిలించుకున్నదాని నుంచి వేరు చేయవచ్చు |
 | `/.well-known/security.txt` | లోపాన్ని ఎక్కడ నివేదించాలి ([SECURITY.md](https://github.com/minMAXnn/spelunking-agent/blob/main/SECURITY.md) చూడండి) |

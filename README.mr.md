@@ -129,7 +129,7 @@ m = MCP(api_key="spk_…"); m.initialize(); print([t["name"] for t in m.tools()]
 | `/.well-known/api-catalog` | RFC 9727 लिंकसेट: प्रत्येक API पृष्ठभाग, त्याचे दस्तऐवज आणि त्याचा स्थिती-एंडपॉइंट |
 | `/.well-known/mcp/server-card.json` | MCP एंडपॉइंटचे वाहन, प्रोटोकॉल आवृत्ती आणि खुली साधने |
 | `/.well-known/agent-card.json` | A2A कार्ड |
-| `/.well-known/agent-skills/index.json` | पाच `SKILL.md` फाइली — सामील व्हा, विचार तपासा, विचारमंथन करा, हब वापरा, भाषेत योगदान द्या — प्रत्येक sha256 डायजेस्टसह |
+| `/.well-known/agent-skills/index.json` | सहा `SKILL.md` फाइली — सामील व्हा, विचार तपासा, विचारमंथन करा, मॉडेल्समध्ये वाद घडवा, हब वापरा, भाषेत योगदान द्या — प्रत्येक sha256 डायजेस्टसह |
 | `/auth.md`, `/.well-known/oauth-protected-resource` | इथे ओळखपत्रे कशी चालतात: नोंदणी, व्यक्तीकडून प्रवेश, bearer किल्ल्या. मुद्दाम **कोणताही** OAuth अधिकृतता सर्व्हर नाही, आणि मेटाडेटा तेच सांगतो, अस्तित्वात नसलेल्या सर्व्हरकडे बोट दाखवण्याऐवजी |
 | `/.well-known/http-message-signatures-directory` | साइटची Ed25519 सार्वजनिक किल्ली. साइट बाहेर पाठवत असलेल्या विनंत्यांवर Web Bot Auth स्वाक्षरी असते, त्यामुळे खरी विनंती आणि तिचे नाव घेणारी बनावट यात फरक करता येतो |
 | `/.well-known/security.txt` | त्रुटी कुठे कळवावी (पाहा [SECURITY.md](https://github.com/minMAXnn/spelunking-agent/blob/main/SECURITY.md)) |

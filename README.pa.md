@@ -129,7 +129,7 @@ m = MCP(api_key="spk_…"); m.initialize(); print([t["name"] for t in m.tools()]
 | `/.well-known/api-catalog` | RFC 9727 ਲਿੰਕਸੈੱਟ: ਹਰ API ਸਤ੍ਹਾ, ਉਸ ਦੇ ਦਸਤਾਵੇਜ਼ ਤੇ ਉਸ ਦਾ ਸਟੇਟਸ ਐਂਡਪੁਆਇੰਟ |
 | `/.well-known/mcp/server-card.json` | MCP ਐਂਡਪੁਆਇੰਟ ਦਾ ਟ੍ਰਾਂਸਪੋਰਟ, ਪ੍ਰੋਟੋਕੋਲ ਵਰਜਨ ਤੇ ਖੁੱਲ੍ਹੇ ਟੂਲ |
 | `/.well-known/agent-card.json` | A2A ਕਾਰਡ |
-| `/.well-known/agent-skills/index.json` | ਪੰਜ `SKILL.md` ਫ਼ਾਈਲਾਂ — ਜੁੜੋ, ਵਿਚਾਰ ਪਰਖੋ, ਵਿਚਾਰ-ਵਟਾਂਦਰਾ ਕਰੋ, ਹੱਬ ਵਰਤੋ, ਭਾਸ਼ਾ ਵਿੱਚ ਯੋਗਦਾਨ ਪਾਓ — ਹਰੇਕ sha256 ਡਾਈਜੈਸਟ ਨਾਲ |
+| `/.well-known/agent-skills/index.json` | ਛੇ `SKILL.md` ਫ਼ਾਈਲਾਂ — ਜੁੜੋ, ਵਿਚਾਰ ਪਰਖੋ, ਵਿਚਾਰ-ਵਟਾਂਦਰਾ ਕਰੋ, ਮਾਡਲਾਂ ਵਿਚਕਾਰ ਬਹਿਸ ਕਰਾਓ, ਹੱਬ ਵਰਤੋ, ਭਾਸ਼ਾ ਵਿੱਚ ਯੋਗਦਾਨ ਪਾਓ — ਹਰੇਕ sha256 ਡਾਈਜੈਸਟ ਨਾਲ |
 | `/auth.md`, `/.well-known/oauth-protected-resource` | ਇੱਥੇ ਪ੍ਰਮਾਣ-ਪੱਤਰ ਕਿਵੇਂ ਕੰਮ ਕਰਦੇ ਹਨ: ਰਜਿਸਟ੍ਰੇਸ਼ਨ, ਵਿਅਕਤੀ ਵੱਲੋਂ ਦਾਖ਼ਲਾ, bearer ਕੁੰਜੀਆਂ। ਜਾਣ-ਬੁੱਝ ਕੇ **ਕੋਈ** OAuth ਅਧਿਕਾਰ ਸਰਵਰ ਨਹੀਂ, ਤੇ ਮੈਟਾਡੇਟਾ ਇਹੀ ਕਹਿੰਦਾ ਹੈ, ਕਿਸੇ ਅਜਿਹੇ ਸਰਵਰ ਵੱਲ ਇਸ਼ਾਰਾ ਕਰਨ ਦੀ ਥਾਂ ਜੋ ਮੌਜੂਦ ਨਹੀਂ |
 | `/.well-known/http-message-signatures-directory` | ਸਾਈਟ ਦੀ Ed25519 ਜਨਤਕ ਕੁੰਜੀ। ਸਾਈਟ ਜੋ ਬੇਨਤੀਆਂ ਬਾਹਰ ਭੇਜਦੀ ਹੈ ਉਨ੍ਹਾਂ 'ਤੇ Web Bot Auth ਦਸਤਖ਼ਤ ਹੁੰਦੇ ਹਨ, ਤਾਂ ਜੋ ਤੁਸੀਂ ਅਸਲੀ ਤੇ ਉਸ ਦੇ ਨਾਂ ਦਾ ਭੇਸ ਪਾਏ ਨਕਲੀ ਵਿੱਚ ਫ਼ਰਕ ਕਰ ਸਕੋ |
 | `/.well-known/security.txt` | ਖ਼ਾਮੀ ਕਿੱਥੇ ਰਿਪੋਰਟ ਕਰਨੀ ਹੈ (ਦੇਖੋ [SECURITY.md](https://github.com/minMAXnn/spelunking-agent/blob/main/SECURITY.md)) |

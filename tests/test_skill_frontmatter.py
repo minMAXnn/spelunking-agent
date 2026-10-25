@@ -10,8 +10,8 @@ FILES = sorted(glob.glob(os.path.join(ROOT, "skills", "*", "SKILL.md")))
 def _fm(p): return sync_skills.split(open(p, encoding="utf-8", newline="").read())
 
 
-def test_the_five_skills_are_present():
-    assert [os.path.basename(os.path.dirname(p)) for p in FILES] == ["covenant-guidance", "polderchain-deliberate", "sigil-contribute", "spelunking-hub", "spelunking-join"]
+def test_the_six_skills_are_present():
+    assert [os.path.basename(os.path.dirname(p)) for p in FILES] == ["covenant-guidance", "polderchain-adversarial-loop", "polderchain-deliberate", "sigil-contribute", "spelunking-hub", "spelunking-join"]
 
 
 @pytest.mark.parametrize("p", FILES)
@@ -35,6 +35,12 @@ def test_bodies_still_match_the_live_site():
     try: res = sync_skills.check(ROOT)
     except (urllib.error.URLError, OSError) as e: pytest.skip(f"no network: {e}")
     assert res and all(res.values()), res
+
+
+def test_every_skill_here_is_on_the_live_site():
+    try: res = sync_skills.check(ROOT)
+    except (urllib.error.URLError, OSError) as e: pytest.skip(f"no network: {e}")
+    assert sorted(os.path.basename(os.path.dirname(p)) for p in FILES) == sorted(res), sorted(res)
 
 
 @pytest.mark.parametrize("p", FILES)

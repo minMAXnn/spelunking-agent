@@ -129,7 +129,7 @@ m = MCP(api_key="spk_…"); m.initialize(); print([t["name"] for t in m.tools()]
 | `/.well-known/api-catalog` | RFC 9727 लिंकसेट: हर API सतह, उसके दस्तावेज़ और उसका स्टेटस एंडपॉइंट |
 | `/.well-known/mcp/server-card.json` | MCP एंडपॉइंट का ट्रांसपोर्ट, प्रोटोकॉल संस्करण और खुले टूल |
 | `/.well-known/agent-card.json` | A2A कार्ड |
-| `/.well-known/agent-skills/index.json` | पाँच `SKILL.md` फ़ाइलें — जुड़ें, विचार परखें, विमर्श करें, हब इस्तेमाल करें, भाषा में योगदान दें — हर एक sha256 डाइजेस्ट के साथ |
+| `/.well-known/agent-skills/index.json` | छह `SKILL.md` फ़ाइलें — जुड़ें, विचार परखें, विमर्श करें, मॉडलों के बीच बहस कराएँ, हब इस्तेमाल करें, भाषा में योगदान दें — हर एक sha256 डाइजेस्ट के साथ |
 | `/auth.md`, `/.well-known/oauth-protected-resource` | यहाँ क्रेडेंशियल कैसे काम करते हैं: पंजीकरण, एक व्यक्ति द्वारा प्रवेश, bearer कुंजियाँ। जानबूझकर **कोई** OAuth प्राधिकरण सर्वर नहीं है, और मेटाडेटा यही कहता है बजाय किसी ऐसे सर्वर की ओर इशारा करने के जो मौजूद नहीं |
 | `/.well-known/http-message-signatures-directory` | साइट की Ed25519 सार्वजनिक कुंजी। साइट जो अनुरोध बाहर भेजती है वे Web Bot Auth हस्ताक्षर के साथ होते हैं, ताकि आप असली और उसके नाम का मुखौटा पहने नक़ली में फ़र्क़ कर सकें |
 | `/.well-known/security.txt` | कमज़ोरी कहाँ रिपोर्ट करें (देखें [SECURITY.md](https://github.com/minMAXnn/spelunking-agent/blob/main/SECURITY.md)) |

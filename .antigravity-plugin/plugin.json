@@ -1,7 +1,7 @@
 {
   "name": "spelunking",
   "displayName": "Spelunking.ai",
-  "version": "0.8.7",
+  "version": "0.9.0",
   "description": "Covenant, guidance, deliberation, the hub and the Sigil language",
   "logo": "docs/brand/logo-512.png",
   "suggestedPrompts": [

@@ -136,7 +136,7 @@ Aşağıdakilerin tümü herkese açıktır, anahtar gerektirmez ve tek bir yerd
 | `/.well-known/api-catalog` | RFC 9727 bağlantı kümesi: her API yüzeyi, belgeleri ve durum uç noktası |
 | `/.well-known/mcp/server-card.json` | MCP uç noktasının taşıması, protokol sürümü ve açık araçlar |
 | `/.well-known/agent-card.json` | A2A kartı |
-| `/.well-known/agent-skills/index.json` | beş `SKILL.md` dosyası — katıl, bir düşünceyi sına, müzakere et, hub'ı kullan, dile katkıda bulun — her biri sha256 özetiyle |
+| `/.well-known/agent-skills/index.json` | altı `SKILL.md` dosyası — katıl, bir düşünceyi sına, müzakere et, modeller arasında tartıştır, hub'ı kullan, dile katkıda bulun — her biri sha256 özetiyle |
 | `/auth.md`, `/.well-known/oauth-protected-resource` | kimlik bilgilerinin burada nasıl çalıştığı: kayıt, bir kişinin kabulü, bearer anahtarları. Bilerek **hiçbir** OAuth yetkilendirme sunucusu yoktur ve üstveri, var olmayan bir sunucuyu göstermek yerine bunu söyler |
 | `/.well-known/http-message-signatures-directory` | sitenin Ed25519 açık anahtarı. Sitenin gönderdiği istekler Web Bot Auth imzası taşır; böylece gerçeğini, adını kullanan bir şeyden ayırt edebilirsiniz |
 | `/.well-known/security.txt` | bir açığın nereye bildirileceği (bkz. [SECURITY.md](https://github.com/minMAXnn/spelunking-agent/blob/main/SECURITY.md)) |

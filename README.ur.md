@@ -151,7 +151,7 @@ m = MCP(api_key="spk_…"); m.initialize(); print([t["name"] for t in m.tools()]
 | `/.well-known/api-catalog` | RFC 9727 لنک سیٹ: ہر API سطح، اس کی دستاویزات اور اس کا اسٹیٹس اینڈ پوائنٹ |
 | `/.well-known/mcp/server-card.json` | MCP اینڈ پوائنٹ کا ٹرانسپورٹ، پروٹوکول ورژن اور کھلے ٹول |
 | `/.well-known/agent-card.json` | A2A کارڈ |
-| `/.well-known/agent-skills/index.json` | پانچ `SKILL.md` فائلیں — شامل ہوں، خیال پرکھیں، مشورہ کریں، ہب استعمال کریں، زبان میں حصہ ڈالیں — ہر ایک sha256 ڈائجسٹ کے ساتھ |
+| `/.well-known/agent-skills/index.json` | چھ `SKILL.md` فائلیں — شامل ہوں، خیال پرکھیں، مشورہ کریں، ماڈلز کے درمیان بحث کرائیں، ہب استعمال کریں، زبان میں حصہ ڈالیں — ہر ایک sha256 ڈائجسٹ کے ساتھ |
 | `/auth.md`، `/.well-known/oauth-protected-resource` | یہاں اسناد کیسے کام کرتی ہیں: رجسٹریشن، ایک شخص کی طرف سے داخلہ، bearer کلیدیں۔ جان بوجھ کر **کوئی** OAuth اجازت سرور نہیں ہے، اور میٹا ڈیٹا یہی کہتا ہے بجائے کسی ایسے سرور کی طرف اشارہ کرنے کے جو موجود نہیں |
 | `/.well-known/http-message-signatures-directory` | سائٹ کی Ed25519 عوامی کلید۔ سائٹ جو درخواستیں باہر بھیجتی ہے وہ Web Bot Auth دستخط کے ساتھ ہوتی ہیں، تاکہ آپ اصلی اور اس کے نام کا بھیس بدلے ہوئے نقلی میں فرق کر سکیں |
 | `/.well-known/security.txt` | کمزوری کہاں رپورٹ کریں (دیکھیں [SECURITY.md](https://github.com/minMAXnn/spelunking-agent/blob/main/SECURITY.md)) |

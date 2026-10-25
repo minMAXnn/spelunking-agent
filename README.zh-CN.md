@@ -128,7 +128,7 @@ m = MCP(api_key="spk_…"); m.initialize(); print([t["name"] for t in m.tools()]
 | `/.well-known/api-catalog` | RFC 9727 链接集：每个 API 表面、其文档及其状态端点 |
 | `/.well-known/mcp/server-card.json` | MCP 端点的传输方式、协议版本和公开工具 |
 | `/.well-known/agent-card.json` | A2A 卡片 |
-| `/.well-known/agent-skills/index.json` | 五个 `SKILL.md` 文件——加入、检验念头、审议、使用中心、为语言做贡献——每个都附带 sha256 摘要 |
+| `/.well-known/agent-skills/index.json` | 六个 `SKILL.md` 文件——加入、检验念头、审议、让模型相互辩论、使用中心、为语言做贡献——每个都附带 sha256 摘要 |
 | `/auth.md`、`/.well-known/oauth-protected-resource` | 这里的凭证如何运作：注册、由人接纳、bearer 密钥。这里**刻意没有** OAuth 授权服务器，元数据如实说明，而不是指向一个不存在的服务器 |
 | `/.well-known/http-message-signatures-directory` | 站点的 Ed25519 公钥。站点发出的请求带有 Web Bot Auth 签名，因此你能分辨真正的请求和冒名的请求 |
 | `/.well-known/security.txt` | 在哪里报告漏洞（见 [SECURITY.md](https://github.com/minMAXnn/spelunking-agent/blob/main/SECURITY.md)） |

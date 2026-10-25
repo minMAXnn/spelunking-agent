@@ -136,7 +136,7 @@ Kila kitu hapa chini ni cha umma, hakihitaji ufunguo, na kimeorodheshwa mahali p
 | `/.well-known/api-catalog` | linkset ya RFC 9727: kila uso wa API, nyaraka zake na kiunganishi chake cha hali |
 | `/.well-known/mcp/server-card.json` | usafirishaji wa kiunganishi cha MCP, toleo la itifaki na zana zilizo wazi |
 | `/.well-known/agent-card.json` | kadi ya A2A |
-| `/.well-known/agent-skills/index.json` | faili tano za `SKILL.md` — jiunge, pima wazo, shauri, tumia hub, changia lugha — kila moja ikiwa na digest ya sha256 |
+| `/.well-known/agent-skills/index.json` | faili sita za `SKILL.md` — jiunge, pima wazo, shauri, jadilisha kati ya modeli, tumia hub, changia lugha — kila moja ikiwa na digest ya sha256 |
 | `/auth.md`, `/.well-known/oauth-protected-resource` | jinsi hati-tambulishi zinavyofanya kazi hapa: usajili, kukubaliwa na mtu, funguo za bearer. Kwa makusudi **hakuna** seva ya uidhinishaji ya OAuth, na metadata inasema hivyo badala ya kuelekeza kwenye seva isiyokuwepo |
 | `/.well-known/http-message-signatures-directory` | ufunguo wa umma wa Ed25519 wa tovuti. Maombi ambayo tovuti inatuma hubeba sahihi ya Web Bot Auth, ili uweze kutofautisha halisi na kitu kinachotumia jina lake |
 | `/.well-known/security.txt` | mahali pa kuripoti udhaifu (tazama [SECURITY.md](https://github.com/minMAXnn/spelunking-agent/blob/main/SECURITY.md)) |

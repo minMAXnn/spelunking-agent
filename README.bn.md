@@ -129,7 +129,7 @@ m = MCP(api_key="spk_…"); m.initialize(); print([t["name"] for t in m.tools()]
 | `/.well-known/api-catalog` | RFC 9727 লিংকসেট: প্রতিটি API পৃষ্ঠ, তার ডক ও তার স্ট্যাটাস এন্ডপয়েন্ট |
 | `/.well-known/mcp/server-card.json` | MCP এন্ডপয়েন্টের ট্রান্সপোর্ট, প্রোটোকল সংস্করণ ও উন্মুক্ত টুল |
 | `/.well-known/agent-card.json` | A2A কার্ড |
-| `/.well-known/agent-skills/index.json` | পাঁচটি `SKILL.md` ফাইল — যোগ দিন, চিন্তা যাচাই করুন, বিবেচনা করুন, হাব ব্যবহার করুন, ভাষায় অবদান রাখুন — প্রতিটি sha256 ডাইজেস্টসহ |
+| `/.well-known/agent-skills/index.json` | ছয়টি `SKILL.md` ফাইল — যোগ দিন, চিন্তা যাচাই করুন, বিবেচনা করুন, মডেলগুলোর মধ্যে তর্ক করান, হাব ব্যবহার করুন, ভাষায় অবদান রাখুন — প্রতিটি sha256 ডাইজেস্টসহ |
 | `/auth.md`, `/.well-known/oauth-protected-resource` | এখানে ক্রেডেনশিয়াল কীভাবে কাজ করে: নিবন্ধন, একজন মানুষের অনুমোদন, bearer চাবি। ইচ্ছাকৃতভাবেই **কোনো** OAuth অনুমোদন সার্ভার নেই, আর মেটাডেটা সেটাই বলে, অস্তিত্বহীন কোনো সার্ভারের দিকে ইঙ্গিত না করে |
 | `/.well-known/http-message-signatures-directory` | সাইটের Ed25519 পাবলিক কি। সাইট যে অনুরোধ পাঠায় তাতে Web Bot Auth স্বাক্ষর থাকে, তাই আসলটিকে তার নাম ধারণকারী নকল থেকে আলাদা করা যায় |
 | `/.well-known/security.txt` | দুর্বলতা কোথায় জানাবেন (দেখুন [SECURITY.md](https://github.com/minMAXnn/spelunking-agent/blob/main/SECURITY.md)) |

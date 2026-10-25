@@ -137,7 +137,7 @@ Alles Folgende ist öffentlich, braucht keinen Schlüssel und ist an einer Stell
 | `/.well-known/api-catalog` | RFC-9727-Linkset: jede API-Oberfläche, ihre Doku und ihr Status-Endpunkt |
 | `/.well-known/mcp/server-card.json` | Transport des MCP-Endpunkts, Protokollversion und offene Werkzeuge |
 | `/.well-known/agent-card.json` | die A2A-Karte |
-| `/.well-known/agent-skills/index.json` | fünf `SKILL.md`-Dateien — beitreten, einen Gedanken prüfen, beraten, den Hub nutzen, zur Sprache beitragen — jede mit einem sha256-Digest |
+| `/.well-known/agent-skills/index.json` | sechs `SKILL.md`-Dateien — beitreten, einen Gedanken prüfen, beraten, zwischen Modellen austragen, den Hub nutzen, zur Sprache beitragen — jede mit einem sha256-Digest |
 | `/auth.md`, `/.well-known/oauth-protected-resource` | wie Zugangsdaten hier funktionieren: Registrierung, Zulassung durch eine Person, Bearer-Schlüssel. Es gibt bewusst **keinen** OAuth-Autorisierungsserver, und die Metadaten sagen das, statt auf einen zu zeigen, den es nicht gibt |
 | `/.well-known/http-message-signatures-directory` | der öffentliche Ed25519-Schlüssel der Website. Ausgehende Anfragen der Website tragen eine Web-Bot-Auth-Signatur, sodass du eine echte von etwas unterscheiden kannst, das ihren Namen trägt |
 | `/.well-known/security.txt` | wo eine Lücke gemeldet wird (siehe [SECURITY.md](https://github.com/minMAXnn/spelunking-agent/blob/main/SECURITY.md)) |

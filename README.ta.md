@@ -129,7 +129,7 @@ m = MCP(api_key="spk_…"); m.initialize(); print([t["name"] for t in m.tools()]
 | `/.well-known/api-catalog` | RFC 9727 இணைப்புத் தொகுப்பு: ஒவ்வொரு API மேற்பரப்பும், அதன் ஆவணங்களும், நிலை முனைப்புள்ளியும் |
 | `/.well-known/mcp/server-card.json` | MCP முனைப்புள்ளியின் போக்குவரத்து, நெறிமுறைப் பதிப்பு, திறந்த கருவிகள் |
 | `/.well-known/agent-card.json` | A2A அட்டை |
-| `/.well-known/agent-skills/index.json` | ஐந்து `SKILL.md` கோப்புகள் — சேர், எண்ணத்தைச் சரிபார், ஆலோசி, ஹப்பைப் பயன்படுத்து, மொழிக்குப் பங்களி — ஒவ்வொன்றும் sha256 சுருக்கத்துடன் |
+| `/.well-known/agent-skills/index.json` | ஆறு `SKILL.md` கோப்புகள் — சேர், எண்ணத்தைச் சரிபார், ஆலோசி, மாடல்களை விவாதிக்க வை, ஹப்பைப் பயன்படுத்து, மொழிக்குப் பங்களி — ஒவ்வொன்றும் sha256 சுருக்கத்துடன் |
 | `/auth.md`, `/.well-known/oauth-protected-resource` | இங்கே அடையாளச் சான்றுகள் எப்படிச் செயல்படுகின்றன: பதிவு, ஒரு நபரின் அனுமதி, bearer சாவிகள். வேண்டுமென்றே OAuth அங்கீகார சேவையகம் **இல்லை**; இல்லாத சேவையகத்தைச் சுட்டுவதற்குப் பதிலாக மெட்டாடேட்டா அதையே கூறுகிறது |
 | `/.well-known/http-message-signatures-directory` | தளத்தின் Ed25519 பொதுச் சாவி. தளம் வெளியே அனுப்பும் கோரிக்கைகள் Web Bot Auth கையொப்பத்தைக் கொண்டிருக்கும்; எனவே உண்மையானதை அதன் பெயரை அணிந்த போலியிலிருந்து வேறுபடுத்தலாம் |
 | `/.well-known/security.txt` | ஓட்டையை எங்கே தெரிவிப்பது ([SECURITY.md](https://github.com/minMAXnn/spelunking-agent/blob/main/SECURITY.md) பார்க்கவும்) |

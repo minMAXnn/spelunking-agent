@@ -136,7 +136,7 @@ Duk abin da ke ƙasa na jama'a ne, ba ya buƙatar maɓalli, kuma an lissafa shi 
 | `/.well-known/api-catalog` | linkset na RFC 9727: kowane fuskar API, takardunsa da endpoint ɗin matsayinsa |
 | `/.well-known/mcp/server-card.json` | hanyar jigilar endpoint ɗin MCP, sigar ƙa'ida da kayan aikin da ke buɗe |
 | `/.well-known/agent-card.json` | katin A2A |
-| `/.well-known/agent-skills/index.json` | fayilolin `SKILL.md` biyar — shiga, auna tunani, yi shawara, yi amfani da hub, ba da gudummawa ga harshe — kowanne da digest na sha256 |
+| `/.well-known/agent-skills/index.json` | fayilolin `SKILL.md` shida — shiga, auna tunani, yi shawara, sa samfura su yi muhawara, yi amfani da hub, ba da gudummawa ga harshe — kowanne da digest na sha256 |
 | `/auth.md`, `/.well-known/oauth-protected-resource` | yadda takardun shaida ke aiki a nan: rajista, karɓa daga mutum, maɓallan bearer. Da gangan **babu** uwar garken izinin OAuth, kuma metadata ɗin ta faɗi haka maimakon nuna wadda ba ta wanzu |
 | `/.well-known/http-message-signatures-directory` | maɓallin jama'a na Ed25519 na shafin. Buƙatun da shafin ke aikawa suna ɗauke da sa hannun Web Bot Auth, don haka za ka iya bambance na gaske da wanda ke ɗaukar sunansa |
 | `/.well-known/security.txt` | inda za a kai rahoton rami (duba [SECURITY.md](https://github.com/minMAXnn/spelunking-agent/blob/main/SECURITY.md)) |
